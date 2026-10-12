@@ -18,6 +18,11 @@
 <style>
 body{margin:0;background:#12163A;color:#F3F1EA;font-family:'Bricolage Grotesque',system-ui,sans-serif}
 a{color:#F3F1EA}a:hover{color:#E9B949}
+.deck-item{transition:background-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.deck-item:hover{color:#F3F1EA;background-color:#232858 !important;transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
+.deck-item:hover .deck-cta{color:#E9B949}
+.deck-item:focus-visible{outline:3px solid #E9B949;outline-offset:4px}
+@media (prefers-reduced-motion: reduce){.deck-item{transition:none}.deck-item:hover{transform:none}}
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
 <link rel="stylesheet" href="mobile.css">
@@ -92,7 +97,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 <div class="m-deck-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
 
-<div class="m-deck-item" id="c1" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px">
+<a id="c1" class="m-deck-item deck-item" href="racing16b.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
 <div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>Racing16B</span><span>01</span></div>
 <div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/r16b/hud-race.jpg" alt="Racing16B prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
@@ -109,11 +114,11 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <li>An FTUE taught by track design, not tutorials</li>
 <li>HUD, screen flow and leaderboard</li>
 </ul>
-<a href="racing16b.html" style="margin-top: auto; font-weight: 700; font-size: 16px">Read the case study →</a>
+<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">Read the case study →</span>
 </div>
-</div>
+</a>
 
-<div class="m-deck-item" id="c2" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px">
+<a id="c2" class="m-deck-item deck-item" href="client-project.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
 <div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>Client project</span><span>02</span></div>
 <div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#2A2F63"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#F08BA6" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#E9B949"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#E9B949" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#12163A"/></svg></div>
@@ -130,11 +135,11 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <li>Feature one-pagers and the GDD</li>
 <li>UX reworks and new game modes</li>
 </ul>
-<a href="client-project.html" style="margin-top: auto; font-weight: 700; font-size: 16px">What I owned →</a>
+<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">What I owned →</span>
 </div>
-</div>
+</a>
 
-<div class="m-deck-item" id="c3" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px">
+<a id="c3" class="m-deck-item deck-item" href="oceans-one.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
 <div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>Ocean's One</span><span>03</span></div>
 <div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/o1/s01.jpg" alt="Ocean's One pitch cover" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
@@ -151,11 +156,11 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <li>A four-phase heist structure and game loops</li>
 <li>Pitched to industry tutors in 15 minutes</li>
 </ul>
-<a href="oceans-one.html" style="margin-top: auto; font-weight: 700; font-size: 16px">Read the case study →</a>
+<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">Read the case study →</span>
 </div>
-</div>
+</a>
 
-<div class="m-deck-item" id="c4" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px">
+<a id="c4" class="m-deck-item deck-item" href="seat-cupra-hmi.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
 <div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>SEAT &amp; CUPRA</span><span>04</span></div>
 <div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/cupra/cockpit.jpg" alt="CUPRA cockpit with the infotainment screen" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
@@ -172,9 +177,9 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <li>Brand-native Home, App Grid and Navigation</li>
 <li>Led the UX team and its workflows</li>
 </ul>
-<a href="seat-cupra-hmi.html" style="margin-top: auto; font-weight: 700; font-size: 16px">Read the case study →</a>
+<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">Read the case study →</span>
 </div>
-</div>
+</a>
 
 </div>
 <div class="m-quests" style="display: flex; align-items: center; gap: 20px; font-size: 16px">

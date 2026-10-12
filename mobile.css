@@ -55,7 +55,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-deck-item > :last-child > div:nth-child(2) { font-size: 22px !important; line-height: 1.1 !important; }
   .m-deck-item > :last-child > div:nth-child(3) { font-size: 14px !important; line-height: 1.4 !important; }
   .m-deck-item > :last-child > ul { grid-column: 1 / -1 !important; margin: 8px 0 0 !important; padding-left: 18px !important; font-size: 15px !important; line-height: 1.5 !important; }
-  .m-deck-item > :last-child > a { grid-column: 1 / -1 !important; margin-top: 6px !important; font-size: 15px !important; }
+  .m-deck-item .deck-cta { grid-column: 1 / -1 !important; margin-top: 6px !important; font-size: 15px !important; }
   .m-quests { flex-wrap: wrap !important; gap: 10px !important; font-size: 14px !important; }
   .m-quests > :first-child { flex-basis: 100% !important; }
 
