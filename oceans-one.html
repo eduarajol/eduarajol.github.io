@@ -19,16 +19,17 @@
 body{margin:0;background:#12163A;color:#F3F1EA;font-family:'Bricolage Grotesque',system-ui,sans-serif}
 a{color:#F3F1EA}a:hover{color:#E9B949}
 </style>
-<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
+<link rel="stylesheet" href="mobile.css">
 </head>
 <body id="top">
 <div id="dc-root"></div>
 <template id="dc-template">
-<div style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+<div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
 
-<header style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<header class="m-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
 <a href="index.html#deck" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#F3F1EA" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
-<nav style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
+<nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
 <a href="index.html#deck" style="text-decoration: none">Work</a>
 <a href="index.html#profile" style="text-decoration: none">About</a>
 <a href="index.html#faq" style="text-decoration: none">FAQ</a>
@@ -36,7 +37,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <a href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #E9B949; color: #12163A; border-radius: 10px; font-weight: 700">Contact</a>
 </nav>
 </header>
-<div style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #262B5C; border-bottom: 1px solid #262B5C">
+<div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #262B5C; border-bottom: 1px solid #262B5C">
 <a href="index.html#deck" style="text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px">← Back to the deck</a>
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #9AA3C7">CARD 03 OF 04</div>
 <a href="index.html#deck" aria-label="Close" style="width: 40px; height: 40px; border: 2px solid #3A3F75; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none">
@@ -44,8 +45,8 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </a>
 </div>
 
-<section style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
-<div style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 8px solid #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
+<section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
+<div class="m-pcard" style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 8px solid #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 20px"><span>Ocean's One</span><span>03</span></div>
 <div style="height: 190px; flex-shrink: 0; border-radius: 10px; overflow: hidden"><img src="img/o1/s01.jpg" alt="Ocean's One pitch cover" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 12px; font-weight: 800; color: #5E5F69">GAME DESIGN · CONCEPT</div>
@@ -54,9 +55,9 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #E9B949">2026 · BOOTCAMP FINAL PROJECT</div>
-<h1 style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">Ocean's One</h1>
-<p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #CFCCE0">A social stealth heist game set in the world of the Ocean's films, pitched as my Game Design Bootcamp final project. I designed it end to end, from pillars and player profiles to the 3C, the level structure and the game loops, and presented it to tutors from the industry.</p>
-<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
+<h1 class="m-ph1" style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">Ocean's One</h1>
+<p class="m-plead" style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #CFCCE0">A social stealth heist game set in the world of the Ocean's films, pitched as my Game Design Bootcamp final project. I designed it end to end, from pillars and player profiles to the 3C, the level structure and the game loops, and presented it to tutors from the industry.</p>
+<div class="m-facts" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">ROLE</div><div style="font-weight: 700; font-size: 16px">Game Designer</div></div>
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">PERIOD</div><div style="font-weight: 700; font-size: 16px">2026 · Bootcamp</div></div>
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">TYPE</div><div style="font-weight: 700; font-size: 16px">Social stealth · consoles &amp; PC</div></div>
@@ -65,29 +66,29 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </section>
 
-<div style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
+<div class="m-note" style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#9AA3C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
 <span>Concept pitch, no playable prototype. A fan concept set in the Ocean's films universe. Slide layouts, diagrams and the control mapping are mine; character and level images are AI-generated from my art direction; gameplay screenshots come from the reference games and are credited.</span>
 </div>
 
-<section style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; justify-content: space-between; align-items: baseline">
+<section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
+<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What I owned</h2>
 <div style="font-size: 16px; color: #CFCCE0">Pick an ability to see the details</div>
 </div>
 
-<div style="display: flex; gap: 40px; align-items: flex-start">
+<div class="m-owned-body" style="display: flex; gap: 40px; align-items: flex-start">
 
-<div style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+<div class="m-tabs" style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
 <sc-for list="{{abilities}}" as="item" hint-placeholder-count="7">
-<button type="button" onClick="{{item.pick}}" style="width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
+<button class="m-tab" type="button" onClick="{{item.pick}}" style="width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: {{item.catColor}}">{{item.cat}}</span>
 <span style="font-weight: 800; font-size: 17px; line-height: 1.15">{{item.title}}</span>
 </button>
 </sc-for>
 </div>
 
-<div style="flex-grow: 1; box-sizing: border-box; position: relative; padding: 48px; background: #1A1F4D; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
+<div class="m-panel" style="flex-grow: 1; box-sizing: border-box; position: relative; padding: 48px; background: #1A1F4D; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
 
 <sc-if value="{{isPitch}}" hint-placeholder-val="{{true}}">
 <div style="display: flex; flex-direction: column; gap: 18px">
@@ -114,7 +115,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="3" width="8" height="14" rx="4"></rect><path d="M6 13a8 8 0 0 0 16 0 M14 21 V25"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Plain words, solid tools.</strong> On stage I avoided jargon, but every section is built on the course frameworks: pillars, 3C, MDA, game loops, story panels and a story stack.</div>
 </div>
@@ -144,7 +145,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="9" r="4"></circle><circle cx="20" cy="10" r="3"></circle><path d="M3 24a7 7 0 0 1 14 0 M16 24a5 5 0 0 1 9 0"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Two ways in.</strong> Planning rewards Alex, improvisation rewards Natalia, and the score at the end rewards both.</div>
 </div>
@@ -177,7 +178,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 L16.8 10.2 L24.5 10.6 L18.5 15.4 L20.5 22.9 L14 18.7 L7.5 22.9 L9.5 15.4 L3.5 10.6 L11.2 10.2 Z"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">References, not copies.</strong> Each reference proves a pillar works in a real game; the combination of the four is what makes Ocean&#x27;s One its own thing.</div>
 </div>
@@ -208,7 +209,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="24" height="13" rx="6"></rect><path d="M8 12 V17 M5.5 14.5 H10.5"></path><circle cx="19" cy="13" r="1"></circle><circle cx="21" cy="16" r="1"></circle></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Hold to commit.</strong> Most actions that can expose you, like picking up, disguising or recording a conversation, are on hold rather than a tap, so nothing risky happens by accident.</div>
 </div>
@@ -241,7 +242,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6 L10 3 L18 6 L25 3 V22 L18 25 L10 22 L3 25 Z M10 3 V22 M18 6 V25"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Risk you can read.</strong> Colour-coded zones turn tension into information: you always know when you are stepping somewhere you should not be.</div>
 </div>
@@ -272,7 +273,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 14 Q14 2 26 14 Q14 26 2 14 Z"></path><circle cx="14" cy="14" r="4"></circle></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Information is the loot before the loot.</strong> Everything the glasses capture becomes a planning option, which is how the game rewards patience.</div>
 </div>
@@ -302,7 +303,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a10 10 0 0 1 17-7l3 3"></path><path d="M24 4v6h-6"></path><path d="M24 14a10 10 0 0 1-17 7l-3-3"></path><path d="M4 24v-6h6"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Built to replay.</strong> Ratings and alternative routes turn every finished heist into a reason to try it again, differently.</div>
 </div>
@@ -310,7 +311,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 
 
 <sc-if value="{{zoomOn}}" hint-placeholder-val="{{false}}">
-<div onClick="{{closeZoom}}" role="dialog" aria-label="Enlarged image" style="position: {{zPos}}; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 72px 88px 40px; background: rgba(10, 12, 34, 0.95); border-radius: {{zRadius}}; display: flex; flex-direction: column; align-items: center; justify-content: {{zAlign}}; gap: 16px; cursor: zoom-out">
+<div class="m-zoom" onClick="{{closeZoom}}" role="dialog" aria-label="Enlarged image" style="position: {{zPos}}; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 72px 88px 40px; background: rgba(10, 12, 34, 0.95); border-radius: {{zRadius}}; display: flex; flex-direction: column; align-items: center; justify-content: {{zAlign}}; gap: 16px; cursor: zoom-out">
 <img src="img/o1/s01.jpg" alt="Cover and title, designed by me. Every slide followed the same layout." style="display: {{zd_s01}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s13.jpg" alt="The world: public façades with a hidden, vulnerable layer underneath." style="display: {{zd_s13}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s04.jpg" alt="Motivation, entry point, hook, fantasy and frustrations for each profile. Portraits AI-generated." style="display: {{zd_s04}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s05.jpg" alt="Stealth · reference: Hitman: World of Assassination." style="display: {{zd_s05}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s06.jpg" alt="Planning · reference: Batman: Arkham Asylum." style="display: {{zd_s06}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s07.jpg" alt="Tension · reference: Assassin&#x27;s Creed Mirage." style="display: {{zd_s07}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s08.jpg" alt="Replayability · reference: Hitman: World of Assassination." style="display: {{zd_s08}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s12.jpg" alt="Nick Ocean. Character images AI-generated from my art direction." style="display: {{zd_s12}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s09.jpg" alt="Main camera: third person, over the shoulder. Reference: Hitman." style="display: {{zd_s09}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s27.jpg" alt="My control mapping, laid over a PS5 controller." style="display: {{zd_s27}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s22.jpg" alt="Observation: the map shows social, unauthorised and dangerous zones." style="display: {{zd_s22}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s23.jpg" alt="Execution: the same venue, with the target and new risks marked." style="display: {{zd_s23}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s18.jpg" alt="The scanner glasses reveal what the eye misses." style="display: {{zd_s18}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s21.jpg" alt="The masked ball at night. Level images AI-generated from my instructions." style="display: {{zd_s21}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s29.jpg" alt="How the glasses work: scan, add to the PDA, mark and switch focus." style="display: {{zd_s29}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s25.jpg" alt="Social stealth and observation. Reference: Hitman." style="display: {{zd_s25}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s35.jpg" alt="My diagram of the three loops, with the metagame highlighted." style="display: {{zd_s35}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/o1/s36.jpg" alt="Results and rating screen. Reference: Hitman." style="display: {{zd_s36}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
 <div style="max-width: 900px; display: flex; gap: 18px; align-items: baseline; font-size: 15px; line-height: 1.5; color: #CFCCE0"><span style="font-weight: 700; color: #F3F1EA; flex-shrink: 0">{{zCount}}</span><span>{{zCap}}</span></div>
 <button type="button" onClick="{{closeZoom}}" aria-label="Close" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F3F1EA" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg></button>
@@ -325,7 +326,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </section>
 
-<footer style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #262B5C; display: flex; justify-content: space-between; align-items: flex-start">
+<footer class="m-pfooter" style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #262B5C; display: flex; justify-content: space-between; align-items: flex-start">
 <a href="index.html#deck" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">BACK</span><span style="font-weight: 800; font-size: 24px">← The deck</span></a>
 <a href="seat-cupra-hmi.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; align-items: flex-end"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">NEXT CARD · 04</span><span style="font-weight: 800; font-size: 24px">SEAT &amp; CUPRA HMI →</span></a>
 </footer>
@@ -334,6 +335,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </template>
 <noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
 <script src="dc.js"></script>
+<script src="mobile.js"></script>
 <script>window.DC_PROPS = {};
 
 const ZOOM = [{"id": "s01", "panel": "isPitch", "cap": "Cover and title, designed by me. Every slide followed the same layout."}, {"id": "s13", "panel": "isPitch", "cap": "The world: public fa\u00e7ades with a hidden, vulnerable layer underneath."}, {"id": "s04", "panel": "isPlayers", "cap": "Motivation, entry point, hook, fantasy and frustrations for each profile. Portraits AI-generated."}, {"id": "s05", "panel": "isPillars", "cap": "Stealth \u00b7 reference: Hitman: World of Assassination."}, {"id": "s06", "panel": "isPillars", "cap": "Planning \u00b7 reference: Batman: Arkham Asylum."}, {"id": "s07", "panel": "isPillars", "cap": "Tension \u00b7 reference: Assassin's Creed Mirage."}, {"id": "s08", "panel": "isPillars", "cap": "Replayability \u00b7 reference: Hitman: World of Assassination."}, {"id": "s12", "panel": "is3c", "cap": "Nick Ocean. Character images AI-generated from my art direction."}, {"id": "s09", "panel": "is3c", "cap": "Main camera: third person, over the shoulder. Reference: Hitman."}, {"id": "s27", "panel": "is3c", "cap": "My control mapping, laid over a PS5 controller."}, {"id": "s22", "panel": "isLevel", "cap": "Observation: the map shows social, unauthorised and dangerous zones."}, {"id": "s23", "panel": "isLevel", "cap": "Execution: the same venue, with the target and new risks marked."}, {"id": "s18", "panel": "isLevel", "cap": "The scanner glasses reveal what the eye misses."}, {"id": "s21", "panel": "isLevel", "cap": "The masked ball at night. Level images AI-generated from my instructions."}, {"id": "s29", "panel": "isTools", "cap": "How the glasses work: scan, add to the PDA, mark and switch focus."}, {"id": "s25", "panel": "isTools", "cap": "Social stealth and observation. Reference: Hitman."}, {"id": "s35", "panel": "isLoops", "cap": "My diagram of the three loops, with the metagame highlighted."}, {"id": "s36", "panel": "isLoops", "cap": "Results and rating screen. Reference: Hitman."}];

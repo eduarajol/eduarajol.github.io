@@ -19,16 +19,17 @@
 body{margin:0;background:#12163A;color:#F3F1EA;font-family:'Bricolage Grotesque',system-ui,sans-serif}
 a{color:#F3F1EA}a:hover{color:#E9B949}
 </style>
-<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
+<link rel="stylesheet" href="mobile.css">
 </head>
 <body id="top">
 <div id="dc-root"></div>
 <template id="dc-template">
-<div style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+<div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
 
-<header style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<header class="m-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
 <a href="index.html#deck" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#F3F1EA" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
-<nav style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
+<nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
 <a href="index.html#deck" style="text-decoration: none">Work</a>
 <a href="index.html#profile" style="text-decoration: none">About</a>
 <a href="index.html#faq" style="text-decoration: none">FAQ</a>
@@ -36,7 +37,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <a href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #E9B949; color: #12163A; border-radius: 10px; font-weight: 700">Contact</a>
 </nav>
 </header>
-<div style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #262B5C; border-bottom: 1px solid #262B5C">
+<div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #262B5C; border-bottom: 1px solid #262B5C">
 <a href="index.html#deck" style="text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px">← Back to the deck</a>
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #9AA3C7">CARD 01 OF 04</div>
 <a href="index.html#deck" aria-label="Close" style="width: 40px; height: 40px; border: 2px solid #3A3F75; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none">
@@ -44,8 +45,8 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </a>
 </div>
 
-<section style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
-<div style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 8px solid #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
+<section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
+<div class="m-pcard" style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 8px solid #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 20px"><span>Racing16B</span><span>01</span></div>
 <div style="height: 190px; flex-shrink: 0; border-radius: 10px; overflow: hidden"><img src="img/r16b/hud-race.jpg" alt="Racing16B prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 12px; font-weight: 800; color: #5E5F69">GAME DESIGN · UX · IN DEV</div>
@@ -54,9 +55,9 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #E9B949">2026 — NOW · IN DEVELOPMENT</div>
-<h1 style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">Racing16B</h1>
-<p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #CFCCE0">An arcade racer reimagined as free-to-play, built from scratch with the game director. I led UX and wrote most of the design documentation, from the first wireframes to the spec the playable prototype was built from.</p>
-<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
+<h1 class="m-ph1" style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">Racing16B</h1>
+<p class="m-plead" style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #CFCCE0">An arcade racer reimagined as free-to-play, built from scratch with the game director. I led UX and wrote most of the design documentation, from the first wireframes to the spec the playable prototype was built from.</p>
+<div class="m-facts" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">ROLE</div><div style="font-weight: 700; font-size: 16px">Game &amp; UX Designer</div></div>
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">PERIOD</div><div style="font-weight: 700; font-size: 16px">2026 — now</div></div>
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">TYPE</div><div style="font-weight: 700; font-size: 16px">Arcade racer · F2P · PC &amp; mobile</div></div>
@@ -65,29 +66,29 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </section>
 
-<div style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
+<div class="m-note" style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#9AA3C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
 <span>Early-stage project: some mechanics are shown at concept level. Images are my wireframes and UI explorations; backgrounds mix the Godot prototype and AI-generated art.</span>
 </div>
 
-<section style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; justify-content: space-between; align-items: baseline">
+<section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
+<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What I owned</h2>
 <div style="font-size: 16px; color: #CFCCE0">Pick an ability to see the details</div>
 </div>
 
-<div style="display: flex; gap: 40px; align-items: flex-start">
+<div class="m-owned-body" style="display: flex; gap: 40px; align-items: flex-start">
 
-<div style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+<div class="m-tabs" style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
 <sc-for list="{{abilities}}" as="item" hint-placeholder-count="8">
-<button type="button" onClick="{{item.pick}}" style="width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
+<button class="m-tab" type="button" onClick="{{item.pick}}" style="width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: {{item.catColor}}">{{item.cat}}</span>
 <span style="font-weight: 800; font-size: 17px; line-height: 1.15">{{item.title}}</span>
 </button>
 </sc-for>
 </div>
 
-<div style="flex-grow: 1; box-sizing: border-box; position: relative; padding: 48px; background: #1A1F4D; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
+<div class="m-panel" style="flex-grow: 1; box-sizing: border-box; position: relative; padding: 48px; background: #1A1F4D; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
 
 <sc-if value="{{isBench}}" hint-placeholder-val="{{true}}">
 <div style="display: flex; flex-direction: column; gap: 18px">
@@ -113,7 +114,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 L16.8 10.2 L24.5 10.6 L18.5 15.4 L20.5 22.9 L14 18.7 L7.5 22.9 L9.5 15.4 L3.5 10.6 L11.2 10.2 Z"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Competition without punishment.</strong> Across every reference, I consistently set aside elimination, relegation and expiring time windows, and kept what makes players want one more try.</div>
 </div>
@@ -145,7 +146,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a10 10 0 0 1 17-7l3 3"></path><path d="M24 4v6h-6"></path><path d="M24 14a10 10 0 0 1-17 7l-3-3"></path><path d="M4 24v-6h6"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Proposals, not final art.</strong> These screens grounded the brief early on. The game evolved afterwards, but the hierarchy decisions carried over.</div>
 </div>
@@ -189,7 +190,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <div style="font-size: 14px; color: #9AA3C7">Every mechanic was specified this way: what each value feels like at its extremes, a starting point, and which way to turn it.</div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="16" height="22" rx="2"></rect><path d="M10 9 H18 M10 14 H18 M10 19 H15"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">From spec to build.</strong> The parameter names in the prototype&#x27;s configuration match the spec, so the team could tune the game without touching code.</div>
 </div>
@@ -220,7 +221,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 14 Q14 2 26 14 Q14 26 2 14 Z"></path><circle cx="14" cy="14" r="4"></circle></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">The player decides.</strong> HUD settings let players hide elements and set opacity, so each one chooses how much information they want on screen.</div>
 </div>
@@ -255,7 +256,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="8" width="24" height="13" rx="6"></rect><path d="M8 12 V17 M5.5 14.5 H10.5"></path><circle cx="19" cy="13" r="1"></circle><circle cx="21" cy="16" r="1"></circle></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Built for every input.</strong> Navigation works with gamepad, keyboard and touch: tabs on the shoulder buttons, actions always in the same place.</div>
 </div>
@@ -288,7 +289,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 25 V4"></path><path d="M6 4 H22 L18 9 L22 14 H6"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Precise, not punishing.</strong> Results show the exact gap to the next rival, so players can judge whether to retry, and nobody is penalised for not playing.</div>
 </div>
@@ -320,7 +321,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 L16.8 10.2 L24.5 10.6 L18.5 15.4 L20.5 22.9 L14 18.7 L7.5 22.9 L9.5 15.4 L3.5 10.6 L11.2 10.2 Z"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Rewards without risk.</strong> Every run is worth something, but skill earns more: practice feels free and still pushes players to improve.</div>
 </div>
@@ -352,13 +353,13 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="14" cy="5" r="2.5"></circle><path d="M5 10 H23 M14 10 V17 M14 17 L9 25 M14 17 L19 25"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Comfort is part of the design.</strong> Reducing camera shake and flashing effects matters in a game built around a constant feeling of speed.</div>
 </div>
 </sc-if>
 <sc-if value="{{zoomOn}}" hint-placeholder-val="{{false}}">
-<div onClick="{{closeZoom}}" role="dialog" aria-label="Enlarged image" style="position: {{zPos}}; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 72px 88px 40px; background: rgba(10, 12, 34, 0.95); border-radius: {{zRadius}}; display: flex; flex-direction: column; align-items: center; justify-content: {{zAlign}}; gap: 16px; cursor: zoom-out">
+<div class="m-zoom" onClick="{{closeZoom}}" role="dialog" aria-label="Enlarged image" style="position: {{zPos}}; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 72px 88px 40px; background: rgba(10, 12, 34, 0.95); border-radius: {{zRadius}}; display: flex; flex-direction: column; align-items: center; justify-content: {{zAlign}}; gap: 16px; cursor: zoom-out">
 <img src="img/r16b/bench-pocketchamps.jpg" alt="One sheet per game: data, visual references, summary and the opportunity for Racing16B." style="display: {{zd_bench_pocketchamps}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/results-sketch.jpg" alt="1 · Paper wireframe." style="display: {{zd_results_sketch}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/results-ui1.jpg" alt="2 · First UI exploration." style="display: {{zd_results_ui1}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/results-ui2.jpg" alt="3 · Iteration: clearer hierarchy and a primary action." style="display: {{zd_results_ui2}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/lateral-a.jpg" alt="Option A: the car slides sideways, nose always forward." style="display: {{zd_lateral_a}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/lateral-b.jpg" alt="Option B: the nose turns toward the direction of travel." style="display: {{zd_lateral_b}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/launch.jpg" alt="Launch concept, inspired by pull-back toy cars. AI-rendered from my wireframe and art direction." style="display: {{zd_launch}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/hud-analysis.jpg" alt="Six HUDs, one colour legend." style="display: {{zd_hud_analysis}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/hud-live.jpg" alt="Variant with a live global ranking." style="display: {{zd_hud_live}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/lobby-iterations.jpg" alt="Home screen iterations in low fidelity." style="display: {{zd_lobby_iterations}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/thumb-zone.jpg" alt="Thumb-zone illustration based on Steven Hoober&#x27;s research." style="display: {{zd_thumb_zone}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/screenflow.jpg" alt="The complete screen flow, built from my wireframes." style="display: {{zd_screenflow}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/home.jpg" alt="Home: daily race, ranking and training." style="display: {{zd_home}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/results-final.jpg" alt="Results: retry or back, same buttons as everywhere." style="display: {{zd_results_final}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/region.jpg" alt="See who you race against before you start." style="display: {{zd_region}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/away.jpg" alt="What changed while you were away." style="display: {{zd_away}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/confirm.jpg" alt="An irreversible step, explained before you take it." style="display: {{zd_confirm}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/training-1.jpg" alt="Page 1: narrative, pillars, goals and mechanics." style="display: {{zd_training_1}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/training-2.jpg" alt="Page 2: references, and why not the others." style="display: {{zd_training_2}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/set-access.jpg" alt="Accessibility, from the pause menu." style="display: {{zd_set_access}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/set-hud.jpg" alt="HUD settings: hide elements, set opacity." style="display: {{zd_set_hud}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/r16b/set-home.jpg" alt="The same component from home." style="display: {{zd_set_home}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
 <div style="max-width: 900px; display: flex; gap: 18px; align-items: baseline; font-size: 15px; line-height: 1.5; color: #CFCCE0"><span style="font-weight: 700; color: #F3F1EA; flex-shrink: 0">{{zCount}}</span><span>{{zCap}}</span></div>
 <button type="button" onClick="{{closeZoom}}" aria-label="Close" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F3F1EA" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg></button>
@@ -375,7 +376,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </section>
 
-<footer style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #262B5C; display: flex; justify-content: space-between; align-items: flex-start">
+<footer class="m-pfooter" style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #262B5C; display: flex; justify-content: space-between; align-items: flex-start">
 <a href="index.html#deck" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">BACK</span><span style="font-weight: 800; font-size: 24px">← The deck</span></a>
 <a href="client-project.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; align-items: flex-end"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">NEXT CARD · 02</span><span style="font-weight: 800; font-size: 24px">Client project →</span></a>
 </footer>
@@ -384,6 +385,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </template>
 <noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
 <script src="dc.js"></script>
+<script src="mobile.js"></script>
 <script>window.DC_PROPS = {};
 
 const ZOOM = [{"id": "bench_pocketchamps", "panel": "isBench", "cap": "One sheet per game: data, visual references, summary and the opportunity for Racing16B."}, {"id": "results_sketch", "panel": "isEarly", "cap": "1 \u00b7 Paper wireframe."}, {"id": "results_ui1", "panel": "isEarly", "cap": "2 \u00b7 First UI exploration."}, {"id": "results_ui2", "panel": "isEarly", "cap": "3 \u00b7 Iteration: clearer hierarchy and a primary action."}, {"id": "lateral_a", "panel": "isMech", "cap": "Option A: the car slides sideways, nose always forward."}, {"id": "lateral_b", "panel": "isMech", "cap": "Option B: the nose turns toward the direction of travel."}, {"id": "launch", "panel": "isMech", "cap": "Launch concept, inspired by pull-back toy cars. AI-rendered from my wireframe and art direction."}, {"id": "hud_analysis", "panel": "isHud", "cap": "Six HUDs, one colour legend."}, {"id": "hud_live", "panel": "isHud", "cap": "Variant with a live global ranking."}, {"id": "lobby_iterations", "panel": "isNav", "cap": "Home screen iterations in low fidelity."}, {"id": "thumb_zone", "panel": "isNav", "cap": "Thumb-zone illustration based on Steven Hoober's research."}, {"id": "screenflow", "panel": "isNav", "cap": "The complete screen flow, built from my wireframes."}, {"id": "home", "panel": "isNav", "cap": "Home: daily race, ranking and training."}, {"id": "results_final", "panel": "isNav", "cap": "Results: retry or back, same buttons as everywhere."}, {"id": "region", "panel": "isLead", "cap": "See who you race against before you start."}, {"id": "away", "panel": "isLead", "cap": "What changed while you were away."}, {"id": "confirm", "panel": "isLead", "cap": "An irreversible step, explained before you take it."}, {"id": "training_1", "panel": "isTrain", "cap": "Page 1: narrative, pillars, goals and mechanics."}, {"id": "training_2", "panel": "isTrain", "cap": "Page 2: references, and why not the others."}, {"id": "set_access", "panel": "isSet", "cap": "Accessibility, from the pause menu."}, {"id": "set_hud", "panel": "isSet", "cap": "HUD settings: hide elements, set opacity."}, {"id": "set_home", "panel": "isSet", "cap": "The same component from home."}];

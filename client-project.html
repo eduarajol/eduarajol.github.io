@@ -19,16 +19,17 @@
 body{margin:0;background:#12163A;color:#F3F1EA;font-family:'Bricolage Grotesque',system-ui,sans-serif}
 a{color:#F3F1EA}a:hover{color:#E9B949}
 </style>
-<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
+<link rel="stylesheet" href="mobile.css">
 </head>
 <body id="top">
 <div id="dc-root"></div>
 <template id="dc-template">
-<div style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+<div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
 
-<header style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<header class="m-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
 <a href="index.html#deck" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#F3F1EA" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
-<nav style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
+<nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
 <a href="index.html#deck" style="text-decoration: none">Work</a>
 <a href="index.html#profile" style="text-decoration: none">About</a>
 <a href="index.html#faq" style="text-decoration: none">FAQ</a>
@@ -36,7 +37,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <a href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #E9B949; color: #12163A; border-radius: 10px; font-weight: 700">Contact</a>
 </nav>
 </header>
-<div style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #262B5C; border-bottom: 1px solid #262B5C">
+<div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #262B5C; border-bottom: 1px solid #262B5C">
 <a href="index.html#deck" style="text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px">← Back to the deck</a>
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #9AA3C7">CARD 02 OF 04</div>
 <a href="index.html#deck" aria-label="Close" style="width: 40px; height: 40px; border: 2px solid #3A3F75; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none">
@@ -44,8 +45,8 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </a>
 </div>
 
-<section style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
-<div style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 8px solid #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
+<section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
+<div class="m-pcard" style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 8px solid #FFFFFF; border-radius: 22px; padding: 16px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 20px"><span>Client project</span><span>02</span></div>
 <div style="height: 190px; flex-shrink: 0; border-radius: 10px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#2A2F63"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#F08BA6" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#E9B949"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#E9B949" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#12163A"/></svg></div>
 <div style="font-size: 12px; font-weight: 800; color: #5E5F69">GAME DESIGN · UX</div>
@@ -54,9 +55,9 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #E9B949">2026 — NOW · UNDER NDA</div>
-<h1 style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">Client project</h1>
-<p style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #CFCCE0">Game and UX design for a game studio client: from designing new features from scratch to rethinking existing ones, and documenting it all so the team could build it.</p>
-<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
+<h1 class="m-ph1" style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">Client project</h1>
+<p class="m-plead" style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #CFCCE0">Game and UX design for a game studio client: from designing new features from scratch to rethinking existing ones, and documenting it all so the team could build it.</p>
+<div class="m-facts" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">ROLE</div><div style="font-weight: 700; font-size: 16px">Game &amp; UX Designer</div></div>
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">PERIOD</div><div style="font-weight: 700; font-size: 16px">2026 — now</div></div>
 <div style="padding: 16px 18px; background: #1A1F4D; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">TYPE</div><div style="font-weight: 700; font-size: 16px">Free-to-play casual mobile</div></div>
@@ -65,29 +66,29 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </section>
 
-<div style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
+<div class="m-note" style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#9AA3C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
 <span>This project is under NDA. No client name, project material or specific mechanics are shown. Below is what I owned and how I worked. Happy to go deeper in an interview.</span>
 </div>
 
-<section style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; justify-content: space-between; align-items: baseline">
+<section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
+<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What I owned</h2>
 <div style="font-size: 16px; color: #CFCCE0">Pick an ability to see the details</div>
 </div>
 
-<div style="display: flex; gap: 40px; align-items: flex-start">
+<div class="m-owned-body" style="display: flex; gap: 40px; align-items: flex-start">
 
-<div style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+<div class="m-tabs" style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
 <sc-for list="{{abilities}}" as="item" hint-placeholder-count="8">
-<button type="button" onClick="{{item.pick}}" style="width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
+<button class="m-tab" type="button" onClick="{{item.pick}}" style="width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: {{item.catColor}}">{{item.cat}}</span>
 <span style="font-weight: 800; font-size: 17px; line-height: 1.15">{{item.title}}</span>
 </button>
 </sc-for>
 </div>
 
-<div style="flex-grow: 1; box-sizing: border-box; padding: 48px; background: #1A1F4D; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
+<div class="m-panel" style="flex-grow: 1; box-sizing: border-box; padding: 48px; background: #1A1F4D; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
 
 <sc-if value="{{isFeature}}" hint-placeholder-val="{{true}}">
 <div style="display: flex; flex-direction: column; gap: 18px">
@@ -199,7 +200,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a10 10 0 0 1 17-7l3 3"></path><path d="M24 4v6h-6"></path><path d="M24 14a10 10 0 0 1-17 7l-3-3"></path><path d="M4 24v-6h6"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Not a one-off.</strong> As the project grew, I went back to the market whenever I designed a new feature or rethought an existing one, to see how others solved it before deciding.</div>
 </div>
@@ -273,7 +274,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <div style="font-size: 14px; color: #9AA3C7">Every step of every tutorial was written in this format, paired with a storyboard of the matching screens.</div>
 </div>
 
-<div style="padding: 20px 24px; border: 2px dashed #3A3F75; border-radius: 16px; font-size: 16px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Status:</strong> prototyped and in development. Player testing is next, and the script is set up so each step can be measured as a funnel.</div>
+<div class="m-callout" style="padding: 20px 24px; border: 2px dashed #3A3F75; border-radius: 16px; font-size: 16px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Status:</strong> prototyped and in development. Player testing is next, and the script is set up so each step can be measured as a funnel.</div>
 </sc-if>
 
 <sc-if value="{{isFlows}}" hint-placeholder-val="{{false}}">
@@ -345,7 +346,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="7" height="10" rx="2"></rect><rect x="19" y="3" width="7" height="10" rx="2"></rect><rect x="19" y="17" width="7" height="8" rx="2"></rect><path d="M9 14 H14 V8 H19 M14 14 V21 H19"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">One language across the project.</strong> The same flow format served to propose new systems, storyboard the tutorials and document the benchmark, so everyone read the design the same way.</div>
 </div>
@@ -414,7 +415,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 V25"></path><path d="M8 25 H20"></path><path d="M4 8 H24"></path><path d="M4 8 L1 16 H7 Z"></path><path d="M24 8 L21 16 H27 Z"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Options, then a recommendation.</strong> Every rework ended with the alternatives compared side by side, pros and cons, and a final proposal, often combining the strongest ideas instead of picking just one.</div>
 </div>
@@ -488,7 +489,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 23 L7 17 L19 5 L23 9 L11 21 Z"></path><path d="M16 8 L20 12"></path><path d="M5 23 L11 21"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">Better, not just bigger.</strong> Beyond adding my own work, I flagged sections that were unclear or wrongly explained and suggested structural changes, which the lead designer and I then fixed together.</div>
 </div>
@@ -564,7 +565,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </div>
 
-<div style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 L16.8 10.2 L24.5 10.6 L18.5 15.4 L20.5 22.9 L14 18.7 L7.5 22.9 L9.5 15.4 L3.5 10.6 L11.2 10.2 Z"></path></svg>
 <div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">From concept to buildable.</strong> For the final challenge, the concept was the lead designer's. I turned it into a logic flow, before-and-after states of the play area, the persona journey map and visual references for the art team, including alternative ways to present it.</div>
 </div>
@@ -582,7 +583,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </section>
 
-<footer style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #262B5C; display: flex; justify-content: space-between; align-items: flex-start">
+<footer class="m-pfooter" style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #262B5C; display: flex; justify-content: space-between; align-items: flex-start">
 <a href="index.html#deck" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">BACK</span><span style="font-weight: 800; font-size: 24px">← The deck</span></a>
 <a href="oceans-one.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; align-items: flex-end"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">NEXT CARD · 03</span><span style="font-weight: 800; font-size: 24px">Ocean's One →</span></a>
 </footer>
@@ -591,6 +592,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </template>
 <noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
 <script src="dc.js"></script>
+<script src="mobile.js"></script>
 <script>window.DC_PROPS = {"accent": "#E9B949"};
 
 class Component extends DCLogic {
