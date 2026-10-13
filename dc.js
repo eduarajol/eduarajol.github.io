@@ -25,8 +25,22 @@ class DCLogic {
     el.addEventListener(type, (e) => { const f = el.__h && el.__h[type]; if (f) f(e); });
   }
 
+  function endsBlock(node) {
+    for (let n = node.nextSibling; n; n = n.nextSibling) {
+      if (n.nodeType === 1) return false;
+      if (n.nodeType === 3 && n.nodeValue.trim()) return false;
+    }
+    return true;
+  }
+
   function walk(node, ctx, out) {
-    if (node.nodeType === 3) { out.appendChild(document.createTextNode(fill(node.nodeValue, ctx))); return; }
+    if (node.nodeType === 3) {
+      let v = fill(node.nodeValue, ctx);
+      // Keep the last two words of a block together, so no line ends up holding a single word.
+      if (endsBlock(node)) v = v.replace(/ (\S+\s*)$/, '\u00a0$1');
+      out.appendChild(document.createTextNode(v));
+      return;
+    }
     if (node.nodeType !== 1) return;
     const tag = node.localName;
     if (tag === 'sc-if') {

@@ -51,6 +51,8 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 /* yellow Home footer also runs edge to edge */
 .bleed-yellow{box-shadow:0 0 0 100vmax #E9B949;clip-path:inset(0 -100vmax)}
 [id]{scroll-margin-top:100px}
+/* no single word left alone on the last line */
+p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 /* end interaction states */
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
@@ -102,7 +104,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 
 <div class="m-note" style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#9AA3C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
-<span>Some details of this project are generalised for confidentiality. Product and car images are public press material; the rest are from my own work. Happy to go deeper in an interview.</span>
+<span>Some details of this project are generalised for confidentiality. Product and car images are public press material, and the rest are from my own work. Happy to go deeper in an interview.</span>
 </div>
 
 <section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
@@ -267,7 +269,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #9AA3C7">HOW I WORKED</div>
 <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">1</div><div style="font-weight: 700; font-size: 16px">Wireflows</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Every transition mapped screen by screen.</div></div>
-<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">2</div><div style="font-weight: 700; font-size: 16px">Hi-fi prototypes</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Interactive, simulating real in-car use.</div></div>
+<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">2</div><div style="font-weight: 700; font-size: 16px">Hi-fi prototypes</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Interactive, simulating <span style="white-space: nowrap">real in-car use.</span></div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">3</div><div style="font-weight: 700; font-size: 16px">Three inputs</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Touch, physical controls and voice working together.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">4</div><div style="font-weight: 700; font-size: 16px">Test in context</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">In the car and remotely with UserZoom.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">5</div><div style="font-weight: 700; font-size: 16px">Iterate</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Findings turned into the next version.</div></div>
@@ -366,7 +368,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
 <div style="padding: 24px; background: #1A1F4D; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #6FD3C2"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">Glanceable UI under pressure</div><div style="font-size: 15px; line-height: 1.5; color: #CFCCE0">A driver and a player share the same problem: little attention to spare. Clear HUD-like information is the core of both.</div></div>
-<div style="padding: 24px; background: #1A1F4D; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #6FD3C2"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">Several inputs, one experience</div><div style="font-size: 15px; line-height: 1.5; color: #CFCCE0">Touch, buttons and voice in the car; touch, controller and keyboard in games. Each input has to feel natural.</div></div>
+<div style="padding: 24px; background: #1A1F4D; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #6FD3C2"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">Several inputs, one experience</div><div style="font-size: 15px; line-height: 1.5; color: #CFCCE0">Touch, buttons and voice in the car. Touch, controller and keyboard in games. Each input has to feel natural.</div></div>
 <div style="padding: 24px; background: #1A1F4D; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #6FD3C2"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">One system, many screens</div><div style="font-size: 15px; line-height: 1.5; color: #CFCCE0">Designing across models and screen sizes is the same discipline as designing across platforms.</div></div>
 <div style="padding: 24px; background: #1A1F4D; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #6FD3C2"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">Leading across disciplines</div><div style="font-size: 15px; line-height: 1.5; color: #CFCCE0">Aligning design, development and QA towards one goal is how games get made too.</div></div>
 </div>

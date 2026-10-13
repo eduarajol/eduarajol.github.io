@@ -51,6 +51,8 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 /* yellow Home footer also runs edge to edge */
 .bleed-yellow{box-shadow:0 0 0 100vmax #E9B949;clip-path:inset(0 -100vmax)}
 [id]{scroll-margin-top:100px}
+/* no single word left alone on the last line */
+p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 /* end interaction states */
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
@@ -102,7 +104,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 
 <div class="m-note" style="flex-shrink: 0; margin: 48px 80px 0; padding: 16px 20px; border: 2px dashed #3A3F75; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #CFCCE0">
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#9AA3C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
-<span>Concept pitch, no playable prototype. A fan concept set in the Ocean's films universe. Slide layouts, diagrams and the control mapping are mine; character and level images are AI-generated from my art direction; gameplay screenshots come from the reference games and are credited.</span>
+<span>Concept pitch, no playable prototype. A fan concept set in the Ocean's films universe. Slide layouts, diagrams and the control mapping are mine. Character and level images are AI-generated from my art direction, and gameplay screenshots come from the reference games and are credited.</span>
 </div>
 
 <section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
@@ -167,7 +169,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">1</div><div style="font-weight: 700; font-size: 16px">Alex, the strategist</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Mastery and control. Clear systems, patterns to read, a perfect run to chase.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">2</div><div style="font-weight: 700; font-size: 16px">Natalia, the caper player</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Fantasy and thrill. Gadgets, style and &quot;movie moments&quot; when plans break.</div></div>
-<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">3</div><div style="font-weight: 700; font-size: 16px">Shared frustrations</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Randomness and missing info for one; slow pace and complexity for the other.</div></div>
+<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">3</div><div style="font-weight: 700; font-size: 16px">Shared frustrations</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Randomness and missing info for one, slow pace and complexity for the other.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">4</div><div style="font-weight: 700; font-size: 16px">Design answer</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Rich information to plan with, and room to improvise during execution.</div></div>
 </div>
 </div>
@@ -195,7 +197,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #9AA3C7">THE PILLARS</div>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
-<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">1</div><div style="font-weight: 700; font-size: 16px">Stealth</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Blend in, disguise, deceive. Being seen is fine; being suspected is not.</div></div>
+<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">1</div><div style="font-weight: 700; font-size: 16px">Stealth</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Blend in, disguise, deceive. Being seen is fine, being suspected is not.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">2</div><div style="font-weight: 700; font-size: 16px">Planning</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Gather information first and choose your approach.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">3</div><div style="font-weight: 700; font-size: 16px">Tension</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Risk grows the deeper you go into restricted areas.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">4</div><div style="font-weight: 700; font-size: 16px">Replayability</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Every level hides several routes, tools and exits.</div></div>
@@ -214,7 +216,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 
 <div class="m-callout" style="padding: 24px 28px; border: 2px solid #3A3F75; border-radius: 18px; display: flex; gap: 18px; align-items: center">
 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 L16.8 10.2 L24.5 10.6 L18.5 15.4 L20.5 22.9 L14 18.7 L7.5 22.9 L9.5 15.4 L3.5 10.6 L11.2 10.2 Z"></path></svg>
-<div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">References, not copies.</strong> Each reference proves a pillar works in a real game; the combination of the four is what makes Ocean&#x27;s One its own thing.</div>
+<div style="font-size: 17px; line-height: 1.5; color: #CFCCE0"><strong style="color: #F3F1EA">References, not copies.</strong> Each reference proves a pillar works in a real game. The combination of the four is what makes Ocean&#x27;s One its own thing.</div>
 </div>
 </sc-if>
 
@@ -222,14 +224,14 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <div style="display: flex; flex-direction: column; gap: 18px">
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">GAME DESIGN · 3C</div>
 <h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Character, camera and controls</h3>
-<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #CFCCE0">I defined the 3C so the game feels the way the pitch promises: Nick Ocean, a young, agile thief trying to make his own name; a camera that switches between moving through a crowd and spying from cover; and a controller layout built around observing, blending in and acting at the right moment.</p>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #CFCCE0">I defined the 3C so the game feels the way the pitch promises. The character is Nick Ocean, a young, agile thief trying to make his own name. The camera switches between moving through a crowd and spying from cover. The controller layout is built around observing, blending in and acting at the right moment.</p>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #9AA3C7">THE 3C</div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">1</div><div style="font-weight: 700; font-size: 16px">Character</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Nick Ocean, Danny&#x27;s son. Light and precise: every turn, cover or interaction feels under control.</div></div>
-<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">2</div><div style="font-weight: 700; font-size: 16px">Camera</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Over-the-shoulder to move and explore; a contextual peek camera for cover and spying.</div></div>
+<div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">2</div><div style="font-weight: 700; font-size: 16px">Camera</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Over-the-shoulder to move and explore, plus a contextual peek camera for cover and spying.</div></div>
 <div style="padding: 18px; background: #12163A; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 800; font-size: 26px; color: {{tone}}">3</div><div style="font-weight: 700; font-size: 16px">Controls</div><div style="font-size: 14px; line-height: 1.45; color: #CFCCE0">Mapped for PS5. Tools, disguises and the scanner glasses are always one input away.</div></div>
 </div>
 </div>
