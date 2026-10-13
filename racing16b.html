@@ -31,8 +31,11 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 .h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #E9B949;outline-offset:3px}
 .faq-q{transition:background-color .18s ease,color .18s ease}
 @media (hover: hover){.faq-q:hover{background:#232858 !important;color:#E9B949 !important}}
-.faq-item{transition:border-color .18s ease}
+.faq-item{transition:border-color .18s ease,background-color .18s ease}
 .faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#3A3F75 !important}
+.faq-item.is-open{cursor:pointer}
+@media (hover: hover){.faq-item.is-open:hover{background:#232858 !important}}
+@media (hover: hover){.faq-item.is-open:hover .faq-q{background:transparent !important;color:#E9B949 !important}}
 .t-nav,.t-link{transition:color .18s ease,text-decoration-color .18s ease}
 .t-logo path{transition:fill .18s ease}
 @media (hover: hover){.t-nav:hover{color:#E9B949 !important;text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:6px !important}}
