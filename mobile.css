@@ -167,7 +167,9 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-psec > div:last-child > div { padding: 18px !important; }
 
   .m-pfooter { margin-top: 64px !important; padding: 28px 20px 40px !important; gap: 16px !important; }
-  .m-pfooter span:last-child { font-size: 18px !important; }
+  .m-pfooter > a { flex: 1 1 0 !important; min-width: 0 !important; }
+  .m-pfooter > a:last-child { text-align: right !important; }
+  .m-pfooter span:last-child { font-size: 16px !important; line-height: 1.25 !important; text-wrap: balance !important; }
   .m-pfooter span:first-child { font-size: 11px !important; }
 
   /* ---------- Image viewer ---------- */
