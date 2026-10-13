@@ -18,6 +18,23 @@
 <style>
 body{margin:0;background:#12163A;color:#F3F1EA;font-family:'Bricolage Grotesque',system-ui,sans-serif}
 a{color:#F3F1EA}a:hover{color:#E9B949}
+/* interaction states */
+.h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+@media (hover: hover){.h-yellow:hover{background:#F6D27A !important;color:#12163A !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(233,185,73,.28)}}
+@media (hover: hover){.h-outline-light:hover{background:#F3F1EA !important;color:#12163A !important;border-color:#F3F1EA !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-dark:hover{background:#262B5C !important;color:#F3F1EA !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
+@media (hover: hover){.h-outline-dark:hover{background:#12163A !important;color:#E9B949 !important;transform:translateY(-2px)}}
+.h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
+@media (hover: hover){.h-round:hover{border-color:#E9B949 !important;background:#262B5C !important}}
+@media (hover: hover){.h-round:hover svg{stroke:#E9B949}}
+.h-round:active{background:#3A3F75 !important}
+.h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #E9B949;outline-offset:3px}
+.faq-q{transition:background-color .18s ease,color .18s ease}
+@media (hover: hover){.faq-q:hover{background:#232858 !important;color:#E9B949 !important}}
+.faq-item{transition:border-color .18s ease}
+.faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#3A3F75 !important}
+@media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item{transition:none}.h-btn:hover{transform:none}}
+/* end interaction states */
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
 <link rel="stylesheet" href="mobile.css">
@@ -34,13 +51,13 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <a href="index.html#profile" style="text-decoration: none">About</a>
 <a href="index.html#faq" style="text-decoration: none">FAQ</a>
 <a href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV ↓</a>
-<a href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #E9B949; color: #12163A; border-radius: 10px; font-weight: 700">Contact</a>
+<a class="h-btn h-yellow" href="index.html#deck" style="text-decoration: none; padding: 12px 20px; background: #E9B949; color: #12163A; border-radius: 10px; font-weight: 700">Contact</a>
 </nav>
 </header>
 <div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #262B5C; border-bottom: 1px solid #262B5C">
 <a href="index.html#deck" style="text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px">← Back to the deck</a>
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #9AA3C7">CARD 04 OF 04</div>
-<a href="index.html#deck" aria-label="Close" style="width: 40px; height: 40px; border: 2px solid #3A3F75; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none">
+<a class="h-btn h-round" href="index.html#deck" aria-label="Close" style="width: 40px; height: 40px; border: 2px solid #3A3F75; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none">
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F3F1EA" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg>
 </a>
 </div>
@@ -310,10 +327,10 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <div class="m-zoom" onClick="{{closeZoom}}" role="dialog" aria-label="Enlarged image" style="position: {{zPos}}; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 72px 88px 40px; background: rgba(10, 12, 34, 0.95); border-radius: {{zRadius}}; display: flex; flex-direction: column; align-items: center; justify-content: {{zAlign}}; gap: 16px; cursor: zoom-out">
 <img src="img/cupra/benchmark-drive.jpg" alt="Eduard driving a competitor car to benchmark its infotainment" style="display: {{zd_benchmark_drive}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/whiteboard.jpg" alt="Whiteboard from a concept session" style="display: {{zd_whiteboard}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/home-earlier.jpg" alt="Earlier version: Home" style="display: {{zd_home_earlier}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/home-updated.jpg" alt="Updated version: Home" style="display: {{zd_home_updated}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/nav-earlier.jpg" alt="Earlier version: Navigation" style="display: {{zd_nav_earlier}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/nav-updated.jpg" alt="Updated version: Navigation" style="display: {{zd_nav_updated}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/vehicle-earlier.jpg" alt="Earlier version: Vehicle &amp; assistants" style="display: {{zd_vehicle_earlier}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/vehicle-updated.jpg" alt="Updated version: Vehicle &amp; assistants" style="display: {{zd_vehicle_updated}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/paper-wireframes.jpg" alt="My paper wireframes: incoming and ongoing calls, and the media landing." style="display: {{zd_paper_wireframes}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/home-touch.jpg" alt="Testing touch interaction in the car." style="display: {{zd_home_touch}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
 <div style="max-width: 900px; display: flex; gap: 18px; align-items: baseline; font-size: 15px; line-height: 1.5; color: #CFCCE0"><span style="font-weight: 700; color: #F3F1EA; flex-shrink: 0">{{zCount}}</span><span>{{zCap}}</span></div>
-<button type="button" onClick="{{closeZoom}}" aria-label="Close" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F3F1EA" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg></button>
+<button class="h-btn h-round" type="button" onClick="{{closeZoom}}" aria-label="Close" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#F3F1EA" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg></button>
 <sc-if value="{{zMany}}" hint-placeholder-val="{{true}}">
-<button type="button" onClick="{{prevZoom}}" aria-label="Previous image" style="position: absolute; left: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#F3F1EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3L5 9l6 6"></path></svg></button>
-<button type="button" onClick="{{nextZoom}}" aria-label="Next image" style="position: absolute; right: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#F3F1EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l6 6-6 6"></path></svg></button>
+<button class="h-btn h-round" type="button" onClick="{{prevZoom}}" aria-label="Previous image" style="position: absolute; left: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#F3F1EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3L5 9l6 6"></path></svg></button>
+<button class="h-btn h-round" type="button" onClick="{{nextZoom}}" aria-label="Next image" style="position: absolute; right: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #3A3F75; background: #12163A; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#F3F1EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l6 6-6 6"></path></svg></button>
 </sc-if>
 </div>
 </sc-if>
