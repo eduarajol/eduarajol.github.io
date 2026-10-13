@@ -44,8 +44,12 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 .t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #E9B949;outline-offset:4px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item,.t-nav,.t-link,.t-logo path{transition:none}.h-btn:hover{transform:none}}
 /* fixed header */
-.site-header{position:sticky;top:0;z-index:40;background:rgba(18,22,58,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
-.is-scrolled .site-header{box-shadow:0 1px 0 #262B5C,0 10px 24px rgba(0,0,0,.25)}
+.site-header{position:sticky;top:0;z-index:40}
+/* the bar's background spans the whole window, even when the page column is narrower */
+.site-header::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;background:rgba(18,22,58,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
+.is-scrolled .site-header::before{box-shadow:0 1px 0 #262B5C,0 10px 24px rgba(0,0,0,.25)}
+/* yellow Home footer also runs edge to edge */
+.bleed-yellow{box-shadow:0 0 0 100vmax #E9B949;clip-path:inset(0 -100vmax)}
 [id]{scroll-margin-top:100px}
 /* end interaction states */
 @keyframes allyFillA{from{width:0}to{width:100%}}@keyframes allyFillB{from{width:0}to{width:100%}}
@@ -336,7 +340,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 </div>
 </section>
 
-<footer class="m-footer-home" id="contact" style="margin-top: 120px; box-sizing: border-box; padding: 96px 80px; background: #E9B949; color: #12163A; display: flex; justify-content: space-between; align-items: flex-end">
+<footer id="contact" class="m-footer-home bleed-yellow" style="margin-top: 120px; box-sizing: border-box; padding: 96px 80px; background: #E9B949; color: #12163A; display: flex; justify-content: space-between; align-items: flex-end">
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div style="font-weight: 800; font-size: 15px; letter-spacing: 2px">END OF MY TURN</div>
 <div class="m-bigmove" style="font-weight: 800; font-size: 110px; line-height: 0.9; letter-spacing: -3px">Your move.</div>
