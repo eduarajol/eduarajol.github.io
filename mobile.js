@@ -1,5 +1,10 @@
 // Phone-only touches: swipe between ally cards, and keep the picked tab and its content in view.
 (function () {
+  // Header shadow once the page has scrolled under it.
+  const mark = () => document.body.classList.toggle('is-scrolled', window.scrollY > 4);
+  window.addEventListener('scroll', mark, { passive: true });
+  window.addEventListener('DOMContentLoaded', mark);
+
   const isPhone = () => document.documentElement.clientWidth <= 760;
 
   // Swipe left/right on the ally cards presses the carousel's own previous/next buttons.

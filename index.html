@@ -40,6 +40,10 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 @media (hover: hover){.t-logo:hover path{fill:#E9B949}}
 .t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #E9B949;outline-offset:4px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item,.t-nav,.t-link,.t-logo path{transition:none}.h-btn:hover{transform:none}}
+/* fixed header */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(18,22,58,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
+.is-scrolled .site-header{box-shadow:0 1px 0 #262B5C,0 10px 24px rgba(0,0,0,.25)}
+[id]{scroll-margin-top:100px}
 /* end interaction states */
 @keyframes allyFillA{from{width:0}to{width:100%}}@keyframes allyFillB{from{width:0}to{width:100%}}
 .ally-sec:hover .ally-fill{animation-play-state:paused !important}
@@ -49,7 +53,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 .deck-item:focus-visible{outline:3px solid #E9B949;outline-offset:4px}
 @media (prefers-reduced-motion: reduce){.deck-item{transition:none}.deck-item:hover{transform:none}}
 </style>
-<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:24px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
 <link rel="stylesheet" href="mobile.css">
 </head>
 <body id="top">
@@ -57,7 +61,7 @@ a{color:#F3F1EA}a:hover{color:#E9B949}
 <template id="dc-template">
 <div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
 
-<header class="m-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<header class="m-header site-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
 <a class="t-logo" href="#" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#F3F1EA" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
 <nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
 <a class="t-nav" href="#deck" style="text-decoration: none">Work</a>
