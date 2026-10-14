@@ -117,7 +117,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-facts { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; margin-top: 4px !important; }
   .m-facts > div { padding: 14px !important; border-radius: 14px !important; }
   .m-facts > div > div:last-child { font-size: 15px !important; }
-  .m-note { margin: 32px 20px 0 !important; padding: 14px 16px !important; font-size: 14px !important; align-items: flex-start !important; }
+  .m-note { margin: 44px 20px 0 !important; padding: 14px 16px !important; font-size: 14px !important; align-items: flex-start !important; }
 
   /* ---------- Project · "What I owned": tabs become a sticky swipeable row ---------- */
   .m-owned { padding: 56px 20px 0 !important; gap: 18px !important; }
