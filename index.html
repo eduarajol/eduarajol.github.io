@@ -16,40 +16,40 @@
 <link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin-ext.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
 <style>
-body{margin:0;background:#12163A;color:#F3F1EA;font-family:'Bricolage Grotesque',system-ui,sans-serif}
-a{color:#F3F1EA}a:hover{color:#E9B949}
+body{margin:0;background:#F5F0E8;color:#4B1D26;font-family:'Bricolage Grotesque',system-ui,sans-serif}
+a{color:#4B1D26}a:hover{color:#7A5F33}
 /* interaction states */
 .h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
-@media (hover: hover){.h-yellow:hover{background:#F6D27A !important;color:#12163A !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(233,185,73,.28)}}
-@media (hover: hover){.h-outline-light:hover{background:#F3F1EA !important;color:#12163A !important;border-color:#F3F1EA !important;transform:translateY(-2px)}}
-@media (hover: hover){.h-dark:hover{background:#262B5C !important;color:#F3F1EA !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
-@media (hover: hover){.h-outline-dark:hover{background:#12163A !important;color:#E9B949 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-yellow:hover{background:#F3E3C6 !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,80,60,.28)}}
+@media (hover: hover){.h-outline-light:hover{background:#FFFFFF !important;color:#4B1D26 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-dark:hover{background:#FFFFFF !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
+@media (hover: hover){.h-outline-dark:hover{background:#4B1D26 !important;color:#EBD3A8 !important;transform:translateY(-2px)}}
 .h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
-@media (hover: hover){.h-round:hover{border-color:#E9B949 !important;background:#262B5C !important}}
-@media (hover: hover){.h-round:hover svg{stroke:#E9B949}}
-.h-round:active{background:#3A3F75 !important}
-.h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #E9B949;outline-offset:3px}
+@media (hover: hover){.h-round:hover{border-color:#C9A86E !important;background:#E0D8C8 !important}}
+@media (hover: hover){.h-round:hover svg{stroke:#C9A86E}}
+.h-round:active{background:#D3C9B6 !important}
+.h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #C9A86E;outline-offset:3px}
 .faq-q{transition:background-color .18s ease,color .18s ease}
-@media (hover: hover){.faq-q:hover{background:#232858 !important;color:#E9B949 !important}}
+@media (hover: hover){.faq-q:hover{background:#E0D8C8 !important;color:#7A5F33 !important}}
 .faq-item{transition:border-color .18s ease,background-color .18s ease}
-.faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#3A3F75 !important}
+.faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#D3C9B6 !important}
 .faq-item.is-open{cursor:pointer}
-@media (hover: hover){.faq-item.is-open:hover{background:#232858 !important}}
-@media (hover: hover){.faq-item.is-open:hover .faq-q{background:transparent !important;color:#E9B949 !important}}
+@media (hover: hover){.faq-item.is-open:hover{background:#E0D8C8 !important}}
+@media (hover: hover){.faq-item.is-open:hover .faq-q{background:transparent !important;color:#7A5F33 !important}}
 .t-nav,.t-link{transition:color .18s ease,text-decoration-color .18s ease}
 .t-logo path{transition:fill .18s ease}
-@media (hover: hover){.t-nav:hover{color:#E9B949 !important;text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:6px !important}}
-@media (hover: hover){.t-link:hover{color:#E9B949 !important}}
-@media (hover: hover){.t-logo:hover path{fill:#E9B949}}
-.t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #E9B949;outline-offset:4px;border-radius:4px}
+@media (hover: hover){.t-nav:hover{color:#7A5F33 !important;text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:6px !important}}
+@media (hover: hover){.t-link:hover{color:#7A5F33 !important}}
+@media (hover: hover){.t-logo:hover path{fill:#C9A86E}}
+.t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #C9A86E;outline-offset:4px;border-radius:4px}
 @media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item,.t-nav,.t-link,.t-logo path{transition:none}.h-btn:hover{transform:none}}
 /* fixed header */
 .site-header{position:sticky;top:0;z-index:40}
 /* the bar's background spans the whole window, even when the page column is narrower */
-.site-header::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;background:rgba(18,22,58,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
-.is-scrolled .site-header::before{box-shadow:0 1px 0 #262B5C,0 10px 24px rgba(0,0,0,.25)}
+.site-header::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;background:rgba(245,240,232,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
+.is-scrolled .site-header::before{box-shadow:0 1px 0 #E0D8C8,0 10px 24px rgba(0,0,0,.25)}
 /* yellow Home footer also runs edge to edge */
-.bleed-yellow{box-shadow:0 0 0 100vmax #E9B949;clip-path:inset(0 -100vmax)}
+.bleed-yellow{box-shadow:0 0 0 100vmax #EBD3A8;clip-path:inset(0 -100vmax)}
 [id]{scroll-margin-top:100px}
 /* no single word left alone on the last line */
 p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
@@ -57,9 +57,9 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 @keyframes allyFillA{from{width:0}to{width:100%}}@keyframes allyFillB{from{width:0}to{width:100%}}
 .ally-sec:hover .ally-fill{animation-play-state:paused !important}
 .deck-item{transition:background-color .2s ease,transform .2s ease,box-shadow .2s ease}
-.deck-item:hover{color:#F3F1EA;background-color:#232858 !important;transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
-.deck-item:hover .deck-cta{color:#E9B949}
-.deck-item:focus-visible{outline:3px solid #E9B949;outline-offset:4px}
+.deck-item:hover{color:#4B1D26;background-color:#E0D8C8 !important;transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.28)}
+.deck-item:hover .deck-cta{color:#7A5F33}
+.deck-item:focus-visible{outline:3px solid #C9A86E;outline-offset:4px}
 @media (prefers-reduced-motion: reduce){.deck-item{transition:none}.deck-item:hover{transform:none}}
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}@media (max-width:760px){[id]{scroll-margin-top:72px}}</style>
@@ -68,59 +68,59 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <body id="top">
 <div id="dc-root"></div>
 <template id="dc-template">
-<div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #12163A; color: #F3F1EA; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+<div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #F5F0E8; color: #4B1D26; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
 
 <header class="m-header site-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
-<a class="t-logo" href="#" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#F3F1EA" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
+<a class="t-logo" href="#" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#4B1D26" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
 <nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
 <a class="t-nav" href="#deck" style="text-decoration: none">Work</a>
 <a class="t-nav" href="#profile" style="text-decoration: none">About</a>
 <a class="t-nav" href="#faq" style="text-decoration: none">FAQ</a>
 <a class="t-nav" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV ↓</a>
-<a class="h-btn h-yellow" href="#contact" style="text-decoration: none; padding: 12px 20px; background: #E9B949; color: #12163A; border-radius: 10px; font-weight: 700">Contact</a>
+<a class="h-btn h-yellow" href="#contact" style="text-decoration: none; padding: 12px 20px; background: #EBD3A8; color: #4B1D26; border-radius: 10px; font-weight: 700">Contact</a>
 </nav>
 </header>
 
 <section class="m-hero" style="height: 780px; flex-shrink: 0; box-sizing: border-box; padding: 40px 80px 0; display: flex; gap: 24px">
 <div class="m-hero-text" style="width: 520px; flex-shrink: 0; padding-top: 60px; display: flex; flex-direction: column; gap: 24px">
-<div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; letter-spacing: 2px; color: #E9B949"><span style="width: 10px; height: 10px; border-radius: 999px; background: #6FD3C2"></span>OPEN TO ROLES · BARCELONA / REMOTE</div>
+<div style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; letter-spacing: 2px; color: #7A5F33"><span style="width: 10px; height: 10px; border-radius: 999px; background: #9ED8CC"></span>OPEN TO ROLES · BARCELONA / REMOTE</div>
 <div style="display: flex; flex-direction: column; gap: 18px">
 <h1 class="m-h1" style="margin: 0; font-weight: 800; font-size: 104px; line-height: 0.92; letter-spacing: -3px">Eduard<br>Arajol</h1>
-<div class="m-role" style="align-self: flex-start; padding: 6px 16px; background: #E9B949; color: #12163A; border-radius: 10px; font-weight: 700; font-size: 32px; letter-spacing: -0.3px">Game Designer &amp; UX Designer</div>
+<div class="m-role" style="align-self: flex-start; padding: 6px 16px; background: #EBD3A8; color: #4B1D26; border-radius: 10px; font-weight: 700; font-size: 32px; letter-spacing: -0.3px">Game Designer &amp; UX Designer</div>
 </div>
-<p style="margin: 0; font-size: 20px; line-height: 1.5; color: #CFCCE0">Almost seven years designing interfaces for people who couldn't look away from the road. Now I design mechanics, onboarding and flows for players.</p>
+<p style="margin: 0; font-size: 20px; line-height: 1.5; color: #5A3A40">Almost seven years designing interfaces for people who couldn't look away from the road. Now I design mechanics, onboarding and flows for players.</p>
 <div class="m-hero-btns" style="display: flex; gap: 14px; margin-top: 6px">
-<a class="h-btn h-yellow" href="#deck" style="text-decoration: none; padding: 16px 26px; background: #E9B949; color: #12163A; border-radius: 12px; font-weight: 700; font-size: 17px">Draw a card</a>
-<a class="h-btn h-outline-light" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none; padding: 16px 26px; border: 2px solid #F3F1EA; border-radius: 12px; font-weight: 700; font-size: 17px">Download CV</a>
+<a class="h-btn h-yellow" href="#deck" style="text-decoration: none; padding: 16px 26px; background: #EBD3A8; color: #4B1D26; border-radius: 12px; font-weight: 700; font-size: 17px">Draw a card</a>
+<a class="h-btn h-outline-light" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none; padding: 16px 26px; border: 2px solid #4B1D26; border-radius: 12px; font-weight: 700; font-size: 17px">Download CV</a>
 </div>
 </div>
 
 <div class="m-fan" style="flex-grow: 1; position: relative">
-<a class="m-fan-card m-fan-c2" href="#c2" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 36px; top: 110px; transform: rotate(-12deg)">
+<a class="m-fan-card m-fan-c2" href="#c2" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 36px; top: 110px; transform: rotate(-12deg)">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>F2P casual game</span><span>02</span></div>
-<div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#2A2F63"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#F08BA6" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#E9B949"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#E9B949" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#12163A"/></svg></div>
-<div style="font-size: 9.2px; font-weight: 800; color: #5E5F69">GAME DESIGN · UX</div>
+<div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#4B1D26"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#E5506A" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#C9A86E"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#C9A86E" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#4B1D26"/></svg></div>
+<div style="font-size: 9.2px; font-weight: 800; color: #6B5357">GAME DESIGN · UX</div>
 <div style="font-size: 10.73px; line-height: 1.4">Features, FTUE, flows, reworks and the GDD.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">SEALED · NDA</div>
 </a>
-<a class="m-fan-card m-fan-c3" href="#c3" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 430px; top: 90px; transform: rotate(8deg); z-index: 2">
+<a class="m-fan-card m-fan-c3" href="#c3" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 430px; top: 90px; transform: rotate(8deg); z-index: 2">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>Ocean's One</span><span>03</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><img src="img/o1/s01.jpg" alt="Ocean's One pitch cover" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 9.2px; font-weight: 800; color: #5E5F69">GAME DESIGN · CONCEPT</div>
+<div style="font-size: 9.2px; font-weight: 800; color: #6B5357">GAME DESIGN · CONCEPT</div>
 <div style="font-size: 10.73px; line-height: 1.4">Pillars, 3C, level phases and game loops.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">UNCOMMON · CONCEPT</div>
 </a>
-<a class="m-fan-card m-fan-c4" href="#c4" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 560px; top: 200px; transform: rotate(18deg); z-index: 1">
+<a class="m-fan-card m-fan-c4" href="#c4" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 560px; top: 200px; transform: rotate(18deg); z-index: 1">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>SEAT &amp; CUPRA</span><span>04</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><img src="img/cupra/cockpit.jpg" alt="CUPRA cockpit with the infotainment screen" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 9.2px; font-weight: 800; color: #5E5F69">UX · LEADERSHIP · SHIPPED</div>
+<div style="font-size: 9.2px; font-weight: 800; color: #6B5357">UX · LEADERSHIP · SHIPPED</div>
 <div style="font-size: 10.73px; line-height: 1.4">Almost seven years on the in-car HMI, from designer to UX lead.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">LEGENDARY · 2018–24</div>
 </a>
-<a class="m-fan-card m-fan-c1" href="#c1" style="width: 290px; height: 415.67px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 7.73px solid #FFFFFF; border-radius: 21.27px; padding: 15.47px; display: flex; flex-direction: column; gap: 9.67px; text-decoration: none; overflow: hidden; position: absolute; left: 190px; top: 30px; transform: rotate(-3deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4); z-index: 3">
+<a class="m-fan-card m-fan-c1" href="#c1" style="width: 290px; height: 415.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 7.73px solid #FFFFFF; border-radius: 21.27px; padding: 15.47px; display: flex; flex-direction: column; gap: 9.67px; text-decoration: none; overflow: hidden; position: absolute; left: 190px; top: 30px; transform: rotate(-3deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4); z-index: 3">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 19.33px"><span>F2P racing game</span><span>01</span></div>
 <div style="height: 183.67px; flex-shrink: 0; border-radius: 9.67px; overflow: hidden"><img src="img/racing/hud-race.jpg" alt="F2P racing game prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 11.6px; font-weight: 800; color: #5E5F69">GAME DESIGN · UX · IN DEV</div>
+<div style="font-size: 11.6px; font-weight: 800; color: #6B5357">GAME DESIGN · UX · IN DEV</div>
 <div style="font-size: 13.53px; line-height: 1.4">Built from scratch with the game director. I owned UX, the mechanics spec, HUD and flows.</div>
 <div style="margin-top: auto; font-size: 10.63px; font-weight: 800; letter-spacing: 0.97px">RARE · FEATURED</div>
 </a>
@@ -131,22 +131,22 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <section class="m-deck" id="deck" style="flex-shrink: 0; padding: 96px 80px 0; display: flex; flex-direction: column; gap: 40px">
 <div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
 <h2 style="margin: 0; font-weight: 800; font-size: 56px; letter-spacing: -1.5px">My deck</h2>
-<div style="font-size: 16px; color: #CFCCE0">Each card opens its full case study</div>
+<div style="font-size: 16px; color: #5A3A40">Each card opens its full case study</div>
 </div>
 <div class="m-deck-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
 
-<a id="c1" class="m-deck-item deck-item" href="racing-project.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
+<a id="c1" class="m-deck-item deck-item" href="racing-project.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
+<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>F2P racing game</span><span>01</span></div>
 <div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/racing/hud-race.jpg" alt="F2P racing game prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #5E5F69">GAME DESIGN · UX · IN DEV</div>
+<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">GAME DESIGN · UX · IN DEV</div>
 <div style="font-size: 9.8px; line-height: 1.4">Built from scratch with the game director. I owned UX, the mechanics spec, HUD and flows.</div>
 <div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">RARE · FEATURED</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7"><span style="color: #F3F1EA">2026 — NOW</span> · IN DEVELOPMENT</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-weight: 800; font-size: 32px"><span>F2P racing game</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px 4px 6px; border: 1.5px solid #F3F1EA; border-radius: 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; line-height: 1; color: #F3F1EA; white-space: nowrap"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#F3F1EA"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#F3F1EA" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
-<div style="font-size: 16px; color: #CFCCE0">Game &amp; UX Designer · Arcade racer · F2P · PC &amp; mobile</div>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2026 — NOW</span> · IN DEVELOPMENT</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-weight: 800; font-size: 32px"><span>F2P racing game</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px 4px 6px; border: 1.5px solid #4B1D26; border-radius: 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; line-height: 1; color: #4B1D26; white-space: nowrap"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#4B1D26"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#4B1D26" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
+<div style="font-size: 16px; color: #5A3A40">Game &amp; UX Designer · Arcade racer · F2P · PC &amp; mobile</div>
 <ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
 <li>Core mechanics, input forgiveness and the prototype spec</li>
 <li>An FTUE taught by track design, not tutorials</li>
@@ -156,18 +156,18 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </div>
 </a>
 
-<a id="c2" class="m-deck-item deck-item" href="client-project.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
+<a id="c2" class="m-deck-item deck-item" href="client-project.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
+<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>F2P casual game</span><span>02</span></div>
-<div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#2A2F63"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#F08BA6" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#E9B949"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#E9B949" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#12163A"/></svg></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #5E5F69">GAME DESIGN · UX</div>
+<div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#4B1D26"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#E5506A" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#C9A86E"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#C9A86E" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#4B1D26"/></svg></div>
+<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">GAME DESIGN · UX</div>
 <div style="font-size: 9.8px; line-height: 1.4">Features, FTUE, flows, reworks and the GDD.</div>
 <div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">SEALED · NDA</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7"><span style="color: #F3F1EA">2026 — NOW</span> · IN DEVELOPMENT</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-weight: 800; font-size: 32px"><span>F2P casual game</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px 4px 6px; border: 1.5px solid #F3F1EA; border-radius: 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; line-height: 1; color: #F3F1EA; white-space: nowrap"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#F3F1EA"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#F3F1EA" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
-<div style="font-size: 16px; color: #CFCCE0">Game &amp; UX Designer · Free-to-play casual mobile</div>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2026 — NOW</span> · IN DEVELOPMENT</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-weight: 800; font-size: 32px"><span>F2P casual game</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px 4px 6px; border: 1.5px solid #4B1D26; border-radius: 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; line-height: 1; color: #4B1D26; white-space: nowrap"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#4B1D26"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#4B1D26" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
+<div style="font-size: 16px; color: #5A3A40">Game &amp; UX Designer · Free-to-play casual mobile</div>
 <ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
 <li>Gameplay mechanics, FTUE and screen flows</li>
 <li>Feature one-pagers and the GDD</li>
@@ -177,18 +177,18 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </div>
 </a>
 
-<a id="c3" class="m-deck-item deck-item" href="oceans-one.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
+<a id="c3" class="m-deck-item deck-item" href="oceans-one.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
+<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>Ocean's One</span><span>03</span></div>
 <div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/o1/s01.jpg" alt="Ocean's One pitch cover" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #5E5F69">GAME DESIGN · CONCEPT</div>
+<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">GAME DESIGN · CONCEPT</div>
 <div style="font-size: 9.8px; line-height: 1.4">Pillars, 3C, level phases and game loops.</div>
 <div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">UNCOMMON · CONCEPT</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7"><span style="color: #F3F1EA">2026</span> · BOOTCAMP FINAL PROJECT</div>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2026</span> · BOOTCAMP FINAL PROJECT</div>
 <div style="font-weight: 800; font-size: 32px">Ocean's One</div>
-<div style="font-size: 16px; color: #CFCCE0">Game Designer · Social stealth · Concept pitch</div>
+<div style="font-size: 16px; color: #5A3A40">Game Designer · Social stealth · Concept pitch</div>
 <ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
 <li>Pillars, player profiles and the 3C</li>
 <li>A four-phase heist structure and game loops</li>
@@ -198,18 +198,18 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </div>
 </a>
 
-<a id="c4" class="m-deck-item deck-item" href="seat-cupra-hmi.html" style="box-sizing: border-box; padding: 28px; background: #1A1F4D; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #F3F1EA">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #ECECEF; color: #12163A; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
+<a id="c4" class="m-deck-item deck-item" href="seat-cupra-hmi.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
+<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>SEAT &amp; CUPRA</span><span>04</span></div>
 <div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/cupra/cockpit.jpg" alt="CUPRA cockpit with the infotainment screen" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #5E5F69">UX · LEADERSHIP · SHIPPED</div>
+<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">UX · LEADERSHIP · SHIPPED</div>
 <div style="font-size: 9.8px; line-height: 1.4">Almost seven years on the in-car HMI, from designer to UX lead.</div>
 <div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">LEGENDARY · 2018–24</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7"><span style="color: #F3F1EA">2018 — 2024</span> · SHIPPED</div>
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2018 — 2024</span> · SHIPPED</div>
 <div style="font-weight: 800; font-size: 32px">SEAT &amp; CUPRA HMI</div>
-<div style="font-size: 16px; color: #CFCCE0">UI/UX Designer → Lead UX Designer · <span style="white-space: nowrap">In-car infotainment</span></div>
+<div style="font-size: 16px; color: #5A3A40">UI/UX Designer → Lead UX Designer · <span style="white-space: nowrap">In-car infotainment</span></div>
 <ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
 <li>What lives at first level while driving</li>
 <li>Brand-native Home, App Grid and Navigation</li>
@@ -221,33 +221,33 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 
 </div>
 <div class="m-quests" style="display: flex; align-items: center; gap: 20px; font-size: 16px">
-<span style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #CFCCE0">SIDE QUESTS</span>
-<span style="padding: 10px 16px; border: 2px solid #3A3F75; border-radius: 12px; text-decoration: none; font-weight: 700">CUPRA mobile app</span>
-<span style="padding: 10px 16px; border: 2px solid #3A3F75; border-radius: 12px; text-decoration: none; font-weight: 700">Rent-a-Room · concept app</span>
+<span style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #5A3A40">SIDE QUESTS</span>
+<span style="padding: 10px 16px; border: 2px solid #D3C9B6; border-radius: 12px; text-decoration: none; font-weight: 700">CUPRA mobile app</span>
+<span style="padding: 10px 16px; border: 2px solid #D3C9B6; border-radius: 12px; text-decoration: none; font-weight: 700">Rent-a-Room · concept app</span>
 </div>
 </section>
 
 <section class="m-profile" id="profile" style="flex-shrink: 0; margin: 120px 80px 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px">
 <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 20px">
-<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #9AA3C7">PLAYER PROFILE</div>
-<div class="m-ph" style="width: 100%; aspect-ratio: 520 / 330; box-sizing: border-box; border: 2px dashed #3A3F75; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">PLAYER PROFILE · ILLUSTRATION</div>
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">PLAYER PROFILE</div>
+<div class="m-ph" style="width: 100%; aspect-ratio: 520 / 330; box-sizing: border-box; border: 2px dashed #D3C9B6; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #6B5357">PLAYER PROFILE · ILLUSTRATION</div>
 </div>
 <div style="grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 12px">
-<div class="m-tl" style="padding: 20px 24px; background: #1A1F4D; border-radius: 16px; border-left: 0; display: flex; justify-content: space-between; align-items: center; gap: 20px">
-<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-weight: 700; font-size: 19px">Game &amp; UX Designer</div><div style="font-size: 15px; color: #CFCCE0">Freelance · client work under NDA and a new game</div></div>
-<div style="padding: 6px 12px; background: #E9B949; color: #12163A; border-radius: 999px; font-weight: 800; font-size: 13px; flex-shrink: 0">2026 — NOW</div>
+<div class="m-tl" style="padding: 20px 24px; background: #EAE4D8; border-radius: 16px; border-left: 0; display: flex; justify-content: space-between; align-items: center; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-weight: 700; font-size: 19px">Game &amp; UX Designer</div><div style="font-size: 15px; color: #5A3A40">Freelance · client work under NDA and a new game</div></div>
+<div style="padding: 6px 12px; background: #EBD3A8; color: #4B1D26; border-radius: 999px; font-weight: 800; font-size: 13px; flex-shrink: 0">2026 — NOW</div>
 </div>
-<div class="m-tl" style="padding: 20px 24px; background: #1A1F4D; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; gap: 20px">
-<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-weight: 700; font-size: 19px">Lead UX Designer</div><div style="font-size: 15px; color: #CFCCE0">SEAT &amp; CUPRA infotainment</div></div>
-<div style="padding: 6px 12px; border: 2px solid #3A3F75; border-radius: 999px; font-weight: 800; font-size: 13px; flex-shrink: 0">2021 — 2024</div>
+<div class="m-tl" style="padding: 20px 24px; background: #EAE4D8; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-weight: 700; font-size: 19px">Lead UX Designer</div><div style="font-size: 15px; color: #5A3A40">SEAT &amp; CUPRA infotainment</div></div>
+<div style="padding: 6px 12px; border: 2px solid #D3C9B6; border-radius: 999px; font-weight: 800; font-size: 13px; flex-shrink: 0">2021 — 2024</div>
 </div>
-<div class="m-tl" style="padding: 20px 24px; background: #1A1F4D; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; gap: 20px">
-<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-weight: 700; font-size: 19px">UI/UX Designer &amp; Software Architect</div><div style="font-size: 15px; color: #CFCCE0">SEAT &amp; CUPRA infotainment</div></div>
-<div style="padding: 6px 12px; border: 2px solid #3A3F75; border-radius: 999px; font-weight: 800; font-size: 13px; flex-shrink: 0">2018 — 2021</div>
+<div class="m-tl" style="padding: 20px 24px; background: #EAE4D8; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 4px"><div style="font-weight: 700; font-size: 19px">UI/UX Designer &amp; Software Architect</div><div style="font-size: 15px; color: #5A3A40">SEAT &amp; CUPRA infotainment</div></div>
+<div style="padding: 6px 12px; border: 2px solid #D3C9B6; border-radius: 999px; font-weight: 800; font-size: 13px; flex-shrink: 0">2018 — 2021</div>
 </div>
-<div class="m-training" style="margin-top: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; color: #CFCCE0">
-<div><strong style="color: #F3F1EA">Training:</strong> Game Design Bootcamp, Level UP Game Dev Hub (2025–26) · Master's in Illustration, Motion &amp; 3D, IDEP (2016–17) · Bachelor's in Graphic Design, EINA (2012–16)</div>
-<a class="t-link" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="font-weight: 700; color: #F3F1EA">Full experience in my CV →</a>
+<div class="m-training" style="margin-top: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; color: #5A3A40">
+<div><strong style="color: #4B1D26">Training:</strong> Game Design Bootcamp, Level UP Game Dev Hub (2025–26) · Master's in Illustration, Motion &amp; 3D, IDEP (2016–17) · Bachelor's in Graphic Design, EINA (2012–16)</div>
+<a class="t-link" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="font-weight: 700; color: #4B1D26">Full experience in my CV →</a>
 </div>
 </div>
 </section>
@@ -256,38 +256,38 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <h2 style="margin: 0; font-weight: 800; font-size: 56px; letter-spacing: -1.5px">Abilities</h2>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
 <div style="display: flex; flex-direction: column; gap: 16px">
-<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #F08BA6">GAME DESIGN &amp; DOCS</div>
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #B92B45">GAME DESIGN &amp; DOCS</div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; font-weight: 700; font-size: 15px">
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Mechanics &amp; moveset</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Mechanics &amp; moveset</span>
 
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Parameter specs &amp; tuning</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">FTUE</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Tutorials</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Cross-platform controls</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Feature design</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">One-pagers &amp; GDD</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Parameter specs &amp; tuning</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">FTUE</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Tutorials</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Cross-platform controls</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Feature design</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">One-pagers &amp; GDD</span>
 </div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 16px">
-<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6FD3C2">UX &amp; RESEARCH</div>
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #0F6E62">UX &amp; RESEARCH</div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; font-weight: 700; font-size: 15px">
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Screen flows</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Screen flows</span>
 
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Usability &amp; A/B testing</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Competitor benchmark</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Workshops</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Team leadership</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Cross-team communication</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Usability &amp; A/B testing</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Competitor benchmark</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Workshops</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Team leadership</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Cross-team communication</span>
 </div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 16px">
-<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #9AA3C7">TOOLS</div>
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">TOOLS</div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px; font-weight: 700; font-size: 15px">
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Figma</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Miro</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Google Docs · Sheets</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">Jira · Confluence</span>
-<span style="padding: 10px 14px; background: #1A1F4D; border-radius: 10px">UserZoom</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Figma</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Miro</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Google Docs · Sheets</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">Jira · Confluence</span>
+<span style="padding: 10px 14px; background: #EAE4D8; border-radius: 10px">UserZoom</span>
 </div>
 </div>
 </div>
@@ -296,24 +296,24 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <section class="m-ally ally-sec" style="flex-shrink: 0; margin: 120px 0 0; display: flex; flex-direction: column; gap: 36px">
 <div class="m-ally-head" style="padding: 0 80px; display: flex; justify-content: space-between; align-items: flex-end">
 <div style="display: flex; flex-direction: column; gap: 10px">
-<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #9AA3C7">ALLY CARDS</div>
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">ALLY CARDS</div>
 <h2 style="margin: 0; font-weight: 800; font-size: 56px; letter-spacing: -1.5px">What others say</h2>
 </div>
 <div style="display: flex; gap: 12px; align-items: center">
-<span style="font-weight: 700; font-size: 15px; color: #CFCCE0; margin-right: 8px">{{allyCount}}</span>
-<button class="h-btn h-round" type="button" onClick="{{allyPrev}}" aria-label="Previous recommendation" style="width: 52px; height: 52px; border-radius: 999px; border: 2px solid #3A3F75; background: #1A1F4D; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#F3F1EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3L5 9l6 6"></path></svg></button>
-<button class="h-btn h-round" type="button" onClick="{{allyNext}}" aria-label="Next recommendation" style="width: 52px; height: 52px; border-radius: 999px; border: 2px solid #3A3F75; background: #1A1F4D; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#F3F1EA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l6 6-6 6"></path></svg></button>
+<span style="font-weight: 700; font-size: 15px; color: #5A3A40; margin-right: 8px">{{allyCount}}</span>
+<button class="h-btn h-round" type="button" onClick="{{allyPrev}}" aria-label="Previous recommendation" style="width: 52px; height: 52px; border-radius: 999px; border: 2px solid #D3C9B6; background: #EAE4D8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#4B1D26" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3L5 9l6 6"></path></svg></button>
+<button class="h-btn h-round" type="button" onClick="{{allyNext}}" aria-label="Next recommendation" style="width: 52px; height: 52px; border-radius: 999px; border: 2px solid #D3C9B6; background: #EAE4D8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#4B1D26" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l6 6-6 6"></path></svg></button>
 </div>
 </div>
 <div class="m-ally-view" style="width: 1440px; overflow: hidden">
 <div class="m-ally-track" style="display: flex; gap: 32px; align-items: stretch; transform: translateX({{allyX}})">
 <sc-for list="{{allies}}" as="a" hint-placeholder-count="8">
-<div class="m-ally-card" onClick="{{a.pick}}" aria-hidden="{{a.hidden}}" style="width: 600px; flex-shrink: 0; box-sizing: border-box; padding: 40px 44px; background: #F3F1EA; color: #12163A; border: 6px solid {{a.border}}; border-radius: 26px; display: flex; flex-direction: column; gap: 24px; opacity: {{a.op}}; cursor: {{a.cursor}}; transform: translateX({{a.dx}}); transition: {{a.tr}}">
+<div class="m-ally-card" onClick="{{a.pick}}" aria-hidden="{{a.hidden}}" style="width: 600px; flex-shrink: 0; box-sizing: border-box; padding: 40px 44px; background: #FFFFFF; color: #4B1D26; border: 6px solid {{a.border}}; border-radius: 26px; display: flex; flex-direction: column; gap: 24px; opacity: {{a.op}}; cursor: {{a.cursor}}; transform: translateX({{a.dx}}); transition: {{a.tr}}">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 13px; letter-spacing: 2px; color: #6B5310"><span>ALLY CARD</span></div>
-<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2A2E52">“{{a.quote}}”</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #4B1D26">“{{a.quote}}”</p>
 <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px">
-<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-weight: 800; font-size: 19px">{{a.name}}</span><span style="font-size: 15px; color: #5E5F69">{{a.role}}</span></div>
-<span style="font-size: 12px; font-weight: 700; color: #8A8B96; flex-shrink: 0">{{a.note}}</span>
+<div style="display: flex; flex-direction: column; gap: 3px"><span style="font-weight: 800; font-size: 19px">{{a.name}}</span><span style="font-size: 15px; color: #6B5357">{{a.role}}</span></div>
+<span style="font-size: 12px; font-weight: 700; color: #6B5357; flex-shrink: 0">{{a.note}}</span>
 </div>
 </div>
 </sc-for>
@@ -322,38 +322,38 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <div class="m-ally-foot" style="padding: 0 80px; display: flex; justify-content: space-between; align-items: center">
 <div style="display: flex; gap: 10px">
 <sc-for list="{{allyDots}}" as="d" hint-placeholder-count="4">
-<button type="button" onClick="{{d.pick}}" aria-label="Show recommendation" style="width: {{d.w}}; height: 10px; border-radius: 999px; border: 0; padding: 0; background: #3A3F75; overflow: hidden; cursor: pointer; transition: width 0.3s ease"><span class="ally-fill" onAnimationEnd="{{d.done}}" style="display: block; width: 0; height: 100%; border-radius: 999px; background: #E9B949; animation: {{d.anim}}"></span></button>
+<button type="button" onClick="{{d.pick}}" aria-label="Show recommendation" style="width: {{d.w}}; height: 10px; border-radius: 999px; border: 0; padding: 0; background: #D3C9B6; overflow: hidden; cursor: pointer; transition: width 0.3s ease"><span class="ally-fill" onAnimationEnd="{{d.done}}" style="display: block; width: 0; height: 100%; border-radius: 999px; background: #EBD3A8; animation: {{d.anim}}"></span></button>
 </sc-for>
 </div>
-<a class="t-link" href="https://www.linkedin.com/in/eduarajol/details/recommendations/" target="_blank" rel="noopener" style="font-weight: 700; font-size: 18px; color: #F3F1EA">Check them all on LinkedIn →</a>
+<a class="t-link" href="https://www.linkedin.com/in/eduarajol/details/recommendations/" target="_blank" rel="noopener" style="font-weight: 700; font-size: 18px; color: #4B1D26">Check them all on LinkedIn →</a>
 </div>
 </section>
 
 <section class="m-faq" id="faq" style="flex-shrink: 0; margin: 120px 80px 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px">
 <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 16px">
 <h2 style="margin: 0; font-weight: 800; font-size: 56px; letter-spacing: -1.5px; line-height: 1">Rules of<br>the game</h2>
-<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #CFCCE0">Quick answers before we talk.</p>
-<div style="margin-top: 28px"><div class="m-ph" style="width: 100%; aspect-ratio: 400 / 300; box-sizing: border-box; border: 2px dashed #3A3F75; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #9AA3C7">RULES · ILLUSTRATION</div></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #5A3A40">Quick answers before we talk.</p>
+<div style="margin-top: 28px"><div class="m-ph" style="width: 100%; aspect-ratio: 400 / 300; box-sizing: border-box; border: 2px dashed #D3C9B6; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 2px; color: #6B5357">RULES · ILLUSTRATION</div></div>
 </div>
 <div style="grid-column: 5 / span 8; display: flex; flex-direction: column; gap: 10px">
 <sc-for list="{{faqs}}" as="f" hint-placeholder-count="6">
-<div class="faq-item {{f.cls}}" onClick="{{f.card}}" style="background: #1A1F4D; border-radius: 16px; border: 2px solid {{f.border}}; overflow: hidden">
-<button class="m-faq-q faq-q" type="button" onClick="{{f.toggle}}" aria-expanded="{{f.expanded}}" style="width: 100%; box-sizing: border-box; padding: 22px 24px; background: none; border: 0; color: #F3F1EA; font-family: inherit; font-weight: 700; font-size: 19px; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer"><span>{{f.q}}</span><span aria-hidden="true" style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: {{f.signBg}}; color: {{f.signFg}}; display: flex; align-items: center; justify-content: center; font-size: 20px; line-height: 1">{{f.sign}}</span></button>
-<p class="m-faq-a" style="display: {{f.disp}}; margin: 0; padding: 0 24px 24px; font-size: 16px; line-height: 1.65; color: #CFCCE0">{{f.a}}</p>
+<div class="faq-item {{f.cls}}" onClick="{{f.card}}" style="background: #EAE4D8; border-radius: 16px; border: 2px solid {{f.border}}; overflow: hidden">
+<button class="m-faq-q faq-q" type="button" onClick="{{f.toggle}}" aria-expanded="{{f.expanded}}" style="width: 100%; box-sizing: border-box; padding: 22px 24px; background: none; border: 0; color: #4B1D26; font-family: inherit; font-weight: 700; font-size: 19px; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer"><span>{{f.q}}</span><span aria-hidden="true" style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: {{f.signBg}}; color: {{f.signFg}}; display: flex; align-items: center; justify-content: center; font-size: 20px; line-height: 1">{{f.sign}}</span></button>
+<p class="m-faq-a" style="display: {{f.disp}}; margin: 0; padding: 0 24px 24px; font-size: 16px; line-height: 1.65; color: #5A3A40">{{f.a}}</p>
 </div>
 </sc-for>
 </div>
 </section>
 
-<footer id="contact" class="m-footer-home bleed-yellow" style="margin-top: 120px; box-sizing: border-box; padding: 96px 80px; background: #E9B949; color: #12163A; display: flex; justify-content: space-between; align-items: flex-end">
+<footer id="contact" class="m-footer-home bleed-yellow" style="margin-top: 120px; box-sizing: border-box; padding: 96px 80px; background: #EBD3A8; color: #4B1D26; display: flex; justify-content: space-between; align-items: flex-end">
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div style="font-weight: 800; font-size: 15px; letter-spacing: 2px">END OF MY TURN</div>
 <div class="m-bigmove" style="font-weight: 800; font-size: 110px; line-height: 0.9; letter-spacing: -3px">Your move.</div>
 </div>
 <div style="display: flex; gap: 14px">
-<a class="h-btn h-dark" href="mailto:eduarajol@gmail.com" style="text-decoration: none; padding: 18px 28px; background: #12163A; color: #F3F1EA; border-radius: 12px; font-weight: 700; font-size: 17px">eduarajol@gmail.com</a>
-<a class="h-btn h-outline-dark" href="https://www.linkedin.com/in/eduarajol" target="_blank" rel="noopener" style="text-decoration: none; padding: 18px 28px; border: 2px solid #12163A; color: #12163A; border-radius: 12px; font-weight: 700; font-size: 17px">LinkedIn</a>
-<a class="h-btn h-outline-dark" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none; padding: 18px 28px; border: 2px solid #12163A; color: #12163A; border-radius: 12px; font-weight: 700; font-size: 17px">CV</a>
+<a class="h-btn h-dark" href="mailto:eduarajol@gmail.com" style="text-decoration: none; padding: 18px 28px; background: #4B1D26; color: #EBD3A8; border-radius: 12px; font-weight: 700; font-size: 17px">eduarajol@gmail.com</a>
+<a class="h-btn h-outline-dark" href="https://www.linkedin.com/in/eduarajol" target="_blank" rel="noopener" style="text-decoration: none; padding: 18px 28px; border: 2px solid #4B1D26; color: #4B1D26; border-radius: 12px; font-weight: 700; font-size: 17px">LinkedIn</a>
+<a class="h-btn h-outline-dark" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none; padding: 18px 28px; border: 2px solid #4B1D26; color: #4B1D26; border-radius: 12px; font-weight: 700; font-size: 17px">CV</a>
 </div>
 </footer>
 
@@ -362,7 +362,7 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
 <script src="dc.js"></script>
 <script src="mobile.js"></script>
-<script>window.DC_PROPS = {"accent": "#E9B949"};
+<script>window.DC_PROPS = {"accent": "#EBD3A8"};
 
 const FAQS = [{"q": "Why move from automotive to games?", "a": "Cars were never my passion, but solving the problems that made the experience worse for drivers was. At SEAT and CUPRA, my best moments were when my proposals made the infotainment better. After several years I wanted to do that same work on a subject I truly love, so I trained in game design at Level UP Game Dev Hub and moved into games."}, {"q": "What can you share about work under NDA?", "a": "I can talk about my role and what I owned, the type of game, the process and tools I used, the design decisions I made and why, and how I worked with the team. What stays private: the client's name, the game itself, any project material and its specific mechanics."}, {"q": "Game Designer or UX Designer?", "a": "Both. I worked as a UX Designer for years, trained as a Game Designer, and in my freelance work I already do both roles. I'm open to either, and I do my best work where they meet: onboarding, flows, feedback and the documentation that ties them together."}, {"q": "Remote, hybrid or on-site?", "a": "I'm based in Barcelona. I've worked hybrid at SEAT and CUPRA and fully remote as a freelancer, and both work well for me. Barcelona and its surroundings are my first choice."}, {"q": "Full-time or freelance?", "a": "Right now I'm prioritising a full-time role at a studio. I'm also open to freelance projects."}, {"q": "What are you playing right now?", "a": "007 First Light on PS5, for a story that hooks me and action-RPG gameplay. Puzzled on Netflix, for its daily brain teasers. Marvel Snap, which mixes a lifelong passion (I collect Marvel comics) with quick matches and collecting. And Whiteout Survival, which I'm playing with an analyst's eye to study its economy and progression."}];
 const ALLIES = [{"quote": "Detail-oriented, proactive, and a true role model. These are the three words I would use to describe Eduard. During my time working for SEAT, I had the pleasure of working with him, and I can confidently say he is both an outstanding designer and a remarkable leader. Eduard always has a clear vision of the strategy, taking into account not only all the teams involved but also the current and future workload. He knows how to lead with clarity and kindness and knows exactly how to support and guide the team while staying involved in the day to day.", "name": "Laura Nepormoseno", "role": "UX Designer & Concept", "relation": "REPORTED TO EDUARD", "note": ""}, {"quote": "I worked with Edu at Bertrandt and learned so much from him. He has that rare combination of clarity to make decisions, empathy to listen to others and patience to see processes through, even in the most challenging moments. He is proactive and detail-oriented, always looking for ways to improve the team's work and his own, and truly involved in everyone's wellbeing. In short, Edu is an excellent professional and leader, but above all, a great person. I recommend him with complete confidence.", "name": "Júlia Farran Huguet", "role": "UX/UI Designer", "relation": "SAME TEAM", "note": "Translated from Spanish"}, {"quote": "I have the pleasure of working with Eduard on my current project, and I can say he is the definition of a leader. His way of working made me feel completely reflected in him, as we share many interests and approaches. He is always available to help us improve and manage our time and tasks, always in a close and collaborative way. His knowledge of UX and automotive is impressive! I recommend Eduard without hesitation. He is an exceptional leader, very professional, and an incredible person.", "name": "Blanca Recasens Meca", "role": "HMI Innovation Project Lead", "relation": "SAME TEAM", "note": "Translated from Spanish"}, {"quote": "I overlapped with Edu at Bertrandt, and although our time working together was brief, from day one he made me feel welcome and part of the team. Always attentive to the wellbeing of others, trying to make us smile. I would highlight his commitment, high standards and perfectionism, qualities that will no doubt take him far in any challenge he takes on.", "name": "Sandra Campaña González", "role": "Senior UX/UI & Product Designer", "relation": "SAME TEAM", "note": "Translated from Spanish"}];
@@ -397,7 +397,7 @@ cards.push({
 ...ALLIES[j % n],
 n: String((j % n) + 1).padStart(2, '0'),
 op: rel === 0 ? 1 : 0.35,
-border: rel === 0 ? '#E9B949' : '#F3F1EA',
+border: rel === 0 ? '#C9A86E' : '#FFFFFF',
 cursor: rel === 0 ? 'default' : 'pointer',
 hidden: j >= n ? 'true' : 'false',
 dx: ((rel - j) * STEP) + 'px',
@@ -408,7 +408,7 @@ pick: () => go(pos + rel)
 this.lastRel = rels;
 const fill = 'allyFill' + (this.state.tick % 2 ? 'A' : 'B') + ' 15s linear forwards';
 return {
-accent: this.props.accent ?? '#E9B949',
+accent: this.props.accent ?? '#7A5F33',
 allies: cards,
 allyDots: ALLIES.map((a, i) => ({
 w: i === cur ? '44px' : '10px',
@@ -422,7 +422,7 @@ allyPrev: () => go(pos - 1),
 allyNext: () => go(pos + 1),
 faqs: FAQS.map((f, i) => {
 const open = this.state.faq === i;
-return { ...f, disp: open ? 'block' : 'none', sign: open ? '−' : '+', expanded: open ? 'true' : 'false', border: open ? '#E9B949' : '#1A1F4D', signBg: open ? '#E9B949' : '#262B5C', signFg: open ? '#12163A' : '#F3F1EA', toggle: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ faq: open ? -1 : i }); }, cls: open ? 'is-open' : '', card: () => { if (open) this.setState({ faq: -1 }); } };
+return { ...f, disp: open ? 'block' : 'none', sign: open ? '−' : '+', expanded: open ? 'true' : 'false', border: open ? '#C9A86E' : '#EAE4D8', signBg: open ? '#EBD3A8' : '#E0D8C8', signFg: open ? '#4B1D26' : '#4B1D26', toggle: (e) => { if (e && e.stopPropagation) e.stopPropagation(); this.setState({ faq: open ? -1 : i }); }, cls: open ? 'is-open' : '', card: () => { if (open) this.setState({ faq: -1 }); } };
 })
 };
 }
