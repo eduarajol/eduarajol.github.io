@@ -61,7 +61,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   /* ---------- Home · player profile ---------- */
   .m-profile { display: flex !important; flex-direction: column !important; margin: 64px 20px 0 !important; gap: 20px !important; }
-  .m-profile > div { gap: 12px !important; }
+  .m-profile > div { gap: 12px !important; margin-top: 0 !important; }
   .m-profile h2 { font-size: 38px !important; letter-spacing: -1px !important; }
   .m-ph { aspect-ratio: 16 / 8 !important; font-size: 12px !important; }
   .m-tl { padding: 16px 18px !important; gap: 12px !important; border-radius: 16px !important; }
