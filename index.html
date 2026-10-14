@@ -53,6 +53,9 @@ a{color:#4B1D26}a:hover{color:#7A5F33}
 [id]{scroll-margin-top:100px}
 /* no single word left alone on the last line */
 p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
+.fan-card{transition:scale .2s ease,box-shadow .2s ease,filter .2s ease}
+@media (hover: hover){.fan-card:hover{scale:1.06;z-index:5 !important;box-shadow:0 22px 44px rgba(0,0,0,.28) !important;filter:brightness(1.03)}}
+.fan-card:focus-visible{outline:3px solid #C9A86E;outline-offset:4px}
 /* end interaction states */
 @keyframes allyFillA{from{width:0}to{width:100%}}@keyframes allyFillB{from{width:0}to{width:100%}}
 .ally-sec:hover .ally-fill{animation-play-state:paused !important}
@@ -76,7 +79,7 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <a class="t-nav" href="#deck" style="text-decoration: none">Work</a>
 <a class="t-nav" href="#profile" style="text-decoration: none">About</a>
 <a class="t-nav" href="#faq" style="text-decoration: none">FAQ</a>
-<a class="t-nav" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV ↓</a>
+<a class="t-nav" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV <svg width="11" height="11" viewBox="0 0 10 10" aria-hidden="true" style="display: inline-block; vertical-align: 0px"><path d="M2.6 7.4L7 3M3.4 3H7v3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.2 0.2)"></path></svg></a>
 <a class="h-btn h-yellow" href="#contact" style="text-decoration: none; padding: 12px 20px; background: #EBD3A8; color: #4B1D26; border-radius: 10px; font-weight: 700">Contact</a>
 </nav>
 </header>
@@ -96,28 +99,28 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </div>
 
 <div class="m-fan" style="flex-grow: 1; position: relative">
-<a class="m-fan-card m-fan-c2" href="#c2" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 36px; top: 110px; transform: rotate(-12deg)">
+<a class="m-fan-card m-fan-c2 fan-card fan-c2" href="client-project.html" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 36px; top: 110px; transform: rotate(-12deg)">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>F2P casual game</span><span>02</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#4B1D26"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#E5506A" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#C9A86E"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#C9A86E" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#4B1D26"/></svg></div>
 <div style="font-size: 9.2px; font-weight: 800; color: #6B5357">GAME DESIGN · UX</div>
 <div style="font-size: 10.73px; line-height: 1.4">Features, FTUE, flows, reworks and the GDD.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">SEALED · NDA</div>
 </a>
-<a class="m-fan-card m-fan-c3" href="#c3" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 430px; top: 90px; transform: rotate(8deg); z-index: 2">
+<a class="m-fan-card m-fan-c3 fan-card fan-c3" href="oceans-one.html" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 430px; top: 90px; transform: rotate(8deg); z-index: 2">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>Ocean's One</span><span>03</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><img src="img/o1/s01.jpg" alt="Ocean's One pitch cover" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 9.2px; font-weight: 800; color: #6B5357">GAME DESIGN · CONCEPT</div>
 <div style="font-size: 10.73px; line-height: 1.4">Pillars, 3C, level phases and game loops.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">UNCOMMON · CONCEPT</div>
 </a>
-<a class="m-fan-card m-fan-c4" href="#c4" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 560px; top: 200px; transform: rotate(18deg); z-index: 1">
+<a class="m-fan-card m-fan-c4 fan-card fan-c4" href="seat-cupra-hmi.html" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 560px; top: 200px; transform: rotate(18deg); z-index: 1">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>SEAT &amp; CUPRA</span><span>04</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><img src="img/cupra/cockpit.jpg" alt="CUPRA cockpit with the infotainment screen" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 9.2px; font-weight: 800; color: #6B5357">UX · LEADERSHIP · SHIPPED</div>
 <div style="font-size: 10.73px; line-height: 1.4">Almost seven years on the in-car HMI, from designer to UX lead.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">LEGENDARY · 2018–24</div>
 </a>
-<a class="m-fan-card m-fan-c1" href="#c1" style="width: 290px; height: 415.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 7.73px solid #FFFFFF; border-radius: 21.27px; padding: 15.47px; display: flex; flex-direction: column; gap: 9.67px; text-decoration: none; overflow: hidden; position: absolute; left: 190px; top: 30px; transform: rotate(-3deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4); z-index: 3">
+<a class="m-fan-card m-fan-c1 fan-card fan-c1" href="racing-project.html" style="width: 290px; height: 415.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 7.73px solid #FFFFFF; border-radius: 21.27px; padding: 15.47px; display: flex; flex-direction: column; gap: 9.67px; text-decoration: none; overflow: hidden; position: absolute; left: 190px; top: 30px; transform: rotate(-3deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4); z-index: 3">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 19.33px"><span>F2P racing game</span><span>01</span></div>
 <div style="height: 183.67px; flex-shrink: 0; border-radius: 9.67px; overflow: hidden"><img src="img/racing/hud-race.jpg" alt="F2P racing game prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 11.6px; font-weight: 800; color: #6B5357">GAME DESIGN · UX · IN DEV</div>
