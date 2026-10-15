@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asphalt Legends · Resource flow analysis · Eduard Arajol</title>
+<meta name="description" content="Side quest from the Game Design Bootcamp: how resources flow through Asphalt Legends, from the first actions to the game loop.">
+<link rel="canonical" href="https://eduarajol.github.io/asphalt-legends.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4">
+<link rel="icon" href="favicon-192.png?v=4" sizes="192x192" type="image/png">
+<link rel="icon" href="favicon-32.png?v=4" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=4" sizes="any">
+<link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+<meta name="theme-color" content="#F5F0E8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Asphalt Legends · Resource flow analysis · Eduard Arajol">
+<meta property="og:description" content="Side quest from the Game Design Bootcamp: how resources flow through Asphalt Legends, from the first actions to the game loop.">
+<meta property="og:url" content="https://eduarajol.github.io/asphalt-legends.html">
+<meta property="og:image" content="https://eduarajol.github.io/og.png?v=4">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin-ext.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style>
+body{margin:0;background:#F5F0E8;color:#4B1D26;font-family:'Bricolage Grotesque',system-ui,sans-serif}
+a{color:#4B1D26}a:hover{color:#7A5F33}
+/* interaction states */
+.h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+@media (hover: hover){.h-yellow:hover{background:#F3E3C6 !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,80,60,.28)}}
+@media (hover: hover){.h-outline-light:hover{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-dark:hover{background:#FFFFFF !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
+@media (hover: hover){.h-outline-dark:hover{background:#4B1D26 !important;color:#EBD3A8 !important;transform:translateY(-2px)}}
+.h-outline-light:active{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important}
+.h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
+@media (hover: hover){.h-round:hover{border-color:#C9A86E !important;background:#E0D8C8 !important}}
+@media (hover: hover){.h-round:hover svg{stroke:#C9A86E}}
+.h-round:active{background:#D3C9B6 !important}
+.h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #C9A86E;outline-offset:3px}
+.faq-q{transition:background-color .18s ease,color .18s ease}
+@media (hover: hover){.faq-q:hover{background:#E0D8C8 !important;color:#7A5F33 !important}}
+.faq-item{transition:border-color .18s ease,background-color .18s ease}
+.faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#D3C9B6 !important}
+.faq-item.is-open{cursor:pointer}
+@media (hover: hover){.faq-item.is-open:hover{background:#E0D8C8 !important}}
+@media (hover: hover){.faq-item.is-open:hover .faq-q{background:transparent !important;color:#7A5F33 !important}}
+.t-nav,.t-link{transition:color .18s ease,text-decoration-color .18s ease}
+.t-logo path{transition:fill .18s ease}
+@media (hover: hover){.t-nav:hover{color:#7A5F33 !important;text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:6px !important}}
+@media (hover: hover){.t-link:hover{color:#7A5F33 !important}}
+@media (hover: hover){.t-logo:hover path{fill:#C9A86E}}
+.t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #C9A86E;outline-offset:4px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item,.t-nav,.t-link,.t-logo path{transition:none}.h-btn:hover{transform:none}}
+/* fixed header */
+.site-header{position:sticky;top:0;z-index:40}
+/* the bar's background spans the whole window, even when the page column is narrower */
+.site-header::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;background:rgba(245,240,232,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
+.is-scrolled .site-header::before{box-shadow:0 1px 0 #E0D8C8,0 10px 24px rgba(0,0,0,.25)}
+/* yellow Home footer also runs edge to edge */
+.bleed-yellow{box-shadow:0 0 0 100vmax #EBD3A8;clip-path:inset(0 -100vmax)}
+[id]{scroll-margin-top:100px}
+/* no single word left alone on the last line */
+p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
+/* end interaction states */
+
+.f2p-glow{box-shadow:-9px -7px 28px -6px rgba(185,43,69,.55),9px 9px 28px -6px rgba(15,110,98,.55) !important}.f2p-glow{position:relative;isolation:isolate}.f2p-glow>*{position:relative;z-index:2}.f2p-glow::before,.f2p-glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;transition:opacity .6s ease,filter .6s ease}.f2p-glow::before{background:repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%);background-size:220% 220%;mix-blend-mode:multiply;opacity:.13;animation:foilDrift 9s ease-in-out infinite alternate}.f2p-glow::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 .6px,transparent 1.2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,rgba(120,90,160,.35) 0 .5px,transparent 1.1px) 0 0/11px 11px,linear-gradient(125deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%) 0 0/250% 250%;opacity:.45;animation:foilGlare 7s ease-in-out infinite alternate}.f2p-glow:hover::before,.fl:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.f2p-glow:hover::after,.fl:hover .f2p-glow::after{opacity:1}@keyframes foilDrift{0%{background-position:0% 50%}100%{background-position:100% 50%}}@keyframes foilGlare{0%{background-position:0 0,0 0,0% 0%}100%{background-position:0 0,0 0,100% 100%}}@media (prefers-reduced-motion:reduce){.f2p-glow::before,.f2p-glow::after{animation:none}}
+
+.ab-btn{transition:transform .2s cubic-bezier(.2,.8,.2,1),background .2s ease,border-color .2s ease,box-shadow .2s ease}@media (hover:hover){.ab-btn:not([style*="4px solid"]):hover{border-color:var(--tone) !important;background:color-mix(in srgb,var(--tone) 9%,#EAE4D8) !important;transform:translateX(4px) !important;box-shadow:0 6px 14px rgba(75,29,38,.12)}.ab-btn[style*="4px solid"]:hover{box-shadow:0 8px 18px rgba(75,29,38,.22)}}
+
+.pc-wrap{display:flex;justify-content:center;flex-shrink:0;perspective:900px;touch-action:pan-y}.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}.pc-wrap:hover,.pc-wrap.playing{animation-play-state:paused}.pc-tilt{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.pc-wrap.playing .pc-tilt{transition:transform .08s linear}@media (hover:hover){.pc-wrap:hover:not(.playing) .pc-tilt{transform:translateY(-12px) rotateX(var(--hrx,0deg)) rotateY(var(--hry,0deg)) scale(1.04);transition:transform .14s ease-out}}.pc-wrap:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.pc-wrap:hover .f2p-glow::after{opacity:1}.pc-wrap.playing .f2p-glow::before{opacity:.4;filter:saturate(1.15) brightness(1.03);animation:none;background-position:var(--fx) var(--fy)}.pc-wrap.playing .f2p-glow::after{opacity:1;animation:none;background-position:0 0,0 0,var(--fx) var(--fy)}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}section:has(.pc-wrap) div:has(+ h1){min-height:24px;line-height:24px}@media (min-width:761px){section:has(> .pc-wrap){align-items:flex-start !important}section:has(> .pc-wrap)>div:last-child{margin-top:16px}}
+
+.sb-link{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.sb-next{align-items:flex-end;justify-self:end}div:has(> .sb-link){display:grid !important;grid-template-columns:1fr auto 1fr !important}div:has(> .sb-link)>:not(.sb-link){justify-self:center;text-align:center}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:20px}.sb-short{display:none;font-weight:800;font-size:15px}@media (min-width:761px){div:has(> .sb-link){height:auto !important;padding-top:16px !important;padding-bottom:16px !important}}
+
+/* ---- Side quest: Asphalt Legends ---- */
+.aq-hero{display:flex;gap:64px;align-items:center;padding:72px 80px 0}
+.aq-hero-t{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:22px}
+.aq-eb{font-weight:700;font-size:14px;letter-spacing:2px;color:#7A5F33;line-height:24px}
+.aq-hero h1{margin:0;font-weight:800;font-size:80px;line-height:.95;letter-spacing:-2.4px}
+.aq-role{align-self:flex-start;margin-top:-6px;padding:4px 12px;border-radius:8px;background:#EBD3A8;font-weight:700;font-size:24px}
+.aq-lead{margin:0;max-width:640px;font-size:19px;line-height:1.55;color:#5A3A40;text-wrap:pretty}
+.aq-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.aq-facts div{padding:14px 16px;border-radius:14px;background:#EAE4D8;display:flex;flex-direction:column;gap:6px}
+.aq-facts span{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#6B5357}
+.aq-facts b{font-size:15px;font-weight:700;line-height:1.3}
+.aq-cta{align-self:flex-start;padding:12px 18px;border:2px solid #4B1D26;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;color:#4B1D26;transition:all .2s ease}
+.aq-cta:hover{background:#4B1D26;color:#F5F0E8}
+.aq-hero-img{flex:0 0 520px;display:block;border-radius:20px;overflow:hidden;box-shadow:0 24px 46px rgba(75,29,38,.22);transform:rotate(1.5deg);transition:transform .3s ease}
+.aq-hero-img:hover{transform:rotate(0) scale(1.01)}
+.aq-hero-img img{display:block;width:100%}
+.aq-s{padding:104px 80px 0;display:flex;flex-direction:column;gap:14px}
+.aq-h{display:flex;align-items:baseline;gap:16px}
+.aq-n{font-weight:800;font-size:16px;letter-spacing:2px;color:#7A5F33}
+.aq-h h2{margin:0;font-weight:800;font-size:48px;letter-spacing:-1.4px;line-height:1.05}
+.aq-sub{margin:0 0 18px;max-width:760px;font-size:18px;line-height:1.5;color:#5A3A40;text-wrap:pretty}
+.aq-acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.aq-acts div{padding:28px;border-radius:22px;background:#EAE4D8;display:flex;flex-direction:column;gap:10px}
+.aq-acts span{font-weight:800;font-size:15px;letter-spacing:2px;color:#7A5F33}
+.aq-acts b{font-weight:800;font-size:30px;letter-spacing:-.6px}
+.aq-acts p{margin:0;font-size:16px;line-height:1.5;color:#5A3A40}
+.aq-res{display:flex;flex-direction:column;gap:18px}
+.aq-g{display:grid;grid-template-columns:170px minmax(0,1fr);gap:20px;align-items:center;padding:20px 24px;border-radius:18px;background:#EAE4D8}
+.aq-gl{font-weight:800;font-size:14px;letter-spacing:2px;color:#6B5357}
+.aq-gc{display:flex;flex-wrap:wrap;gap:10px}
+.rk{padding:10px 14px;border-radius:10px;background:#F5F0E8;border:1.5px solid #D3C9B6;font-weight:700;font-size:16px;cursor:pointer;transition:all .18s ease;color:#4B1D26;text-decoration:none}
+.rk em{font-style:normal;font-weight:500;color:#6B5357;font-size:14px}
+.rk:hover em{color:inherit}
+.rk.shop{border-style:dashed;background:transparent}
+.rk.shop:hover{background:#EBD3A8;border-color:#EBD3A8}
+.rcs{display:flex;flex-wrap:wrap;gap:6px}
+.rc{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:7px;font-size:13px;font-weight:700;line-height:1.2;white-space:nowrap;transition:all .18s ease}
+.rc b{font-weight:800}
+.rc.out{background:#F4DCE0;color:#9E2A3F}
+.rc.in{background:#D5EAE5;color:#0A5A50}
+.lg{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:14px;font-weight:600;color:#5A3A40;margin-bottom:22px}
+.lg span{display:inline-flex;align-items:center;gap:8px}
+.lg-io .k{display:none}.lg-io span:has(.k){display:none}
+.k{display:inline-block;width:22px;height:16px;border-radius:5px}
+.k.start{background:#EBD3A8}.k.main{background:#fff;border:2px solid #4B1D26;box-sizing:border-box}.k.sec{background:#4B1D26}
+.k.csq{background:#7A5F33}.k.cdk{width:13px;height:13px;border:2px solid #4B1D26;border-radius:2px;transform:rotate(45deg);margin:0 4px}
+.aq-io{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.io{padding:26px;border-radius:22px;background:#EAE4D8;display:flex;flex-direction:column;gap:18px}
+.io-n{font-weight:800;font-size:26px;letter-spacing:-.5px}
+.io-r{display:flex;flex-direction:column;gap:8px}
+.io-l{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#6B5357}
+.none{font-size:14px;color:#6B5357}
+.aq-core{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.aq-core .nd{min-width:180px;text-align:center}
+.cl-ar{font-weight:800;font-size:28px;color:#7A5F33}
+.aq-core-back{margin-top:6px;padding:12px 18px;border:2px dashed #D3C9B6;border-radius:14px;font-weight:700;font-size:16px;color:#6B5357;align-self:flex-start}
+.nd{padding:16px 18px;border-radius:14px;display:flex;flex-direction:column;gap:10px;box-sizing:border-box}
+.nd-t{font-weight:800;font-size:18px;line-height:1.2}
+.nd-note{font-size:13px;line-height:1.4;opacity:.85;margin-top:-4px}
+.nd.start{background:#EBD3A8}
+.nd.main{background:#fff;border:2px solid #4B1D26}
+.nd.sec{background:#4B1D26;color:#F5F0E8}
+.nd.sec .rc.out{background:#F4DCE0}.nd.sec .rc.in{background:#D5EAE5}
+.nd.csq{background:#7A5F33;color:#F5F0E8}
+.aq-lanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.ln{padding:24px;border-radius:24px;background:#EAE4D8;display:flex;flex-direction:column;gap:18px}
+.ln-h{display:flex;gap:14px;align-items:flex-start}
+.ln-h>span{flex-shrink:0;width:36px;height:36px;border-radius:10px;background:#4B1D26;color:#F5F0E8;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center}
+.ln-h h3{margin:0;font-weight:800;font-size:24px;letter-spacing:-.4px;line-height:1.15}
+.ln-h p{margin:4px 0 0;font-size:14px;line-height:1.45;color:#5A3A40;text-wrap:pretty}
+.ln-b{display:flex;flex-direction:column}
+.dn{text-align:center;font-weight:800;font-size:20px;color:#7A5F33;line-height:1;padding:8px 0}
+.cd{display:flex;flex-direction:column;gap:8px;padding:14px 16px;border:2px solid #4B1D26;border-radius:14px;background:#F5F0E8}
+.cd-q{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;line-height:1.25}
+.cd-q i{flex-shrink:0;width:11px;height:11px;border:2px solid #4B1D26;border-radius:2px;transform:rotate(45deg);margin:0 3px}
+.brs{display:flex;flex-direction:column;gap:5px}
+.br{display:flex;align-items:baseline;gap:8px;font-size:14px;line-height:1.35;color:#5A3A40}
+.br span{flex-shrink:0;font-size:11px;font-weight:800;letter-spacing:1px}
+.br.no span{color:#9E2A3F}.br.yes span{color:#0A5A50}
+.opts-h{font-size:11px;font-weight:800;letter-spacing:1.5px;color:#6B5357;margin:2px 0 8px}
+.opts{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.opts .nd{padding:12px 14px;gap:8px}.opts .nd-t{font-size:15px}
+.ln-back{padding:10px 14px;border:2px dashed #D3C9B6;border-radius:12px;font-weight:700;font-size:14px;color:#6B5357}
+.aq-caps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.aq-caps figure,.aq-shop{margin:0;display:flex;flex-direction:column;gap:12px}
+.aq-caps a,.aq-shop a{display:block;border-radius:16px;overflow:hidden;box-shadow:0 12px 28px rgba(75,29,38,.16);transition:transform .25s ease,box-shadow .25s ease;cursor:zoom-in}
+.aq-caps a:hover,.aq-shop a:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(75,29,38,.22)}
+.aq-caps img,.aq-shop img{display:block;width:100%}
+.aq-caps figcaption{display:flex;flex-direction:column;gap:4px;font-size:15px;line-height:1.45;color:#5A3A40;text-wrap:pretty}
+.aq-caps figcaption b{font-size:17px;color:#4B1D26}
+.aq-shop figcaption{font-size:14px;color:#6B5357;font-style:italic}
+.aq-concl{padding:56px 24px;border:2px dashed #D3C9B6;border-radius:22px;text-align:center;font-weight:800;font-size:14px;letter-spacing:2px;color:#6B5357}
+.aq-legal{margin:56px 80px 0;font-size:13px;line-height:1.5;color:#6B5357;max-width:760px}
+html[data-hl="credits"] [data-r]:not([data-r="credits"]),html[data-hl="tokens"] [data-r]:not([data-r="tokens"]),html[data-hl="money"] [data-r]:not([data-r="money"]),html[data-hl="ads"] [data-r]:not([data-r="ads"]),html[data-hl="time"] [data-r]:not([data-r="time"]),html[data-hl="packs"] [data-r]:not([data-r="packs"]),html[data-hl="parts"] [data-r]:not([data-r="parts"]),html[data-hl="blueprints"] [data-r]:not([data-r="blueprints"]),html[data-hl="vehicles"] [data-r]:not([data-r="vehicles"]),html[data-hl="flags"] [data-r]:not([data-r="flags"]),html[data-hl="rep"] [data-r]:not([data-r="rep"]),html[data-hl="fuel"] [data-r]:not([data-r="fuel"]){opacity:.22}html[data-hl] .rc:not([data-r]){opacity:.22}html[data-hl="credits"] [data-r="credits"],html[data-hl="tokens"] [data-r="tokens"],html[data-hl="money"] [data-r="money"],html[data-hl="ads"] [data-r="ads"],html[data-hl="time"] [data-r="time"],html[data-hl="packs"] [data-r="packs"],html[data-hl="parts"] [data-r="parts"],html[data-hl="blueprints"] [data-r="blueprints"],html[data-hl="vehicles"] [data-r="vehicles"],html[data-hl="flags"] [data-r="flags"],html[data-hl="rep"] [data-r="rep"],html[data-hl="fuel"] [data-r="fuel"]{opacity:1;box-shadow:0 0 0 2px currentColor;transform:translateY(-1px)}html[data-hl="credits"] .rk[data-r="credits"],html[data-hl="tokens"] .rk[data-r="tokens"],html[data-hl="money"] .rk[data-r="money"],html[data-hl="ads"] .rk[data-r="ads"],html[data-hl="time"] .rk[data-r="time"],html[data-hl="packs"] .rk[data-r="packs"],html[data-hl="parts"] .rk[data-r="parts"],html[data-hl="blueprints"] .rk[data-r="blueprints"],html[data-hl="vehicles"] .rk[data-r="vehicles"],html[data-hl="flags"] .rk[data-r="flags"],html[data-hl="rep"] .rk[data-r="rep"],html[data-hl="fuel"] .rk[data-r="fuel"]{background:#4B1D26;color:#F5F0E8;box-shadow:none}
+@media (prefers-reduced-motion:reduce){.aq-hero-img,.rc,.rk{transition:none}}
+@media (max-width:760px){
+  .aq-hero{flex-direction:column-reverse;align-items:stretch;gap:32px;padding:28px 20px 0}
+  .aq-hero-img{flex:none;transform:none}
+  .aq-hero h1{font-size:48px;letter-spacing:-1.4px}
+  .aq-role{font-size:19px}
+  .aq-lead{font-size:17px}
+  .aq-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .aq-s{padding:72px 20px 0}
+  .aq-h h2{font-size:34px;letter-spacing:-1px}
+  .aq-sub{font-size:16px}
+  .aq-acts,.aq-io,.aq-lanes,.aq-caps{grid-template-columns:minmax(0,1fr)}
+  .aq-acts div{padding:22px}.aq-acts b{font-size:24px}
+  .aq-g{grid-template-columns:minmax(0,1fr);gap:12px;padding:18px}
+  .rk{font-size:15px;padding:9px 12px}
+  .aq-core{flex-direction:column;align-items:stretch;gap:6px}
+  .cl-ar{transform:rotate(90deg);align-self:center;font-size:22px}
+  .aq-core-back{align-self:stretch;text-align:center}
+  .ln{padding:18px}
+  .aq-legal{margin:40px 20px 0}
+}
+</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}#faq,#profile{scroll-margin-top:150px}@media (max-width:760px){[id]{scroll-margin-top:72px}#faq,#profile{scroll-margin-top:100px}}</style>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body id="top">
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #F5F0E8; color: #4B1D26; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+<header class="m-header site-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<a class="t-logo" href="index.html" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#4B1D26" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
+<nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
+<a class="t-nav" href="index.html#deck" style="text-decoration: none">Work</a>
+<a class="t-nav" href="index.html#profile" style="text-decoration: none">About</a>
+<a class="t-nav" href="index.html#faq" style="text-decoration: none">FAQ</a>
+<a class="t-nav" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV <svg width="11" height="11" viewBox="0 0 10 10" aria-hidden="true" style="display: inline-block; vertical-align: 0px"><path d="M2.6 7.4L7 3M3.4 3H7v3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.2 0.2)"></path></svg></a>
+<a class="h-btn h-yellow" href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #EBD3A8; color: #4B1D26; border-radius: 10px; font-weight: 700">Contact</a>
+</nav>
+</header>
+<div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #E0D8C8; border-bottom: 1px solid #E0D8C8">
+<a class="t-link sb-link" href="index.html#deck"><span class="sb-label">BACK TO</span><span class="sb-name">← My deck</span><span class="sb-short">← MY DECK</span></a>
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #6B5357">SIDE QUEST</div>
+<div></div>
+</div>
+<section class="aq-hero"><div class="aq-hero-t"><div class="aq-eb">SIDE QUEST · 2026 · GAME DESIGN BOOTCAMP</div><h1>Asphalt Legends</h1><div class="aq-role">Resource flow analysis</div><p class="aq-lead">An analysis I made during the Game Design Bootcamp. I mapped how resources move through Asphalt Legends in the first sessions: the actions a player takes, what each one spends and earns, and how they chain into the game loop.</p><div class="aq-facts"><div><span>ROLE</span><b>Game Designer</b></div><div><span>CONTEXT</span><b>Bootcamp · 2026</b></div><div><span>FOCUS</span><b>Resource flow</b></div><div><span>TOOL</span><b>Figma</b></div></div><a class="aq-cta" href="https://www.figma.com/proto/A4y40PRMMIc2lROxdNqrri/BOOTCAMP?node-id=238-1179&amp;viewport=-440%2C348%2C0.26&amp;t=IlerWp08xB70Fw7i-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=238%3A1161" target="_blank" rel="noopener">See the full presentation in Figma <span aria-hidden="true">↗</span></a></div><a class="aq-hero-img" href="img/asphalt/garage.jpg" target="_blank" rel="noopener"><img src="img/asphalt/garage.jpg" alt="Asphalt Legends garage screen with the car’s stats, rank and fuel"></a></section>
+<section class="aq-s"><div class="aq-h"><span class="aq-n">01</span><h2>Three actions to start</h2></div><p class="aq-sub">After a first play session, everything the player does comes down to three actions.</p><div class="aq-acts"><div><span>01</span><b>Race</b><p>Pick a race on the season map and drive it.</p></div><div><span>02</span><b>Get rewards</b><p>Finish the race and collect what it pays.</p></div><div><span>03</span><b>Upgrade vehicle</b><p>Spend resources to improve the car’s stats and rank.</p></div></div></section>
+<section class="aq-s"><div class="aq-h"><span class="aq-n">02</span><h2>The resources</h2></div><p class="aq-sub">Twelve resources in three groups. Point at one, or tap it on a phone, to see where it is spent and earned on this page.</p><div class="aq-res"><div class="aq-g"><div class="aq-gl">CURRENCY</div><div class="aq-gc"><span class="rk" data-r="credits" tabindex="0">Credits <em>soft currency</em></span><span class="rk" data-r="tokens" tabindex="0">Tokens <em>hard currency</em></span><span class="rk" data-r="money" tabindex="0">Real money</span><span class="rk" data-r="ads" tabindex="0">Ads</span><span class="rk" data-r="time" tabindex="0">Time</span><a class="rk shop" href="#shop">The shop ↓</a></div></div><div class="aq-g"><div class="aq-gl">VEHICLE</div><div class="aq-gc"><span class="rk" data-r="packs" tabindex="0">Card packs</span><span class="rk" data-r="parts" tabindex="0">Part cards</span><span class="rk" data-r="blueprints" tabindex="0">Vehicle cards <em>blueprints</em></span><span class="rk" data-r="vehicles" tabindex="0">Vehicles</span></div></div><div class="aq-g"><div class="aq-gl">RACING ITEMS</div><div class="aq-gc"><span class="rk" data-r="flags" tabindex="0">Season flags</span><span class="rk" data-r="rep" tabindex="0">Reputation points</span><span class="rk" data-r="fuel" tabindex="0">Fuel</span></div></div></div></section>
+<section class="aq-s"><div class="aq-h"><span class="aq-n">03</span><h2>What goes in, what comes out</h2></div><p class="aq-sub">Each basic action spends some resources and earns others.</p><div class="lg lg-io"><span><i class="k start"></i>Start of the loop</span><span><i class="k main"></i>Main action</span><span><i class="k sec"></i>Secondary action</span><span><i class="k cdk"></i>Condition</span><span><i class="k csq"></i>Consequence</span><span><span class="rc in"><b>+</b>Earned</span></span><span><span class="rc out"><b>−</b>Spent</span></span></div><div class="aq-io"><div class="io"><div class="io-n">Race</div><div class="io-r"><div class="io-l">SPENDS</div><div class="rcs"><span class="rc out" data-r="fuel"><b>−</b>Fuel</span></div></div><div class="io-r"><div class="io-l">EARNS</div><div class="rcs"><span class="none">Nothing</span></div></div></div><div class="io"><div class="io-n">Upgrade vehicle</div><div class="io-r"><div class="io-l">SPENDS</div><div class="rcs"><span class="rc out" data-r="credits"><b>−</b>Credits</span><span class="rc out" data-r="tokens"><b>−</b>Tokens</span><span class="rc out" data-r="money"><b>−</b>Real money</span><span class="rc out" data-r="ads"><b>−</b>Ads</span><span class="rc out" data-r="parts"><b>−</b>Part cards</span><span class="rc out" data-r="blueprints"><b>−</b>Vehicle cards</span></div></div><div class="io-r"><div class="io-l">EARNS</div><div class="rcs"><span class="rc in"><b>+</b>Rank upgrade</span><span class="rc in"><b>+</b>Stat upgrade</span></div></div></div><div class="io"><div class="io-n">Get rewards</div><div class="io-r"><div class="io-l">SPENDS</div><div class="rcs"><span class="none">Nothing</span></div></div><div class="io-r"><div class="io-l">EARNS</div><div class="rcs"><span class="rc in" data-r="credits"><b>+</b>Credits</span><span class="rc in" data-r="rep"><b>+</b>Reputation points</span><span class="rc in" data-r="flags"><b>+</b>Season flags</span><span class="rc in" data-r="packs"><b>+</b>Card packs</span><span class="rc in" data-r="parts"><b>+</b>Part cards</span><span class="rc in" data-r="blueprints"><b>+</b>Vehicle cards</span></div></div></div></div></section>
+<section class="aq-s"><div class="aq-h"><span class="aq-n">04</span><h2>The core loop</h2></div><p class="aq-sub">The first steps, as a loop.</p><div class="aq-core"><div class="nd start"><div class="nd-t">Select race</div></div><span class="cl-ar" aria-hidden="true">→</span><div class="nd main"><div class="nd-t">Race</div></div><span class="cl-ar" aria-hidden="true">→</span><div class="nd main"><div class="nd-t">Get rewards</div></div><span class="cl-ar" aria-hidden="true">→</span><div class="nd main"><div class="nd-t">Upgrade vehicle</div></div></div><div class="aq-core-back">↺ And back to Select race</div></section>
+<section class="aq-s"><div class="aq-h"><span class="aq-n">05</span><h2>The loop, with more gameplay</h2></div><p class="aq-sub">As play goes on, two conditions split the loop into three paths. Every step shows what it spends and earns.</p><div class="lg"><span><i class="k start"></i>Start of the loop</span><span><i class="k main"></i>Main action</span><span><i class="k sec"></i>Secondary action</span><span><i class="k cdk"></i>Condition</span><span><i class="k csq"></i>Consequence</span><span><span class="rc in"><b>+</b>Earned</span></span><span><span class="rc out"><b>−</b>Spent</span></span></div><div class="aq-lanes"><div class="ln"><div class="ln-h"><span>1</span><div><h3>Race</h3><p>Two checks stand between the player and the race.</p></div></div><div class="ln-b"><div class="nd start"><div class="nd-t">Select race</div></div><div class="dn" aria-hidden="true">↓</div><div class="cd"><div class="cd-q"><i></i>Is the car’s rank high enough?</div><div class="brs"><div class="br no"><span>NOT ENOUGH</span>Upgrade the vehicle first (path 2)</div><div class="br yes"><span>ENOUGH</span>Go on</div></div></div><div class="dn" aria-hidden="true">↓</div><div class="cd"><div class="cd-q"><i></i>Is there fuel left?</div><div class="brs"><div class="br no"><span>NO</span>Refill or wait</div><div class="br yes"><span>YES</span>Go on</div></div></div><div class="opts"><div class="nd sec"><div class="nd-t">Refill fuel</div><div class="rcs"><span class="rc out" data-r="tokens"><b>−</b>Tokens</span><span class="rc out" data-r="ads"><b>−</b>Ads</span><span class="rc in" data-r="fuel"><b>+</b>Fuel</span></div></div><div class="nd sec"><div class="nd-t">Wait</div><div class="rcs"><span class="rc out" data-r="time"><b>−</b>Time</span><span class="rc in" data-r="fuel"><b>+</b>Fuel</span></div></div></div><div class="dn" aria-hidden="true">↓</div><div class="nd main"><div class="nd-t">Race</div><div class="rcs"><span class="rc out" data-r="fuel"><b>−</b>Fuel</span></div></div><div class="dn" aria-hidden="true">↓</div><div class="nd main"><div class="nd-t">Get rewards</div><div class="rcs"><span class="rc in" data-r="credits"><b>+</b>Credits</span><span class="rc in" data-r="rep"><b>+</b>Reputation points</span><span class="rc in" data-r="flags"><b>+</b>Season flags</span><span class="rc in" data-r="packs"><b>+</b>Card packs</span><span class="rc in" data-r="parts"><b>+</b>Part cards</span><span class="rc in" data-r="blueprints"><b>+</b>Vehicle cards</span></div></div></div><div class="ln-back">↺ Back to Select race, or on to Upgrade vehicle</div></div><div class="ln"><div class="ln-h"><span>2</span><div><h3>Upgrade the vehicle</h3><p>Without enough stars, the player has to collect blueprints first.</p></div></div><div class="ln-b"><div class="nd main"><div class="nd-t">Upgrade vehicle</div></div><div class="dn" aria-hidden="true">↓</div><div class="cd"><div class="cd-q"><i></i>Does the vehicle have enough stars?</div><div class="brs"><div class="br no"><span>NOT ENOUGH ★☆☆</span>Get blueprints</div><div class="br yes"><span>ENOUGH ★★☆</span>Upgrade stats (path 3)</div></div></div><div class="dn" aria-hidden="true">↓</div><div class="opts-h">GET BLUEPRINTS</div><div class="opts"><div class="nd sec"><div class="nd-t">Buy blueprints</div><div class="rcs"><span class="rc out" data-r="credits"><b>−</b>Credits</span><span class="rc out" data-r="ads"><b>−</b>Ads</span><span class="rc out" data-r="money"><b>−</b>Real money</span><span class="rc in" data-r="blueprints"><b>+</b>Vehicle cards</span></div></div><div class="nd sec"><div class="nd-t">Earn them as rewards</div><div class="rcs"><span class="rc in" data-r="blueprints"><b>+</b>Vehicle cards</span></div></div><div class="nd sec"><div class="nd-t">Open card packs</div><div class="rcs"><span class="rc out" data-r="credits"><b>−</b>Credits</span><span class="rc out" data-r="packs"><b>−</b>Card packs</span><span class="rc out" data-r="ads"><b>−</b>Ads</span><span class="rc out" data-r="money"><b>−</b>Real money</span><span class="rc in" data-r="credits"><b>+</b>Credits</span><span class="rc in" data-r="parts"><b>+</b>Part cards</span><span class="rc in" data-r="blueprints"><b>+</b>Vehicle cards</span></div></div><div class="nd sec"><div class="nd-t">Other options</div><div class="nd-note">Shop, syndicate missions, season pass and more</div><div class="rcs"><span class="rc in" data-r="blueprints"><b>+</b>Vehicle cards</span></div></div></div><div class="dn" aria-hidden="true">↓</div><div class="nd csq"><div class="nd-t">The vehicle levels up</div><div class="rcs"><span class="rc in"><b>+</b>★ Star</span></div></div></div><div class="ln-back">↺ Back to the star check</div></div><div class="ln"><div class="ln-h"><span>3</span><div><h3>Upgrade stats</h3><p>Every stat upgrade costs the same two resources and raises the car’s rank.</p></div></div><div class="ln-b"><div class="opts-h">PICK A STAT</div><div class="opts"><div class="nd sec"><div class="nd-t">Top speed</div><div class="rcs"><span class="rc out" data-r="credits"><b>−</b>Credits</span><span class="rc out" data-r="parts"><b>−</b>Part cards</span><span class="rc in"><b>+</b>Top speed</span></div></div><div class="nd sec"><div class="nd-t">Acceleration</div><div class="rcs"><span class="rc out" data-r="credits"><b>−</b>Credits</span><span class="rc out" data-r="parts"><b>−</b>Part cards</span><span class="rc in"><b>+</b>Acceleration</span></div></div><div class="nd sec"><div class="nd-t">Handling</div><div class="rcs"><span class="rc out" data-r="credits"><b>−</b>Credits</span><span class="rc out" data-r="parts"><b>−</b>Part cards</span><span class="rc in"><b>+</b>Handling</span></div></div><div class="nd sec"><div class="nd-t">Nitro</div><div class="rcs"><span class="rc out" data-r="credits"><b>−</b>Credits</span><span class="rc out" data-r="parts"><b>−</b>Part cards</span><span class="rc in"><b>+</b>Nitro</span></div></div></div><div class="dn" aria-hidden="true">↓</div><div class="nd csq"><div class="nd-t">The vehicle ranks up</div><div class="rcs"><span class="rc in"><b>+</b>Rank</span></div></div></div><div class="ln-back">↺ Back to Select race</div></div></div></section>
+<section class="aq-s"><div class="aq-h"><span class="aq-n">06</span><h2>Where it lives in the game</h2></div><p class="aq-sub">The same resources, on the screens where the player meets them. Notes on the screenshots are mine.</p><div class="aq-caps"><figure><a href="img/asphalt/garage.jpg" target="_blank" rel="noopener"><img src="img/asphalt/garage.jpg" alt="Stats, rank and fuel"></a><figcaption><b>Stats, rank and fuel</b>The garage shows the car’s four stats, its rank against the one the race recommends, and the fuel left.</figcaption></figure><figure><a href="img/asphalt/season-map.jpg" target="_blank" rel="noopener"><img src="img/asphalt/season-map.jpg" alt="Flags and rewards"></a><figcaption><b>Flags and rewards</b>Season flags unlock new races, and each race shows its reward before the player commits.</figcaption></figure><figure><a href="img/asphalt/race-results.jpg" target="_blank" rel="noopener"><img src="img/asphalt/race-results.jpg" alt="What a race pays"></a><figcaption><b>What a race pays</b>Credits, reputation points and blueprint cards, right after the finish line.</figcaption></figure><figure><a href="img/asphalt/upgrades.jpg" target="_blank" rel="noopener"><img src="img/asphalt/upgrades.jpg" alt="Where resources are spent"></a><figcaption><b>Where resources are spent</b>Each upgrade costs resources and adds to the car’s rank.</figcaption></figure></div></section>
+<section class="aq-s" id="shop"><div class="aq-h"><span class="aq-n">07</span><h2>The shop</h2></div><p class="aq-sub">Real money buys tokens, and tokens buy credits.</p><figure class="aq-shop"><a href="img/asphalt/shop.jpg" target="_blank" rel="noopener"><img src="img/asphalt/shop.jpg" alt="Asphalt Legends shop: token packs for real money and credit packs for tokens"></a><figcaption>Prices as the game showed them when I made the analysis, in 2026. They may have changed since.</figcaption></figure></section>
+<section class="aq-s"><div class="aq-h"><span class="aq-n">08</span><h2>What I took from it</h2></div><p class="aq-sub"></p><div class="aq-concl">CONCLUSION · COMING SOON</div></section>
+<p class="aq-legal">Asphalt Legends is a game by Gameloft. Screenshots belong to their owners and appear here for analysis only. The analysis and the diagrams are my own.</p>
+<footer class="m-pfooter" style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #E0D8C8; display: flex; justify-content: space-between; align-items: flex-start">
+<a class="t-link" href="index.html#deck" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">BACK TO</span><span style="font-weight: 800; font-size: 24px">← My deck</span></a>
+<a class="t-link" href="https://www.figma.com/proto/A4y40PRMMIc2lROxdNqrri/BOOTCAMP?node-id=238-1179&amp;viewport=-440%2C348%2C0.26&amp;t=IlerWp08xB70Fw7i-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=238%3A1161" target="_blank" rel="noopener" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; align-items: flex-end"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">FULL PRESENTATION</span><span style="font-weight: 800; font-size: 24px">Open in Figma ↗</span></a>
+</footer>
+</div>
+</template>
+<noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
+<script src="dc.js"></script>
+<script src="mobile.js"></script>
+<script>window.DC_PROPS = {};
+
+class Component extends DCLogic {
+renderVals() {
+// Point at a resource (or tap it on a phone): every place it is spent or earned lights up, the rest fades.
+if (!this._aqHl && typeof document !== 'undefined') {
+  this._aqHl = true;
+  const root = document.documentElement;
+  const pick = (t) => t && t.closest ? t.closest('[data-r]') : null;
+  document.addEventListener('mouseover', (e) => { const c = pick(e.target); if (c && !root.dataset.lock) root.dataset.hl = c.dataset.r; });
+  document.addEventListener('mouseout', (e) => { const c = pick(e.target); if (c && !root.dataset.lock && !c.contains(e.relatedTarget)) delete root.dataset.hl; });
+  document.addEventListener('click', (e) => {
+    const c = pick(e.target);
+    if (!c) { if (root.dataset.lock) { delete root.dataset.lock; delete root.dataset.hl; } return; }
+    if (root.dataset.lock === c.dataset.r) { delete root.dataset.lock; delete root.dataset.hl; }
+    else { root.dataset.lock = c.dataset.r; root.dataset.hl = c.dataset.r; }
+  });
+}
+return {};
+}
+}
+
+</script>
+</body>
+</html>
