@@ -39,6 +39,10 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-fan-c1 { left: calc(50% - 145px - 30px) !important; top: -50px !important; transform: rotate(-4deg) scale(0.56) !important; }
   .m-fan-cap { left: 0 !important; right: 0 !important; top: auto !important; bottom: 14px !important; text-align: center !important; font-size: 13px !important; }
 
+  /* The pack (card layout 9) on a phone: same stage, scaled to the screen */
+  .pk-fan { flex-grow: 0 !important; height: 568px !important; margin-top: 12px !important; }
+  .pk-scale { top: 0 !important; transform: scale(0.66) !important; }
+
   /* ---------- Section headings (Home and project pages) ---------- */
   .m-sechead { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
   .m-sechead h2 { font-size: 38px !important; letter-spacing: -1px !important; }
@@ -181,4 +185,4 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 
 /* small phones: shrink the whole card fan so its outer cards stay on screen */
-@media (max-width: 380px) { .m-fan { zoom: 0.9 !important; } }
+@media (max-width: 380px) { .m-fan, .pk-fan { zoom: 0.9 !important; } }
