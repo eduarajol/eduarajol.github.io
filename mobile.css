@@ -16,7 +16,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-subbar { height: 52px !important; padding: 0 20px !important; }
   .m-subbar > a:first-child { font-size: 14px !important; gap: 6px !important; }
   .m-subbar > div { font-size: 11px !important; letter-spacing: 1.5px !important; }
-  .m-subbar > a:last-child { width: 34px !important; height: 34px !important; }
+  .m-subbar .sb-name, .m-subbar .sb-label { display: none !important; }
+  .m-subbar .sb-short { display: inline !important; }
 
   /* ---------- Home · hero ---------- */
   .m-hero { height: auto !important; flex-direction: column !important; padding: 32px 20px 0 !important; gap: 4px !important; }

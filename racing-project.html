@@ -57,6 +57,8 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 /* end interaction states */
 
 .f2p-glow{box-shadow:-9px -7px 28px -6px rgba(185,43,69,.55),9px 9px 28px -6px rgba(15,110,98,.55) !important}.f2p-glow{position:relative;isolation:isolate}.f2p-glow>*{position:relative;z-index:2}.f2p-glow::before,.f2p-glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;transition:opacity .6s ease,filter .6s ease}.f2p-glow::before{background:repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%);background-size:220% 220%;mix-blend-mode:multiply;opacity:.13;animation:foilDrift 9s ease-in-out infinite alternate}.f2p-glow::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 .6px,transparent 1.2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,rgba(120,90,160,.35) 0 .5px,transparent 1.1px) 0 0/11px 11px,linear-gradient(125deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%) 0 0/250% 250%;opacity:.45;animation:foilGlare 7s ease-in-out infinite alternate}.f2p-glow:hover::before,.fl:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.f2p-glow:hover::after,.fl:hover .f2p-glow::after{opacity:1}@keyframes foilDrift{0%{background-position:0% 50%}100%{background-position:100% 50%}}@keyframes foilGlare{0%{background-position:0 0,0 0,0% 0%}100%{background-position:0 0,0 0,100% 100%}}@media (prefers-reduced-motion:reduce){.f2p-glow::before,.f2p-glow::after{animation:none}}
+
+.sb-link{text-decoration:none;display:flex;align-items:center;gap:12px}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:16px}.sb-short{display:none;font-weight:800;font-size:15px}
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}#faq,#profile{scroll-margin-top:150px}@media (max-width:760px){[id]{scroll-margin-top:72px}#faq,#profile{scroll-margin-top:100px}}</style>
 <link rel="stylesheet" href="mobile.css">
@@ -77,11 +79,9 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </nav>
 </header>
 <div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #E0D8C8; border-bottom: 1px solid #E0D8C8">
-<a class="t-link" href="index.html#deck" style="text-decoration: none; display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 16px">← Back to my deck</a>
+<a class="t-link sb-link" href="seat-cupra-hmi.html"><span class="sb-name">← SEAT &amp; CUPRA HMI</span><span class="sb-label">PREVIOUS CARD · 04</span><span class="sb-short">← 04</span></a>
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #6B5357">CARD 01 OF 04</div>
-<a class="h-btn h-round" href="index.html#deck" aria-label="Close" style="width: 40px; height: 40px; border: 2px solid #D3C9B6; border-radius: 999px; display: flex; align-items: center; justify-content: center; text-decoration: none">
-<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg>
-</a>
+<a class="t-link sb-link" href="client-project.html" style="justify-content: flex-end"><span class="sb-label">NEXT CARD · 02</span><span class="sb-name">F2P casual game →</span><span class="sb-short">02 →</span></a>
 </div>
 
 <section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
