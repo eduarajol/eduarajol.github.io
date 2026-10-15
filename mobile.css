@@ -144,7 +144,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   /* ---------- Project · hero ---------- */
   .m-phero { flex-direction: column !important; align-items: stretch !important; padding: 28px 20px 0 !important; gap: 28px !important; }
-  .m-pcard { zoom: 0.6 !important; align-self: center !important; margin: 10px 0 4px !important; }
+  .m-pcard { transform: scale(0.75) rotate(-4deg) !important; align-self: center !important; margin: -40px -38px -50px !important; }
   .m-phero > div:last-child { gap: 16px !important; }
   .m-phero > div:last-child > div:first-child { font-size: 12px !important; letter-spacing: 1.5px !important; line-height: 1.4 !important; }
   .m-ph1 { font-size: 50px !important; letter-spacing: -1.5px !important; line-height: 1 !important; }
