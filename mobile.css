@@ -48,6 +48,13 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .pk-fan .pko .fl.dragging { transition: none !important; }
   .pk-fan .pko .tilt { transform: none !important; box-shadow: 0 14px 30px rgba(75,29,38,.22) !important; }
   .pk-fan .pk.open .pk-swipe { display: flex !important; }
+  .pk-fan .pk.open .pk-hold { display: block !important; }
+  .pk-fan .pkbtn { top: 812px !important; }
+  /* press and hold: the card tilts under the finger and the foil follows it */
+  .pk-fan .pko { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .pk-fan .pko .fl.playing .tilt { box-shadow: 0 26px 50px rgba(75,29,38,.3) !important; }
+  .pk-fan .pko .fl.playing .f2p-glow::before { opacity: .7 !important; filter: saturate(1.6) brightness(1.05) !important; animation: none !important; background-position: var(--fx) var(--fy) !important; }
+  .pk-fan .pko .fl.playing .f2p-glow::after { opacity: 1 !important; animation: none !important; background-position: 0 0, 0 0, var(--fx) var(--fy) !important; }
 
   /* ---------- Section headings (Home and project pages) ---------- */
   .m-sechead { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
