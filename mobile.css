@@ -77,6 +77,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-quests > :first-child { flex-basis: 100% !important; }
 
   /* ---------- Home · My deck as a quick-read index ---------- */
+  #deck { scroll-margin-top: 24px !important; }
   .ix-row { scroll-margin-top: 76px !important; grid-template-columns: 52px minmax(0, 1fr) !important; gap: 10px 14px !important; padding: 22px 4px !important; }
   .ix-head { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
   .ix-head h2 { font-size: 38px !important; letter-spacing: -1px !important; }

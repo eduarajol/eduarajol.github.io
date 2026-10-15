@@ -21,9 +21,10 @@ a{color:#4B1D26}a:hover{color:#7A5F33}
 /* interaction states */
 .h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
 @media (hover: hover){.h-yellow:hover{background:#F3E3C6 !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,80,60,.28)}}
-@media (hover: hover){.h-outline-light:hover{background:#FFFFFF !important;color:#4B1D26 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-outline-light:hover{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
 @media (hover: hover){.h-dark:hover{background:#FFFFFF !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
 @media (hover: hover){.h-outline-dark:hover{background:#4B1D26 !important;color:#EBD3A8 !important;transform:translateY(-2px)}}
+.h-outline-light:active{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important}
 .h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
 @media (hover: hover){.h-round:hover{border-color:#C9A86E !important;background:#E0D8C8 !important}}
 @media (hover: hover){.h-round:hover svg{stroke:#C9A86E}}
@@ -134,7 +135,8 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 
 /* ---- Alternative: "My deck" as a quick-read index ---- */
 html{scroll-behavior:smooth}
-#deck,.ix-row{scroll-margin-top:110px}
+#deck{scroll-margin-top:20px}
+.ix-row{scroll-margin-top:110px}
 .ix-head{display:flex;justify-content:space-between;align-items:baseline}
 .ix{border-top:2px solid #4B1D26}
 .ix-row{display:grid;grid-template-columns:120px minmax(0,1.05fr) minmax(0,1.2fr) 170px 190px;gap:32px;align-items:start;
@@ -183,7 +185,7 @@ html{scroll-behavior:smooth}
 <p style="margin: 0; font-size: 20px; line-height: 1.5; color: #5A3A40">Almost seven years designing interfaces for people who couldn't look away from the road. Now I design mechanics, onboarding and flows for players.</p>
 <div class="m-hero-btns" style="display: flex; gap: 14px; margin-top: 6px">
 <a class="h-btn h-yellow" href="#deck" style="text-decoration: none; padding: 16px 26px; background: #EBD3A8; color: #4B1D26; border-radius: 12px; font-weight: 700; font-size: 17px">Draw a card</a>
-<a class="h-btn h-outline-light" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none; padding: 16px 26px; border: 2px solid #4B1D26; border-radius: 12px; font-weight: 700; font-size: 17px">Download CV</a>
+<a class="h-btn h-outline-light" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none; padding: 16px 26px; border: 2px solid #4B1D26; border-radius: 12px; font-weight: 700; font-size: 17px">Check my CV</a>
 </div>
 </div>
 

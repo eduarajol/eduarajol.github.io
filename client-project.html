@@ -21,9 +21,10 @@ a{color:#4B1D26}a:hover{color:#7A5F33}
 /* interaction states */
 .h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
 @media (hover: hover){.h-yellow:hover{background:#F3E3C6 !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,80,60,.28)}}
-@media (hover: hover){.h-outline-light:hover{background:#FFFFFF !important;color:#4B1D26 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-outline-light:hover{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
 @media (hover: hover){.h-dark:hover{background:#FFFFFF !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
 @media (hover: hover){.h-outline-dark:hover{background:#4B1D26 !important;color:#EBD3A8 !important;transform:translateY(-2px)}}
+.h-outline-light:active{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important}
 .h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
 @media (hover: hover){.h-round:hover{border-color:#C9A86E !important;background:#E0D8C8 !important}}
 @media (hover: hover){.h-round:hover svg{stroke:#C9A86E}}
@@ -639,8 +640,8 @@ this.state = { picked: 'feature' };
 }
 renderVals() {
 const accent = this.props.accent ?? '#7A5F33';
-const GD = { tone: '#B92B45', ink: '#F4A6B4' };
-const UX = { tone: '#0F6E62', ink: '#9ED8CC' };
+const GD = { tone: '#B92B45', ink: '#F4A6B4', fill: '#4B1D26' };
+const UX = { tone: '#0F6E62', ink: '#9ED8CC', fill: '#0A4F46' };
 const PR = { tone: '#6B5357', ink: '#E6DCCB' };
 const list = [
 { id: 'feature', num: '01', cat: 'GAME DESIGN', title: 'Feature design & one-pagers', ...GD },
@@ -656,7 +657,7 @@ const abilities = list.map((a) => {
 const on = a.id === picked;
 return {
 ...a,
-bg: on ? '#4B1D26' : '#EAE4D8',
+bg: on ? (a.fill || '#4B1D26') : '#EAE4D8',
 fg: on ? '#F5F0E8' : '#4B1D26',
 border: on ? '4px solid ' + a.tone : '2px solid #D3C9B6',
 catColor: on ? a.ink : a.tone,
