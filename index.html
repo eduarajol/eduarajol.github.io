@@ -135,7 +135,8 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 
 /* ---- Alternative: "My deck" as a quick-read index ---- */
 html{scroll-behavior:smooth}
-#deck{scroll-margin-top:20px}
+/* Work, About and FAQ all land with their title 36 px under the header */
+#deck{scroll-margin-top:24px !important}#profile,#faq{scroll-margin-top:120px !important}
 .ix-row{scroll-margin-top:110px}
 .ix-head{display:flex;justify-content:space-between;align-items:baseline}
 .ix{border-top:2px solid #4B1D26}
