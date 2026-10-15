@@ -7,11 +7,17 @@
 <meta name="description" content="Almost seven years on the SEAT &amp; CUPRA in-car infotainment, from UI/UX designer to UX lead.">
 <link rel="canonical" href="https://eduarajol.github.io/seat-cupra-hmi.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F5F0E8">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SEAT &amp; CUPRA HMI · Eduard Arajol">
 <meta property="og:description" content="Almost seven years on the SEAT &amp; CUPRA in-car infotainment, from UI/UX designer to UX lead.">
 <meta property="og:url" content="https://eduarajol.github.io/seat-cupra-hmi.html">
-<meta property="og:image" content="https://eduarajol.github.io/og.png">
+<meta property="og:image" content="https://eduarajol.github.io/og.png?v=3">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin-ext.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
@@ -58,7 +64,7 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 
 .f2p-glow{box-shadow:-9px -7px 28px -6px rgba(185,43,69,.55),9px 9px 28px -6px rgba(15,110,98,.55) !important}.f2p-glow{position:relative;isolation:isolate}.f2p-glow>*{position:relative;z-index:2}.f2p-glow::before,.f2p-glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;transition:opacity .6s ease,filter .6s ease}.f2p-glow::before{background:repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%);background-size:220% 220%;mix-blend-mode:multiply;opacity:.13;animation:foilDrift 9s ease-in-out infinite alternate}.f2p-glow::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 .6px,transparent 1.2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,rgba(120,90,160,.35) 0 .5px,transparent 1.1px) 0 0/11px 11px,linear-gradient(125deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%) 0 0/250% 250%;opacity:.45;animation:foilGlare 7s ease-in-out infinite alternate}.f2p-glow:hover::before,.fl:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.f2p-glow:hover::after,.fl:hover .f2p-glow::after{opacity:1}@keyframes foilDrift{0%{background-position:0% 50%}100%{background-position:100% 50%}}@keyframes foilGlare{0%{background-position:0 0,0 0,0% 0%}100%{background-position:0 0,0 0,100% 100%}}@media (prefers-reduced-motion:reduce){.f2p-glow::before,.f2p-glow::after{animation:none}}
 
-.sb-link{text-decoration:none;display:flex;align-items:center;gap:12px}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:16px}.sb-short{display:none;font-weight:800;font-size:15px}
+.sb-link{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.sb-next{align-items:flex-end}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:20px}.sb-short{display:none;font-weight:800;font-size:15px}@media (min-width:761px){div:has(> .sb-link){height:auto !important;padding-top:16px !important;padding-bottom:16px !important}}
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}#faq,#profile{scroll-margin-top:150px}@media (max-width:760px){[id]{scroll-margin-top:72px}#faq,#profile{scroll-margin-top:100px}}</style>
 <link rel="stylesheet" href="mobile.css">
@@ -69,7 +75,7 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 <div class="m-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #F5F0E8; color: #4B1D26; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
 
 <header class="m-header site-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
-<a class="t-logo" href="index.html#deck" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#4B1D26" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
+<a class="t-logo" href="index.html" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#4B1D26" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
 <nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
 <a class="t-nav" href="index.html#deck" style="text-decoration: none">Work</a>
 <a class="t-nav" href="index.html#profile" style="text-decoration: none">About</a>
@@ -79,9 +85,9 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </nav>
 </header>
 <div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #E0D8C8; border-bottom: 1px solid #E0D8C8">
-<a class="t-link sb-link" href="oceans-one.html"><span class="sb-name">← Ocean's One</span><span class="sb-label">PREVIOUS CARD · 03</span><span class="sb-short">← 03</span></a>
+<a class="t-link sb-link" href="oceans-one.html"><span class="sb-label">PREVIOUS CARD · 03</span><span class="sb-name">← Ocean's One</span><span class="sb-short">← 03</span></a>
 <div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #6B5357">CARD 04 OF 04</div>
-<a class="t-link sb-link" href="racing-project.html" style="justify-content: flex-end"><span class="sb-label">NEXT CARD · 01</span><span class="sb-name">F2P racing game →</span><span class="sb-short">01 →</span></a>
+<a class="t-link sb-link sb-next" href="racing-project.html"><span class="sb-label">NEXT CARD · 01</span><span class="sb-name">F2P racing game →</span><span class="sb-short">01 →</span></a>
 </div>
 
 <section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
