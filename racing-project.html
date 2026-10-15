@@ -65,7 +65,7 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 
 .f2p-glow{box-shadow:-9px -7px 28px -6px rgba(185,43,69,.55),9px 9px 28px -6px rgba(15,110,98,.55) !important}.f2p-glow{position:relative;isolation:isolate}.f2p-glow>*{position:relative;z-index:2}.f2p-glow::before,.f2p-glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;transition:opacity .6s ease,filter .6s ease}.f2p-glow::before{background:repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%);background-size:220% 220%;mix-blend-mode:multiply;opacity:.13;animation:foilDrift 9s ease-in-out infinite alternate}.f2p-glow::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 .6px,transparent 1.2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,rgba(120,90,160,.35) 0 .5px,transparent 1.1px) 0 0/11px 11px,linear-gradient(125deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%) 0 0/250% 250%;opacity:.45;animation:foilGlare 7s ease-in-out infinite alternate}.f2p-glow:hover::before,.fl:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.f2p-glow:hover::after,.fl:hover .f2p-glow::after{opacity:1}@keyframes foilDrift{0%{background-position:0% 50%}100%{background-position:100% 50%}}@keyframes foilGlare{0%{background-position:0 0,0 0,0% 0%}100%{background-position:0 0,0 0,100% 100%}}@media (prefers-reduced-motion:reduce){.f2p-glow::before,.f2p-glow::after{animation:none}}
 
-.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}
+.pc-wrap{display:flex;justify-content:center;flex-shrink:0;perspective:900px;touch-action:pan-y}.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}.pc-wrap:hover,.pc-wrap.playing{animation-play-state:paused}.pc-tilt{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.pc-wrap.playing .pc-tilt{transition:transform .08s linear}.pc-wrap:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.pc-wrap:hover .f2p-glow::after{opacity:1}.pc-wrap.playing .f2p-glow::before{opacity:.4;filter:saturate(1.15) brightness(1.03);animation:none;background-position:var(--fx) var(--fy)}.pc-wrap.playing .f2p-glow::after{opacity:1;animation:none;background-position:0 0,0 0,var(--fx) var(--fy)}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}section:has(.pc-wrap) div:has(+ h1){min-height:24px;line-height:24px}@media (min-width:761px){section:has(> .pc-wrap){align-items:flex-start !important}section:has(> .pc-wrap)>div:last-child{margin-top:16px}}
 
 .sb-link{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.sb-next{align-items:flex-end;justify-self:end}div:has(> .sb-link){display:grid !important;grid-template-columns:1fr auto 1fr !important}div:has(> .sb-link)>:not(.sb-link){justify-self:center;text-align:center}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:20px}.sb-short{display:none;font-weight:800;font-size:15px}@media (min-width:761px){div:has(> .sb-link){height:auto !important;padding-top:16px !important;padding-bottom:16px !important}}
 </style>
@@ -94,12 +94,12 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </div>
 
 <section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
-<div class="m-pcard pc-float f2p-glow" style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: linear-gradient(#FFFFFF, #FFFFFF) padding-box, linear-gradient(135deg, #B92B45, #0F6E62) border-box; color: #4B1D26; border: 4.0px solid transparent; border-radius: 22px; padding: 20.0px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
+<div class="pc-wrap pc-float"><div class="pc-tilt"><div class="m-pcard f2p-glow" style="width: 300px; height: 430px; flex-shrink: 0; box-sizing: border-box; background: linear-gradient(#FFFFFF, #FFFFFF) padding-box, linear-gradient(135deg, #B92B45, #0F6E62) border-box; color: #4B1D26; border: 4.0px solid transparent; border-radius: 22px; padding: 20.0px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; overflow: hidden; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.4)">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 20px; background: linear-gradient(100deg, #7A1F33, #3B3A3E); -webkit-background-clip: text; background-clip: text; color: transparent"><span>F2P racing game</span><span>01</span></div>
 <div style="height: 190px; flex-shrink: 0; border-radius: 10px; overflow: hidden"><img src="img/racing/hud-race.jpg" alt="F2P racing game prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 14px; line-height: 1.4; background: linear-gradient(100deg, #572E39, #154A44); -webkit-background-clip: text; background-clip: text; color: transparent">Built from scratch with the game director. I owned UX, the mechanics spec, HUD and flows.</div>
 <div style="margin-top: auto; font-size: 11px; font-weight: 800; letter-spacing: 1px; display: flex; justify-content: space-between; gap: 8px; background: linear-gradient(100deg, #48353C, #0A4F46); -webkit-background-clip: text; background-clip: text; color: transparent"><span>GAME DESIGN · UX</span><span>IN DEV</span></div>
-</div>
+</div></div></div>
 <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #7A5F33"><span>2026 — NOW · IN DEVELOPMENT</span><span style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 8px 5px 7px; border: 1.5px solid #C9A86E; border-radius: 6px; font-size: 12px; font-weight: 800; letter-spacing: 1px; line-height: 1; color: #7A5F33; white-space: nowrap"><svg width="10" height="11" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#C9A86E"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#C9A86E" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
 <h1 class="m-ph1" style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">F2P racing game</h1>
@@ -460,6 +460,51 @@ const z = ZOOM.find((x) => x.id === this.state.zoom);
 return z ? ZOOM.filter((x) => x.panel === z.panel).map((x) => x.id) : [];
 }
 renderVals() {
+// Project pages: the hero card answers like the cards in the Home.
+// Mouse: hovering lifts it and tilts it in 3D, a different way each time. Touch: it tilts under the finger and the foil follows.
+if (!this._pcTilt && typeof document !== 'undefined') {
+  this._pcTilt = true;
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const wrap = (t) => t && t.closest ? t.closest('.pc-wrap') : null;
+  const tiltOf = (w) => w.querySelector('.pc-tilt');
+  const reset = (w) => { const t = tiltOf(w); w.classList.remove('playing', 'lifted'); if (t) t.style.transform = ''; };
+  document.addEventListener('mouseover', (e) => {
+    const w = wrap(e.target);
+    if (!w || w.contains(e.relatedTarget) || w.classList.contains('playing')) return;
+    const sx = Math.random() < 0.5 ? -1 : 1, sy = Math.random() < 0.5 ? -1 : 1;
+    tiltOf(w).style.transform = 'translateY(-' + rnd(14, 26).toFixed(0) + 'px) rotateX(' + (sy * rnd(5, 11)).toFixed(1) + 'deg) rotateY('
+      + (sx * rnd(6, 13)).toFixed(1) + 'deg) rotateZ(' + rnd(-4, 4).toFixed(1) + 'deg) scale(1.05)';
+    w.classList.add('lifted');
+  });
+  document.addEventListener('mouseout', (e) => {
+    const w = wrap(e.target);
+    if (!w || w.contains(e.relatedTarget) || w.classList.contains('playing')) return;
+    reset(w);
+  });
+  let on = null;
+  const follow = (x, y) => {
+    const r = on.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (x - r.left) / r.width)), py = Math.min(1, Math.max(0, (y - r.top) / r.height));
+    tiltOf(on).style.transform = 'rotateX(' + ((0.5 - py) * 26).toFixed(1) + 'deg) rotateY(' + ((px - 0.5) * 30).toFixed(1) + 'deg) scale(1.04)';
+    on.style.setProperty('--fx', (px * 100).toFixed(1) + '%');
+    on.style.setProperty('--fy', (py * 100).toFixed(1) + '%');
+  };
+  document.addEventListener('touchstart', (e) => {
+    const w = wrap(e.target);
+    if (!w || e.touches.length > 1) return;
+    on = w; w.classList.add('playing');
+    follow(e.touches[0].clientX, e.touches[0].clientY);  // the card answers the finger straight away
+  }, { passive: true });
+  document.addEventListener('touchmove', (e) => {
+    if (!on) return;
+    e.preventDefault();
+    follow(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: false });
+  const end = () => { if (on) { reset(on); on = null; } };
+  document.addEventListener('touchend', end);
+  document.addEventListener('touchcancel', end);
+}
+
 const GD = { tone: '#B92B45', ink: '#F4A6B4', fill: '#4B1D26' };
 const UX = { tone: '#0F6E62', ink: '#9ED8CC', fill: '#0A4F46' };
 const list = [
