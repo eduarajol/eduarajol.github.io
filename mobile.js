@@ -36,3 +36,13 @@
     });
   });
 })();
+
+// On the Home, the logo reloads the page from the top: a fresh, sealed pack.
+document.addEventListener('click', (e) => {
+  const a = e.target.closest && e.target.closest('a.t-logo');
+  if (!a || a.getAttribute('href') !== '#') return;
+  e.preventDefault();
+  try { history.scrollRestoration = 'manual'; } catch (_) {}
+  history.replaceState(null, '', location.pathname);
+  location.reload();
+});
