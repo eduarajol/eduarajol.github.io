@@ -47,7 +47,6 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .pk-fan .pko .fl { animation: none !important; transform: var(--stack); transition: transform .4s cubic-bezier(.2,.8,.2,1); touch-action: pan-y; }
   .pk-fan .pko .fl.dragging { transition: none !important; }
   .pk-fan .pko .tilt { transform: none !important; box-shadow: 0 14px 30px rgba(75,29,38,.22) !important; }
-  .pk-fan .pk.open .leg .tilt { box-shadow: 0 0 0 2px rgba(235,211,168,.9), 0 16px 40px rgba(201,160,90,.45) !important; }
   .pk-fan .pk.open .pk-swipe { display: flex !important; }
 
   /* ---------- Section headings (Home and project pages) ---------- */
