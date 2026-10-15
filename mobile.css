@@ -40,8 +40,15 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-fan-cap { left: 0 !important; right: 0 !important; top: auto !important; bottom: 14px !important; text-align: center !important; font-size: 13px !important; }
 
   /* The pack (card layout 9) on a phone: same stage, scaled to the screen */
-  .pk-fan { flex-grow: 0 !important; height: 568px !important; margin-top: 12px !important; }
+  .pk-fan { flex-grow: 0 !important; height: 568px !important; margin-top: 20px !important; }
   .pk-scale { top: 0 !important; transform: scale(0.66) !important; }
+  /* once open, the cards stay the size of the pack, in one stack: swipe the front card to send it to the back */
+  .pk-fan .pko { left: 140px !important; top: 194px !important; --dx: 0px !important; --dy: 0px !important; --r: 0deg !important; z-index: var(--z) !important; }
+  .pk-fan .pko .fl { animation: none !important; transform: var(--stack); transition: transform .4s cubic-bezier(.2,.8,.2,1); touch-action: pan-y; }
+  .pk-fan .pko .fl.dragging { transition: none !important; }
+  .pk-fan .pko .tilt { transform: none !important; box-shadow: 0 14px 30px rgba(75,29,38,.22) !important; }
+  .pk-fan .pk.open .leg .tilt { box-shadow: 0 0 0 2px rgba(235,211,168,.9), 0 16px 40px rgba(201,160,90,.45) !important; }
+  .pk-fan .pk.open .pk-swipe { display: flex !important; }
 
   /* ---------- Section headings (Home and project pages) ---------- */
   .m-sechead { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
