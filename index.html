@@ -142,6 +142,8 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 
 /* ---- Alternative: "My deck" as a quick-read index ---- */
 html{scroll-behavior:smooth}
+/* desktop: the hovered card tilts toward the cursor (angles from hover_tilt.js) */
+@media (hover:hover) and (min-width:761px){.pk .fl:hover .tilt{transform:translateY(-16px) rotateX(var(--hrx,0deg)) rotateY(var(--hry,0deg)) scale(1.05) !important;box-shadow:0 26px 46px rgba(75,29,38,.26) !important;transition:transform .14s ease-out,box-shadow .3s ease !important}}
 /* Work, About and FAQ all land with their title 36 px under the header */
 #deck{scroll-margin-top:24px !important}#profile,#faq{scroll-margin-top:120px !important}
 .ix-row{scroll-margin-top:110px}
@@ -365,7 +367,23 @@ this.state = { ally: 0, faq: 0, tick: 0 };
 this.lastRel = null;
 if (typeof window !== 'undefined') window.addEventListener('resize', () => this.setState({}));
 }
-renderVals() { return Object.assign({}, this.baseVals(), this.packVals()); }
+renderVals() {
+// Desktop: the card under the cursor tilts toward it. The corner under the cursor rises, the centre keeps it flat.
+// The angles go to two variables on the page root; the CSS applies them only to the hovered card.
+if (!this._hvTilt && typeof document !== 'undefined') {
+  this._hvTilt = true;
+  const MAX = 12;
+  document.addEventListener('mousemove', (e) => {
+    const h = e.target.closest && e.target.closest('.pk .fl, .pc-wrap');
+    if (!h) return;
+    const r = h.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    const s = document.documentElement.style;
+    s.setProperty('--hrx', ((py - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+    s.setProperty('--hry', ((0.5 - px) * 2 * MAX).toFixed(2) + 'deg');
+  });
+}
+ return Object.assign({}, this.baseVals(), this.packVals()); }
 packVals() {
 const A = (function () {
 const k = this.state.k || 0;

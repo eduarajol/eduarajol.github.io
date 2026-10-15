@@ -67,7 +67,7 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 
 .ab-btn{transition:transform .2s cubic-bezier(.2,.8,.2,1),background .2s ease,border-color .2s ease,box-shadow .2s ease}@media (hover:hover){.ab-btn:not([style*="4px solid"]):hover{border-color:var(--tone) !important;background:color-mix(in srgb,var(--tone) 9%,#EAE4D8) !important;transform:translateX(4px) !important;box-shadow:0 6px 14px rgba(75,29,38,.12)}.ab-btn[style*="4px solid"]:hover{box-shadow:0 8px 18px rgba(75,29,38,.22)}}
 
-.pc-wrap{display:flex;justify-content:center;flex-shrink:0;perspective:900px;touch-action:pan-y}.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}.pc-wrap:hover,.pc-wrap.playing{animation-play-state:paused}.pc-tilt{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.pc-wrap.playing .pc-tilt{transition:transform .08s linear}.pc-wrap:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.pc-wrap:hover .f2p-glow::after{opacity:1}.pc-wrap.playing .f2p-glow::before{opacity:.4;filter:saturate(1.15) brightness(1.03);animation:none;background-position:var(--fx) var(--fy)}.pc-wrap.playing .f2p-glow::after{opacity:1;animation:none;background-position:0 0,0 0,var(--fx) var(--fy)}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}section:has(.pc-wrap) div:has(+ h1){min-height:24px;line-height:24px}@media (min-width:761px){section:has(> .pc-wrap){align-items:flex-start !important}section:has(> .pc-wrap)>div:last-child{margin-top:16px}}
+.pc-wrap{display:flex;justify-content:center;flex-shrink:0;perspective:900px;touch-action:pan-y}.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}.pc-wrap:hover,.pc-wrap.playing{animation-play-state:paused}.pc-tilt{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.pc-wrap.playing .pc-tilt{transition:transform .08s linear}@media (hover:hover){.pc-wrap:hover:not(.playing) .pc-tilt{transform:translateY(-12px) rotateX(var(--hrx,0deg)) rotateY(var(--hry,0deg)) scale(1.04);transition:transform .14s ease-out}}.pc-wrap:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.pc-wrap:hover .f2p-glow::after{opacity:1}.pc-wrap.playing .f2p-glow::before{opacity:.4;filter:saturate(1.15) brightness(1.03);animation:none;background-position:var(--fx) var(--fy)}.pc-wrap.playing .f2p-glow::after{opacity:1;animation:none;background-position:0 0,0 0,var(--fx) var(--fy)}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}section:has(.pc-wrap) div:has(+ h1){min-height:24px;line-height:24px}@media (min-width:761px){section:has(> .pc-wrap){align-items:flex-start !important}section:has(> .pc-wrap)>div:last-child{margin-top:16px}}
 
 .sb-link{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.sb-next{align-items:flex-end;justify-self:end}div:has(> .sb-link){display:grid !important;grid-template-columns:1fr auto 1fr !important}div:has(> .sb-link)>:not(.sb-link){justify-self:center;text-align:center}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:20px}.sb-short{display:none;font-weight:800;font-size:15px}@media (min-width:761px){div:has(> .sb-link){height:auto !important;padding-top:16px !important;padding-bottom:16px !important}}
 </style>
@@ -425,26 +425,12 @@ return z ? ZOOM.filter((x) => x.panel === z.panel).map((x) => x.id) : [];
 }
 renderVals() {
 // Project pages: the hero card answers like the cards in the Home.
-// Mouse: hovering lifts it and tilts it in 3D, a different way each time. Touch: it tilts under the finger and the foil follows.
+// Mouse: see hover_tilt.js. Touch: it tilts under the finger and the foil follows.
 if (!this._pcTilt && typeof document !== 'undefined') {
   this._pcTilt = true;
-  const rnd = (a, b) => a + Math.random() * (b - a);
-  const wrap = (t) => t && t.closest ? t.closest('.pc-wrap') : null;
+    const wrap = (t) => t && t.closest ? t.closest('.pc-wrap') : null;
   const tiltOf = (w) => w.querySelector('.pc-tilt');
-  const reset = (w) => { const t = tiltOf(w); w.classList.remove('playing', 'lifted'); if (t) t.style.transform = ''; };
-  document.addEventListener('mouseover', (e) => {
-    const w = wrap(e.target);
-    if (!w || w.contains(e.relatedTarget) || w.classList.contains('playing')) return;
-    const sx = Math.random() < 0.5 ? -1 : 1, sy = Math.random() < 0.5 ? -1 : 1;
-    tiltOf(w).style.transform = 'translateY(-' + rnd(14, 26).toFixed(0) + 'px) rotateX(' + (sy * rnd(5, 11)).toFixed(1) + 'deg) rotateY('
-      + (sx * rnd(6, 13)).toFixed(1) + 'deg) rotateZ(' + rnd(-4, 4).toFixed(1) + 'deg) scale(1.05)';
-    w.classList.add('lifted');
-  });
-  document.addEventListener('mouseout', (e) => {
-    const w = wrap(e.target);
-    if (!w || w.contains(e.relatedTarget) || w.classList.contains('playing')) return;
-    reset(w);
-  });
+  const reset = (w) => { const t = tiltOf(w); w.classList.remove('playing'); if (t) t.style.transform = ''; };
   let on = null;
   const follow = (x, y) => {
     const r = on.getBoundingClientRect();
@@ -467,6 +453,22 @@ if (!this._pcTilt && typeof document !== 'undefined') {
   const end = () => { if (on) { reset(on); on = null; } };
   document.addEventListener('touchend', end);
   document.addEventListener('touchcancel', end);
+}
+
+// Desktop: the card under the cursor tilts toward it. The corner under the cursor rises, the centre keeps it flat.
+// The angles go to two variables on the page root; the CSS applies them only to the hovered card.
+if (!this._hvTilt && typeof document !== 'undefined') {
+  this._hvTilt = true;
+  const MAX = 12;
+  document.addEventListener('mousemove', (e) => {
+    const h = e.target.closest && e.target.closest('.pk .fl, .pc-wrap');
+    if (!h) return;
+    const r = h.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    const s = document.documentElement.style;
+    s.setProperty('--hrx', ((py - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+    s.setProperty('--hry', ((0.5 - px) * 2 * MAX).toFixed(2) + 'deg');
+  });
 }
 
 const UX = { tone: '#0F6E62', ink: '#9ED8CC', fill: '#0A4F46' };
