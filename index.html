@@ -128,6 +128,28 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 .pkbig{position:absolute;left:0;top:0;width:530px;height:746px;transform:scale(1.43);transform-origin:265px 373px;pointer-events:none;z-index:6}.pkbig .tearzone{pointer-events:auto}.pk-swipe{display:none;position:absolute;left:0;right:0;top:728px;justify-content:center;align-items:center;gap:16px;font-size:17px;font-weight:800;letter-spacing:2px;color:#7A5F33}.pk-dots{display:flex;gap:8px}.pk-dots i{display:block;height:10px;border-radius:5px;transition:width .3s ease,background .3s ease}.pkhint{top:684px;font-size:15px}
 
 .pk-timer{position:absolute;width:1px;height:1px;pointer-events:none}@keyframes pkAutoA{from{opacity:1}to{opacity:1}}@keyframes pkAutoB{from{opacity:1}to{opacity:1}}.faq-a{transition:grid-template-rows .34s cubic-bezier(.3,.7,.2,1),opacity .26s ease}.pk-touch{display:none}@media (hover: none){.pk-touch{display:inline}.pk-mouse{display:none}}
+
+/* ---- Alternative: "My deck" as a quick-read index ---- */
+html{scroll-behavior:smooth}
+#deck,.ix-row{scroll-margin-top:110px}
+.ix-head{display:flex;justify-content:space-between;align-items:baseline}
+.ix{border-top:2px solid #4B1D26}
+.ix-row{display:grid;grid-template-columns:120px minmax(0,1.05fr) minmax(0,1.2fr) 170px 190px;gap:32px;align-items:start;
+  padding:28px 20px;border-bottom:1.5px solid #D3C9B6;text-decoration:none;color:#4B1D26;transition:background .2s ease}
+.ix-row:hover{background:#EAE4D8}
+.ix-row:hover .ix-cta{background:#4B1D26;color:#F5F0E8;border-color:#4B1D26}
+.ix-row:target{animation:ixHi 2.6s ease both}
+@keyframes ixHi{0%,35%{background:#EBD3A8;box-shadow:inset 6px 0 0 #4B1D26}100%{background:transparent;box-shadow:inset 0 0 0 #4B1D26}}
+.ix-num{display:flex;flex-direction:column;gap:8px;font-weight:800;font-size:40px;line-height:1;letter-spacing:-1px}
+.ix-rar{font-size:11px;letter-spacing:1.6px;color:#7A5F33}
+.ix-main{display:flex;flex-direction:column;gap:10px}
+.ix-title{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-weight:800;font-size:28px;letter-spacing:-.5px;line-height:1.1}
+.ix-nda{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:6px;background:#EBD3A8;font-size:10px;font-weight:800;letter-spacing:1.2px}
+.ix-role{font-size:15px;line-height:1.45;color:#5A3A40}
+.ix-list{margin:0;padding-left:18px;font-size:15px;line-height:1.55;color:#5A3A40}
+.ix-when{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
+.ix-when span:last-child{color:#6B5357;font-weight:700}
+.ix-cta{justify-self:end;padding:10px 14px;border:2px solid #D3C9B6;border-radius:12px;font-weight:700;font-size:15px;white-space:nowrap;transition:all .2s ease}
 </style>
 <style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}#faq,#profile{scroll-margin-top:150px}@media (max-width:760px){[id]{scroll-margin-top:72px}#faq,#profile{scroll-margin-top:100px}}</style>
 <link rel="stylesheet" href="mobile.css">
@@ -162,25 +184,25 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </div>
 </div>
 
-<div class="pk-fan" style="position: relative; flex-grow: 1"><div class="pk-scale" style="position: absolute; left: 50%; top: 30px; width: 530px; height: 860px; margin-left: -265px; transform: scale(0.791); transform-origin: 50% 0"><div class="pk {{st}}" style="position: absolute; inset: 0"><div class="pkbig"><div class="pack {{dragCls}}"><div class="pk-top" style="transform: {{flap}}"><div class="crimp"></div><span>TEAR HERE</span></div><div class="pk-body"><div style="display: flex; flex-direction: column; align-items: center; gap: 16px"><svg viewBox="0 0 20 20" width="64" height="64" aria-hidden="true"><path fill="#EBD3A8" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg><span style="font-size: 13px; font-weight: 800; letter-spacing: 4px; color: #EBD3A8">PORTFOLIO PACK</span><span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(235,211,168,.7)">4 CARDS · 1 LEGENDARY</span></div><div class="crimp bottom"></div></div><div class="foil"></div><div class="cut" style="left: {{cutL}}; width: {{cutW}}"></div><div class="ghost"></div></div><div class="tearzone" onPointerDown="{{down}}" onPointerMove="{{move}}" onPointerUp="{{up}}" onPointerCancel="{{up}}"></div></div><div class="slot pko" style="left: 0px; top: 0px; --dx: 140px; --dy: 194px; --r: 0deg; --d: 0.35s; z-index: 1; --z: {{z0}}"><div class="fl float {{fc0}}" onMouseEnter="{{in0}}" onMouseLeave="{{out0}}" onPointerDown="{{sd0}}" onPointerMove="{{sm0}}" onPointerUp="{{su0}}" onPointerCancel="{{su0}}" onClick="{{sc0}}" style="animation-delay: -0.0s; --stack: {{sk0}}"><div class="card tilt" style="{{t0}}"><a class="face" href="racing-project.html" style="width: 290px; height: 415.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 7.73px solid #FFFFFF; border-radius: 21.27px; padding: 15.47px; display: flex; flex-direction: column; gap: 9.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(0.8621); transform-origin: 0 0">
+<div class="pk-fan" style="position: relative; flex-grow: 1"><div class="pk-scale" style="position: absolute; left: 50%; top: 30px; width: 530px; height: 860px; margin-left: -265px; transform: scale(0.791); transform-origin: 50% 0"><div class="pk {{st}}" style="position: absolute; inset: 0"><div class="pkbig"><div class="pack {{dragCls}}"><div class="pk-top" style="transform: {{flap}}"><div class="crimp"></div><span>TEAR HERE</span></div><div class="pk-body"><div style="display: flex; flex-direction: column; align-items: center; gap: 16px"><svg viewBox="0 0 20 20" width="64" height="64" aria-hidden="true"><path fill="#EBD3A8" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg><span style="font-size: 13px; font-weight: 800; letter-spacing: 4px; color: #EBD3A8">PORTFOLIO PACK</span><span style="font-size: 11px; font-weight: 700; letter-spacing: 2px; color: rgba(235,211,168,.7)">4 CARDS · 1 LEGENDARY</span></div><div class="crimp bottom"></div></div><div class="foil"></div><div class="cut" style="left: {{cutL}}; width: {{cutW}}"></div><div class="ghost"></div></div><div class="tearzone" onPointerDown="{{down}}" onPointerMove="{{move}}" onPointerUp="{{up}}" onPointerCancel="{{up}}"></div></div><div class="slot pko" style="left: 0px; top: 0px; --dx: 140px; --dy: 194px; --r: 0deg; --d: 0.35s; z-index: 1; --z: {{z0}}"><div class="fl float {{fc0}}" onMouseEnter="{{in0}}" onMouseLeave="{{out0}}" onPointerDown="{{sd0}}" onPointerMove="{{sm0}}" onPointerUp="{{su0}}" onPointerCancel="{{su0}}" onClick="{{sc0}}" style="animation-delay: -0.0s; --stack: {{sk0}}"><div class="card tilt" style="{{t0}}"><a class="face" href="#c1" style="width: 290px; height: 415.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 7.73px solid #FFFFFF; border-radius: 21.27px; padding: 15.47px; display: flex; flex-direction: column; gap: 9.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(0.8621); transform-origin: 0 0">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 19.33px"><span>F2P racing game</span><span>01</span></div>
 <div style="height: 183.67px; flex-shrink: 0; border-radius: 9.67px; overflow: hidden"><img src="img/racing/hud-race.jpg" alt="F2P racing game prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 11.6px; font-weight: 800; color: #6B5357">GAME DESIGN · UX · IN DEV</div>
 <div style="font-size: 13.53px; line-height: 1.4">Built from scratch with the game director. I owned UX, the mechanics spec, HUD and flows.</div>
 <div style="margin-top: auto; font-size: 10.63px; font-weight: 800; letter-spacing: 0.97px">RARE · FEATURED</div>
-</a><div class="sheen"></div></div></div></div><div class="slot pko" style="left: 280px; top: 0px; --dx: -140px; --dy: 194px; --r: 0deg; --d: 0.48s; z-index: 2; --z: {{z1}}"><div class="fl float {{fc1}}" onMouseEnter="{{in1}}" onMouseLeave="{{out1}}" onPointerDown="{{sd1}}" onPointerMove="{{sm1}}" onPointerUp="{{su1}}" onPointerCancel="{{su1}}" onClick="{{sc1}}" style="animation-delay: -0.9s; --stack: {{sk1}}"><div class="card tilt" style="{{t1}}"><a class="face" href="client-project.html" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(1.0870); transform-origin: 0 0">
+</a><div class="sheen"></div></div></div></div><div class="slot pko" style="left: 280px; top: 0px; --dx: -140px; --dy: 194px; --r: 0deg; --d: 0.48s; z-index: 2; --z: {{z1}}"><div class="fl float {{fc1}}" onMouseEnter="{{in1}}" onMouseLeave="{{out1}}" onPointerDown="{{sd1}}" onPointerMove="{{sm1}}" onPointerUp="{{su1}}" onPointerCancel="{{su1}}" onClick="{{sc1}}" style="animation-delay: -0.9s; --stack: {{sk1}}"><div class="card tilt" style="{{t1}}"><a class="face" href="#c2" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(1.0870); transform-origin: 0 0">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>F2P casual game</span><span>02</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#4B1D26"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#E5506A" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#C9A86E"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#C9A86E" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#4B1D26"/></svg></div>
 <div style="font-size: 9.2px; font-weight: 800; color: #6B5357">GAME DESIGN · UX</div>
 <div style="font-size: 10.73px; line-height: 1.4">Features, FTUE, flows, reworks and the GDD.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">SEALED · NDA</div>
-</a><div class="sheen"></div></div></div></div><div class="slot pko" style="left: 0px; top: 388px; --dx: 140px; --dy: -194px; --r: 0deg; --d: 0.61s; z-index: 3; --z: {{z2}}"><div class="fl float {{fc2}}" onMouseEnter="{{in2}}" onMouseLeave="{{out2}}" onPointerDown="{{sd2}}" onPointerMove="{{sm2}}" onPointerUp="{{su2}}" onPointerCancel="{{su2}}" onClick="{{sc2}}" style="animation-delay: -1.8s; --stack: {{sk2}}"><div class="card tilt" style="{{t2}}"><a class="face" href="oceans-one.html" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(1.0870); transform-origin: 0 0">
+</a><div class="sheen"></div></div></div></div><div class="slot pko" style="left: 0px; top: 388px; --dx: 140px; --dy: -194px; --r: 0deg; --d: 0.61s; z-index: 3; --z: {{z2}}"><div class="fl float {{fc2}}" onMouseEnter="{{in2}}" onMouseLeave="{{out2}}" onPointerDown="{{sd2}}" onPointerMove="{{sm2}}" onPointerUp="{{su2}}" onPointerCancel="{{su2}}" onClick="{{sc2}}" style="animation-delay: -1.8s; --stack: {{sk2}}"><div class="card tilt" style="{{t2}}"><a class="face" href="#c3" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(1.0870); transform-origin: 0 0">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>Ocean's One</span><span>03</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><img src="img/o1/s01.jpg" alt="Ocean's One pitch cover" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 9.2px; font-weight: 800; color: #6B5357">GAME DESIGN · CONCEPT</div>
 <div style="font-size: 10.73px; line-height: 1.4">Pillars, 3C, level phases and game loops.</div>
 <div style="margin-top: auto; font-size: 8.43px; font-weight: 800; letter-spacing: 0.77px">UNCOMMON · CONCEPT</div>
-</a><div class="sheen"></div></div></div></div><div class="slot pko leg" style="left: 280px; top: 388px; --dx: -140px; --dy: -194px; --r: 0deg; --d: 0.74s; z-index: 4; --z: {{z3}}"><div class="fl float {{fc3}}" onMouseEnter="{{in3}}" onMouseLeave="{{out3}}" onPointerDown="{{sd3}}" onPointerMove="{{sm3}}" onPointerUp="{{su3}}" onPointerCancel="{{su3}}" onClick="{{sc3}}" style="animation-delay: -2.7s; --stack: {{sk3}}"><div class="card tilt" style="{{t3}}"><a class="face" href="seat-cupra-hmi.html" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(1.0870); transform-origin: 0 0">
+</a><div class="sheen"></div></div></div></div><div class="slot pko leg" style="left: 280px; top: 388px; --dx: -140px; --dy: -194px; --r: 0deg; --d: 0.74s; z-index: 4; --z: {{z3}}"><div class="fl float {{fc3}}" onMouseEnter="{{in3}}" onMouseLeave="{{out3}}" onPointerDown="{{sd3}}" onPointerMove="{{sm3}}" onPointerUp="{{su3}}" onPointerCancel="{{su3}}" onClick="{{sc3}}" style="animation-delay: -2.7s; --stack: {{sk3}}"><div class="card tilt" style="{{t3}}"><a class="face" href="#c4" style="width: 230px; height: 329.67px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 6.13px solid #FFFFFF; border-radius: 16.87px; padding: 12.27px; display: flex; flex-direction: column; gap: 7.67px; text-decoration: none; overflow: hidden; position: absolute; left: 0; top: 0; transform: scale(1.0870); transform-origin: 0 0">
 <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 15.33px"><span>SEAT &amp; CUPRA</span><span>04</span></div>
 <div style="height: 145.67px; flex-shrink: 0; border-radius: 7.67px; overflow: hidden"><img src="img/cupra/cockpit.jpg" alt="CUPRA cockpit with the infotainment screen" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
 <div style="font-size: 9.2px; font-weight: 800; color: #6B5357">UX · LEADERSHIP · SHIPPED</div>
@@ -189,104 +211,7 @@ p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
 </a><div class="sheen"></div></div></div></div><div class="pkhint"><span class="pk-mouse">DRAG ACROSS THE TOP TO TEAR IT OPEN</span><span class="pk-touch">SWIPE ACROSS THE TOP TO TEAR IT OPEN</span></div><div class="pk-swipe"><span>SWIPE FOR THE NEXT CARD</span><span class="pk-dots"><i style="{{dt0}}"></i><i style="{{dt1}}"></i><i style="{{dt2}}"></i><i style="{{dt3}}"></i></span></div><span class="pk-timer" onAnimationEnd="{{autoOpen}}" style="animation: {{pkTimer}}; animation-play-state: {{pkPlay}}"></span><button class="btn pkbtn" onClick="{{again}}">Open another pack</button></div></div></div>
 </section>
 
-<section class="m-deck" id="deck" style="flex-shrink: 0; padding: 96px 80px 0; display: flex; flex-direction: column; gap: 40px">
-<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
-<h2 style="margin: 0; font-weight: 800; font-size: 56px; letter-spacing: -1.5px">My deck</h2>
-<div style="font-size: 16px; color: #5A3A40">Each card opens its full case study</div>
-</div>
-<div class="m-deck-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
-
-<a id="c1" class="m-deck-item deck-item" href="racing-project.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
-<div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>F2P racing game</span><span>01</span></div>
-<div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/racing/hud-race.jpg" alt="F2P racing game prototype with my HUD" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">GAME DESIGN · UX · IN DEV</div>
-<div style="font-size: 9.8px; line-height: 1.4">Built from scratch with the game director. I owned UX, the mechanics spec, HUD and flows.</div>
-<div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">RARE · FEATURED</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2026 — NOW</span> · IN DEVELOPMENT</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-weight: 800; font-size: 32px"><span>F2P racing game</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px 4px 6px; border: 1.5px solid #4B1D26; border-radius: 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; line-height: 1; color: #4B1D26; white-space: nowrap"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#4B1D26"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#4B1D26" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
-<div style="font-size: 16px; color: #5A3A40">Game &amp; UX Designer · Arcade racer · F2P · PC &amp; mobile</div>
-<ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
-<li>Core mechanics, balanced parameters and the prototype spec</li>
-<li>An FTUE taught by track design, not tutorials</li>
-<li>HUD, screen flow and leaderboard</li>
-</ul>
-<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">Read the case study →</span>
-</div>
-</a>
-
-<a id="c2" class="m-deck-item deck-item" href="client-project.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
-<div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>F2P casual game</span><span>02</span></div>
-<div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#4B1D26"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#E5506A" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#C9A86E"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#C9A86E" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#4B1D26"/></svg></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">GAME DESIGN · UX</div>
-<div style="font-size: 9.8px; line-height: 1.4">Features, FTUE, flows, reworks and the GDD.</div>
-<div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">SEALED · NDA</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2026 — NOW</span> · IN DEVELOPMENT</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-weight: 800; font-size: 32px"><span>F2P casual game</span><span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 7px 4px 6px; border: 1.5px solid #4B1D26; border-radius: 6px; font-size: 11px; font-weight: 800; letter-spacing: 1px; line-height: 1; color: #4B1D26; white-space: nowrap"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#4B1D26"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#4B1D26" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
-<div style="font-size: 16px; color: #5A3A40">Game &amp; UX Designer · Free-to-play casual mobile</div>
-<ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
-<li>Gameplay mechanics, FTUE progression and screen flows</li>
-<li>Feature one-pagers and the GDD</li>
-<li>UX reworks and new game modes</li>
-</ul>
-<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">What I owned →</span>
-</div>
-</a>
-
-<a id="c3" class="m-deck-item deck-item" href="oceans-one.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
-<div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>Ocean's One</span><span>03</span></div>
-<div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/o1/s01.jpg" alt="Ocean's One pitch cover" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">GAME DESIGN · CONCEPT</div>
-<div style="font-size: 9.8px; line-height: 1.4">Pillars, 3C, level phases and game loops.</div>
-<div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">UNCOMMON · CONCEPT</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2026</span> · BOOTCAMP FINAL PROJECT</div>
-<div style="font-weight: 800; font-size: 32px">Ocean's One</div>
-<div style="font-size: 16px; color: #5A3A40">Game Designer · Social stealth · Concept pitch</div>
-<ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
-<li>Pillars, player profiles and the 3C</li>
-<li>A four-phase heist structure and game loops</li>
-<li>Pitched to industry tutors in 15 minutes</li>
-</ul>
-<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">Read the case study →</span>
-</div>
-</a>
-
-<a id="c4" class="m-deck-item deck-item" href="seat-cupra-hmi.html" style="box-sizing: border-box; padding: 28px; background: #EAE4D8; border-radius: 24px; display: flex; gap: 28px; text-decoration: none; color: #4B1D26">
-<div class="m-deck-card" style="width: 210px; height: 301px; flex-shrink: 0; box-sizing: border-box; background: #FFFFFF; color: #4B1D26; border: 5.6px solid #FFFFFF; border-radius: 15.4px; padding: 11.2px; display: flex; flex-direction: column; gap: 7px; text-decoration: none; overflow: hidden">
-<div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 14px"><span>SEAT &amp; CUPRA</span><span>04</span></div>
-<div style="height: 133px; flex-shrink: 0; border-radius: 7px; overflow: hidden"><img src="img/cupra/cockpit.jpg" alt="CUPRA cockpit with the infotainment screen" style="width: 100%; height: 100%; object-fit: cover; display: block"></div>
-<div style="font-size: 8.4px; font-weight: 800; color: #6B5357">UX · LEADERSHIP · SHIPPED</div>
-<div style="font-size: 9.8px; line-height: 1.4">Almost seven years on the in-car HMI, from designer to UX lead.</div>
-<div style="margin-top: auto; font-size: 7.7px; font-weight: 800; letter-spacing: 0.7px">LEGENDARY · 2018–24</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 12px">
-<div style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357"><span style="color: #4B1D26">2018 — 2024</span> · SHIPPED</div>
-<div style="font-weight: 800; font-size: 32px">SEAT &amp; CUPRA HMI</div>
-<div style="font-size: 16px; color: #5A3A40">UI/UX Designer → Lead UX Designer · <span style="white-space: nowrap">In-car infotainment</span></div>
-<ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.6">
-<li>What lives at first level while driving</li>
-<li>Brand-native Home, App Grid and Navigation</li>
-<li>Led the UX team and its workflows</li>
-</ul>
-<span class="deck-cta" style="margin-top: auto; font-weight: 700; font-size: 16px; text-decoration: underline; text-underline-offset: 3px">Read the case study →</span>
-</div>
-</a>
-
-</div>
-<div class="m-quests" style="display: flex; align-items: center; gap: 20px; font-size: 16px">
-<span style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #5A3A40">SIDE QUESTS</span>
-<span style="padding: 10px 16px; border: 2px solid #D3C9B6; border-radius: 12px; text-decoration: none; font-weight: 700">CUPRA mobile app</span>
-<span style="padding: 10px 16px; border: 2px solid #D3C9B6; border-radius: 12px; text-decoration: none; font-weight: 700">Rent-a-Room · concept app</span>
-</div>
-</section>
+<section class="m-deck" id="deck" style="flex-shrink: 0; padding: 96px 80px 0; display: flex; flex-direction: column; gap: 32px"><div class="ix-head"><h2 style="margin: 0; font-weight: 800; font-size: 56px; letter-spacing: -1.5px">My deck</h2><div style="font-size: 16px; color: #5A3A40">The quick read. Each row opens its full case study</div></div><div class="ix"><a id="c1" class="ix-row" href="racing-project.html"><div class="ix-num"><span>01</span><span class="ix-rar">RARE</span></div><div class="ix-main"><div class="ix-title">F2P racing game<span class="ix-nda"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#4B1D26"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#4B1D26" stroke-width="1.1"></path></svg>UNDER NDA</span></div><div class="ix-role">Game &amp; UX Designer · Arcade racer · F2P · PC &amp; mobile</div></div><ul class="ix-list"><li>Core mechanics, balanced parameters and the prototype spec</li><li>An FTUE taught by track design, not tutorials</li><li>HUD, screen flow and leaderboard</li></ul><div class="ix-when"><span>2026 — now</span><span>In development</span></div><span class="ix-cta">Read the case study <span aria-hidden="true">→</span></span></a><a id="c2" class="ix-row" href="client-project.html"><div class="ix-num"><span>02</span><span class="ix-rar">SEALED</span></div><div class="ix-main"><div class="ix-title">F2P casual game<span class="ix-nda"><svg width="9" height="10" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#4B1D26"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#4B1D26" stroke-width="1.1"></path></svg>UNDER NDA</span></div><div class="ix-role">Game &amp; UX Designer · Free-to-play casual mobile</div></div><ul class="ix-list"><li>Gameplay mechanics, FTUE progression and screen flows</li><li>Feature one-pagers and the GDD</li><li>UX reworks and new game modes</li></ul><div class="ix-when"><span>2026 — now</span><span>In development</span></div><span class="ix-cta">What I owned <span aria-hidden="true">→</span></span></a><a id="c3" class="ix-row" href="oceans-one.html"><div class="ix-num"><span>03</span><span class="ix-rar">UNCOMMON</span></div><div class="ix-main"><div class="ix-title">Ocean's One</div><div class="ix-role">Game Designer · Social stealth · Concept pitch</div></div><ul class="ix-list"><li>Pillars, player profiles and the 3C</li><li>A four-phase heist structure and game loops</li><li>Pitched to industry tutors in 15 minutes</li></ul><div class="ix-when"><span>2026</span><span>Bootcamp final project</span></div><span class="ix-cta">Read the case study <span aria-hidden="true">→</span></span></a><a id="c4" class="ix-row" href="seat-cupra-hmi.html"><div class="ix-num"><span>04</span><span class="ix-rar">LEGENDARY</span></div><div class="ix-main"><div class="ix-title">SEAT &amp; CUPRA HMI</div><div class="ix-role">UI/UX Designer → Lead UX Designer · In-car infotainment</div></div><ul class="ix-list"><li>What lives at first level while driving</li><li>Brand-native Home, App Grid and Navigation</li><li>Led the UX team and its workflows</li></ul><div class="ix-when"><span>2018 — 2024</span><span>Shipped</span></div><span class="ix-cta">Read the case study <span aria-hidden="true">→</span></span></a></div><div class="m-quests" style="display: flex; align-items: center; gap: 20px; font-size: 16px"><span style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #5A3A40">SIDE QUESTS</span><span style="padding: 10px 16px; border: 2px solid #D3C9B6; border-radius: 12px; text-decoration: none; font-weight: 700">CUPRA mobile app</span><span style="padding: 10px 16px; border: 2px solid #D3C9B6; border-radius: 12px; text-decoration: none; font-weight: 700">Rent-a-Room · concept app</span></div></section>
 
 <section class="m-profile" id="profile" style="flex-shrink: 0; margin: 120px 80px 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px">
 <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 20px">

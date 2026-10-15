@@ -7,8 +7,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   /* ---------- Header (sticky) and project sub-bar ---------- */
   .m-header { position: sticky !important; top: 0 !important; z-index: 40 !important; height: 60px !important; padding: 0 20px !important;
-    background: rgba(18, 22, 58, 0.94) !important; -webkit-backdrop-filter: blur(10px) !important; backdrop-filter: blur(10px) !important;
-    border-bottom: 1px solid #262B5C !important; }
+    background: rgba(234, 228, 216, 0.96) !important; -webkit-backdrop-filter: blur(10px) !important; backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid #DDD3C1 !important; }
   .m-header > a:first-child { width: 30px !important; height: 30px !important; }
   .m-nav { gap: 15px !important; font-size: 14px !important; }
   .m-nav > a:last-child { padding: 8px 12px !important; border-radius: 8px !important; }
@@ -69,6 +69,20 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-deck-item .deck-cta { grid-column: 1 / -1 !important; margin-top: 6px !important; font-size: 15px !important; }
   .m-quests { flex-wrap: wrap !important; gap: 10px !important; font-size: 14px !important; }
   .m-quests > :first-child { flex-basis: 100% !important; }
+
+  /* ---------- Home · My deck as a quick-read index ---------- */
+  .ix-row { scroll-margin-top: 76px !important; grid-template-columns: 52px minmax(0, 1fr) !important; gap: 10px 14px !important; padding: 22px 4px !important; }
+  .ix-head { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
+  .ix-head h2 { font-size: 38px !important; letter-spacing: -1px !important; }
+  .ix-head > div { font-size: 14px !important; }
+  .ix-num { font-size: 26px !important; gap: 6px !important; }
+  .ix-rar { font-size: 9px !important; letter-spacing: 1px !important; }
+  .ix-title { font-size: 22px !important; gap: 8px !important; }
+  .ix-role { font-size: 14px !important; }
+  .ix-list, .ix-when, .ix-cta { grid-column: 2 !important; }
+  .ix-list { font-size: 14px !important; }
+  .ix-when { flex-direction: row !important; gap: 10px !important; font-size: 11px !important; }
+  .ix-cta { justify-self: start !important; font-size: 14px !important; padding: 9px 12px !important; margin-top: 4px; }
 
   /* ---------- Home · player profile ---------- */
   .m-profile { display: flex !important; flex-direction: column !important; margin: 64px 20px 0 !important; gap: 20px !important; }
@@ -135,7 +149,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-owned { padding: 56px 20px 0 !important; gap: 18px !important; }
   .m-owned-body { flex-direction: column !important; align-items: stretch !important; gap: 14px !important; }
   .m-tabs { width: auto !important; flex-direction: row !important; gap: 8px !important; overflow-x: auto !important; overscroll-behavior-x: contain !important;
-    margin: 0 -20px !important; padding: 10px 20px !important; position: sticky !important; top: 60px !important; z-index: 30 !important; background: #12163A !important;
+    margin: 0 -20px !important; padding: 10px 20px !important; position: sticky !important; top: 60px !important; z-index: 30 !important; background: #F5F0E8 !important;
     scroll-snap-type: x proximity !important; scrollbar-width: none !important; }
   .m-tabs::-webkit-scrollbar { display: none !important; }
   .m-tab { width: auto !important; flex: 0 0 auto !important; transform: none !important; scroll-snap-align: start !important; scroll-margin-left: 20px !important;
@@ -168,7 +182,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .m-panel [style*="repeat(7,"] { min-width: 620px !important; }
   /* tell the reader the table scrolls */
   .m-panel div:has(> div > [style*="1.1fr 0.8fr"]) > div:first-child::after,
-  .m-panel div:has(> div > [style*="repeat(7,"]) > div:first-child::after { content: "  ·  swipe →" !important; color: #E9B949 !important; }
+  .m-panel div:has(> div > [style*="repeat(7,"]) > div:first-child::after { content: "  ·  swipe →" !important; color: #7A5F33 !important; }
   .m-callout { padding: 16px !important; gap: 12px !important; align-items: flex-start !important; border-radius: 16px !important; }
   .m-callout > div { font-size: 15px !important; }
   .m-callout > svg { flex-shrink: 0 !important; margin-top: 2px !important; }
