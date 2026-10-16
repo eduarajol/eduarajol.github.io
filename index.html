@@ -153,12 +153,16 @@ html{scroll-behavior:smooth}
 .ix-row{grid-template-columns:180px minmax(0,1.05fr) minmax(0,1.2fr) 170px 190px !important}
 .ix-pic{position:relative;width:168px;height:112px;padding:4px;box-sizing:border-box;border:3px solid transparent;border-radius:14px;
   transform:rotate(-3deg) translateZ(0);backface-visibility:hidden;will-change:transform;box-shadow:0 8px 18px rgba(75,29,38,.2);transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease}
-/* the F2P thumbnails: a rainbow holo outline, like the foil on their cards */
-.ix-holo{background:linear-gradient(#FFFFFF,#FFFFFF) padding-box,repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%) border-box !important;
-  background-size:100% 100%,240% 240% !important;animation:ixHolo 6s ease-in-out infinite alternate}
-.ix-row:hover .ix-holo{filter:saturate(1.35) brightness(1.05);animation-duration:2.2s}
-@keyframes ixHolo{0%{background-position:0 0,0% 50%}100%{background-position:0 0,100% 50%}}
-@media (prefers-reduced-motion:reduce){.ix-holo{animation:none}}
+/* the F2P thumbnails: a rainbow holo outline that turns smoothly around the picture (a rotating conic ring, no jumps) */
+@property --ixa{syntax:'<angle>';inherits:false;initial-value:0deg}
+.ix-holo{background:transparent !important;border-color:transparent}
+.ix-holo::before,.ix-holo::after{content:"";position:absolute;border-radius:14px;z-index:-1;pointer-events:none}
+.ix-holo::before{inset:-3px;background:conic-gradient(from var(--ixa),#ff8a9a,#ffd88a,#b6f5a0,#8fe8ff,#a9a8ff,#f3a8ff,#ff8a9a);
+  animation:ixSpin 5s linear infinite;transition:filter .5s ease}
+.ix-holo::after{inset:0;border-radius:11px;background:#FFFFFF}
+.ix-row:hover .ix-holo::before{filter:saturate(1.6) brightness(1.08)}
+@keyframes ixSpin{to{--ixa:360deg}}
+@media (prefers-reduced-motion:reduce){.ix-holo::before{animation:none}}
 /* on hover, Ocean's One and SEAT & CUPRA take the colour of their card's outline */
 #c3:hover .ix-title{color:#B92B45 !important}#c4:hover .ix-title{color:#0F6E62 !important}
 .ix-pic-in{width:100%;height:100%;border-radius:8px;overflow:hidden}
