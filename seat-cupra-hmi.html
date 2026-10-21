@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEAT &amp; CUPRA HMI · Eduard Arajol</title>
+<meta name="description" content="Almost seven years on the SEAT &amp; CUPRA in-car infotainment, from UI/UX designer to UX lead.">
+<link rel="canonical" href="https://eduarajol.github.io/seat-cupra-hmi.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4">
+<link rel="icon" href="favicon-192.png?v=4" sizes="192x192" type="image/png">
+<link rel="icon" href="favicon-32.png?v=4" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=4" sizes="any">
+<link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+<meta name="theme-color" content="#F5F0E8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SEAT &amp; CUPRA HMI · Eduard Arajol">
+<meta property="og:description" content="Almost seven years on the SEAT &amp; CUPRA in-car infotainment, from UI/UX designer to UX lead.">
+<meta property="og:url" content="https://eduarajol.github.io/seat-cupra-hmi.html">
+<meta property="og:image" content="https://eduarajol.github.io/og.png?v=4">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin-ext.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style>
+body{margin:0;background:#F5F0E8;color:#4B1D26;font-family:'Bricolage Grotesque',system-ui,sans-serif}
+a{color:#4B1D26}a:hover{color:#7A5F33}
+/* interaction states */
+.h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+@media (hover: hover){.h-yellow:hover{background:#F3E3C6 !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,80,60,.28)}}
+@media (hover: hover){.h-outline-light:hover{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-dark:hover{background:#FFFFFF !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
+@media (hover: hover){.h-outline-dark:hover{background:#4B1D26 !important;color:#EBD3A8 !important;transform:translateY(-2px)}}
+.h-outline-light:active{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important}
+.h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
+@media (hover: hover){.h-round:hover{border-color:#C9A86E !important;background:#E0D8C8 !important}}
+@media (hover: hover){.h-round:hover svg{stroke:#C9A86E}}
+.h-round:active{background:#D3C9B6 !important}
+.h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #C9A86E;outline-offset:3px}
+.faq-q{transition:background-color .18s ease,color .18s ease}
+@media (hover: hover){.faq-q:hover{background:#E0D8C8 !important;color:#7A5F33 !important}}
+.faq-item{transition:border-color .18s ease,background-color .18s ease}
+.faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#D3C9B6 !important}
+.faq-item.is-open{cursor:pointer}
+@media (hover: hover){.faq-item.is-open:hover{background:#E0D8C8 !important}}
+@media (hover: hover){.faq-item.is-open:hover .faq-q{background:transparent !important;color:#7A5F33 !important}}
+.t-nav,.t-link{transition:color .18s ease,text-decoration-color .18s ease}
+.t-logo path{transition:fill .18s ease}
+@media (hover: hover){.t-nav:hover{color:#7A5F33 !important;text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:6px !important}}
+@media (hover: hover){.t-link:hover{color:#7A5F33 !important}}
+@media (hover: hover){.t-logo:hover path{fill:#C9A86E}}
+.t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #C9A86E;outline-offset:4px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item,.t-nav,.t-link,.t-logo path{transition:none}.h-btn:hover{transform:none}}
+/* fixed header */
+.site-header{position:sticky;top:0;z-index:40}
+/* the bar's background spans the whole window, even when the page column is narrower */
+.site-header::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;background:rgba(245,240,232,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
+.is-scrolled .site-header::before{box-shadow:0 1px 0 #E0D8C8,0 10px 24px rgba(0,0,0,.25)}
+/* yellow Home footer also runs edge to edge */
+.bleed-yellow{box-shadow:0 0 0 100vmax #EBD3A8;clip-path:inset(0 -100vmax)}
+[id]{scroll-margin-top:100px}
+/* no single word left alone on the last line */
+p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
+/* end interaction states */
+
+.f2p-glow{box-shadow:-9px -7px 28px -6px rgba(185,43,69,.55),9px 9px 28px -6px rgba(15,110,98,.55) !important}.f2p-glow{position:relative;isolation:isolate}.f2p-glow>*{position:relative;z-index:2}.f2p-glow::before,.f2p-glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;transition:opacity .6s ease,filter .6s ease}.f2p-glow::before{background:repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%);background-size:220% 220%;mix-blend-mode:multiply;opacity:.13;animation:foilDrift 9s ease-in-out infinite alternate}.f2p-glow::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 .6px,transparent 1.2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,rgba(120,90,160,.35) 0 .5px,transparent 1.1px) 0 0/11px 11px,linear-gradient(125deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%) 0 0/250% 250%;opacity:.45;animation:foilGlare 7s ease-in-out infinite alternate}.f2p-glow:hover::before,.fl:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.f2p-glow:hover::after,.fl:hover .f2p-glow::after{opacity:1}@keyframes foilDrift{0%{background-position:0% 50%}100%{background-position:100% 50%}}@keyframes foilGlare{0%{background-position:0 0,0 0,0% 0%}100%{background-position:0 0,0 0,100% 100%}}@media (prefers-reduced-motion:reduce){.f2p-glow::before,.f2p-glow::after{animation:none}}.dc{position:relative;box-sizing:border-box;flex-shrink:0;border-radius:1.7em;padding:.9em;background:var(--fr);display:flex;flex-direction:column;gap:.6em;color:var(--ink);text-decoration:none;overflow:hidden;font-weight:400;line-height:normal;text-align:left;box-shadow:0 1.4em 2.8em rgba(75,29,38,.22)}.dc.k-gd{--fr:linear-gradient(160deg,#C8394F,#8E1F33);--ink:#7A1F33}.dc.k-ux{--fr:linear-gradient(160deg,#17846F,#0A4F46);--ink:#0A4F46}.dc.k-top{--fr:linear-gradient(135deg,#C8394F 0%,#E8C27A 30%,#5FC7A8 60%,#0F6E62 100%);--ink:#4B1D26}.dc.k-sq{--fr:#FFFFFF;--ink:#7A1F33;padding:.6em;box-shadow:0 1.4em 2.8em rgba(75,29,38,.18)}.dc.k-sq .dc-head,.dc.k-sq .dc-type,.dc.k-sq .dc-text{background:#F5F0E8}.dc.k-sq .dc-head{box-shadow:none}.dc.k-sq .dc-art{border-color:#F5F0E8}.dc.k-sq .dc-foot{color:#7A1F33;text-shadow:none}.dc-head{display:flex;align-items:center;gap:.6em;font-weight:800;background:#FFFBF4;border-radius:.8em;padding:.7em .9em;box-shadow:inset 0 -.2em 0 rgba(0,0,0,.08)}.dc-title{flex:1;min-width:0;font-size:1.7em;letter-spacing:-.02em;line-height:1.1}.dc-gems{display:inline-flex;gap:.3em}.dc-num{font-size:1.5em}.dc-gem{display:inline-block;width:1.1em;height:1.1em;flex-shrink:0;box-sizing:border-box}.g-gd{background:#B92B45;transform:rotate(45deg) scale(.85);border-radius:.2em}.g-ux{background:#0F6E62;border-radius:50%}.g-sq{border:.2em solid #B92B45;transform:rotate(45deg) scale(.8);border-radius:.2em}.dc-art{position:relative;height:12.8em;flex-shrink:0;border-radius:.6em;border:.3em solid #FFFBF4;box-shadow:0 .2em .6em rgba(0,0,0,.25);overflow:hidden}.dc-art img,.dc-art svg{display:block;width:100%;height:100%;object-fit:cover}.dc-type{background:#FFFBF4;border-radius:.6em;padding:.4em .9em;font-size:.95em;font-weight:800;letter-spacing:.1em}.dc-text{flex:1;min-height:0;background:rgba(255,251,244,.94);border-radius:.6em;padding:.7em .9em;font-size:1.15em;line-height:1.42}.dc-foot{display:flex;justify-content:space-between;gap:.8em;font-size:.95em;font-weight:800;letter-spacing:.1em;color:#FFFBF4;padding:.2em .4em 0;text-shadow:0 1px 1px rgba(0,0,0,.3)}.dc-foot span{white-space:nowrap}.dc.k-top .dc-foot{text-shadow:0 1px 3px rgba(0,0,0,.6)}a.dc.k-gd:hover,a.dc.k-sq:hover{color:#B92B45}a.dc.k-ux:hover{color:#0F6E62}a.dc.k-top:hover{color:#4B1D26}.dc.f2p-glow::before{mix-blend-mode:overlay;opacity:.35;background-size:240% 240%}.dc.f2p-glow::after{background-image:radial-gradient(circle at var(--fx,50%) var(--fy,50%),rgba(255,255,255,.75),transparent 45%) !important;background-size:100% 100% !important;mix-blend-mode:soft-light;opacity:0;animation:none !important}.fl:hover .dc.f2p-glow::before,.pc-wrap:hover .dc.f2p-glow::before,.slot.on .dc.f2p-glow::before,.fl.playing .dc.f2p-glow::before,.pc-wrap.playing .dc.f2p-glow::before{opacity:.7 !important;animation:none !important;background-position:var(--fx,50%) var(--fy,50%) !important}.fl:hover .dc.f2p-glow::after,.pc-wrap:hover .dc.f2p-glow::after,.slot.on .dc.f2p-glow::after,.fl.playing .dc.f2p-glow::after,.pc-wrap.playing .dc.f2p-glow::after{opacity:1 !important}
+
+/* desktop: the panel is as tall as the abilities column, its content scrolls inside, and an enlarged image fills the panel */.ab-scroll{display:contents}@media (min-width:761px){.ab-panel{align-self:stretch;min-height:660px;padding:0 !important;position:relative !important;overflow:hidden}.ab-scroll{display:flex;flex-direction:column;gap:44px;position:absolute;inset:0;overflow-y:auto;padding:48px;box-sizing:border-box;overscroll-behavior:contain;}.ab-scroll::-webkit-scrollbar{width:10px}.ab-scroll::-webkit-scrollbar-track{background:rgba(75,29,38,.07);border-radius:99px;margin:28px 0}.ab-scroll::-webkit-scrollbar-thumb{background:#B9A68A;border-radius:99px;border:2px solid #EAE4D8}.ab-scroll::-webkit-scrollbar-thumb:hover{background:#9C8669}@supports not selector(::-webkit-scrollbar){.ab-scroll{scrollbar-width:thin;scrollbar-color:#B9A68A rgba(75,29,38,.07)}}}
+
+.ab-btn{transition:transform .2s cubic-bezier(.2,.8,.2,1),background .2s ease,border-color .2s ease,box-shadow .2s ease}@media (hover:hover){.ab-btn:not([style*="4px solid"]):hover{border-color:var(--tone) !important;background:color-mix(in srgb,var(--tone) 9%,#EAE4D8) !important;transform:translateX(4px) !important;box-shadow:0 6px 14px rgba(75,29,38,.12)}.ab-btn[style*="4px solid"]:hover{box-shadow:0 8px 18px rgba(75,29,38,.22)}}
+
+.pc-wrap{display:flex;justify-content:center;flex-shrink:0;perspective:900px;touch-action:pan-y}.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}.pc-wrap:hover,.pc-wrap.playing{animation-play-state:paused}.pc-tilt{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.pc-wrap.playing .pc-tilt{transition:transform .08s linear}@media (hover:hover){.pc-wrap:hover:not(.playing) .pc-tilt{transform:translateY(-12px) rotateX(var(--hrx,0deg)) rotateY(var(--hry,0deg)) scale(1.04);transition:transform .14s ease-out}}.pc-wrap:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.pc-wrap:hover .f2p-glow::after{opacity:1}.pc-wrap.playing .f2p-glow::before{opacity:.4;filter:saturate(1.15) brightness(1.03);animation:none;background-position:var(--fx) var(--fy)}.pc-wrap.playing .f2p-glow::after{opacity:1;animation:none;background-position:0 0,0 0,var(--fx) var(--fy)}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}section:has(.pc-wrap) div:has(+ h1){min-height:24px;line-height:24px}@media (min-width:761px){section:has(> .pc-wrap){align-items:flex-start !important}section:has(> .pc-wrap)>div:last-child{margin-top:16px}}
+
+.sb-link{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.sb-next{align-items:flex-end;justify-self:end}div:has(> .sb-link){display:grid !important;grid-template-columns:1fr auto 1fr !important}div:has(> .sb-link)>:not(.sb-link){justify-self:center;text-align:center}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:20px}.sb-short{display:none;font-weight:800;font-size:15px}@media (min-width:761px){div:has(> .sb-link){height:auto !important;padding-top:16px !important;padding-bottom:16px !important}}
+.hb-root{position:relative;isolation:isolate;background:transparent !important}.hb-root::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;pointer-events:none;background:radial-gradient(900px 620px at 72% 6%,rgba(235,211,168,.85),transparent 70%),radial-gradient(800px 600px at 18% 46%,rgba(235,211,168,.6),transparent 70%),linear-gradient(180deg,#F5F0E8 0%,#F0E3CE 16%,#F5F0E8 38%,#F1E6D4 62%,#F5F0E8 82%,#EFE1CA 100%)}.hb-root .site-header::before{background:rgba(245,240,232,.45) !important;-webkit-backdrop-filter:blur(18px) saturate(160%) !important;backdrop-filter:blur(18px) saturate(160%) !important;box-shadow:inset 0 -1px 0 rgba(255,255,255,.55),0 1px 0 rgba(75,29,38,.06) !important}.ally-sec div[style*="overflow: hidden"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 76px,#000 calc(100% - 96px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 76px,#000 calc(100% - 96px),transparent 100%)}@media (max-width:760px){.ally-sec div[style*="overflow: hidden"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%)}}.is-scrolled .hb-root .site-header::before{background:rgba(245,240,232,.6) !important;box-shadow:inset 0 -1px 0 rgba(255,255,255,.55),0 1px 0 rgba(75,29,38,.08),0 10px 24px rgba(75,29,38,.12) !important}</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}#faq,#profile{scroll-margin-top:150px}@media (max-width:760px){[id]{scroll-margin-top:72px}#faq,#profile{scroll-margin-top:100px}}</style>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body id="top">
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="m-root hb-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #F5F0E8; color: #4B1D26; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+
+<header class="m-header site-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<a class="t-logo" href="index.html" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#4B1D26" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
+<nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
+<a class="t-nav" href="index.html#deck" style="text-decoration: none">Work</a>
+<a class="t-nav" href="index.html#profile" style="text-decoration: none">About</a>
+<a class="t-nav" href="index.html#faq" style="text-decoration: none">FAQ</a>
+<a class="t-nav" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV <svg width="11" height="11" viewBox="0 0 10 10" aria-hidden="true" style="display: inline-block; vertical-align: 0px"><path d="M2.6 7.4L7 3M3.4 3H7v3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.2 0.2)"></path></svg></a>
+<a class="h-btn h-yellow" href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #EBD3A8; color: #4B1D26; border-radius: 10px; font-weight: 700">Contact</a>
+</nav>
+</header>
+<div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #E0D8C8; border-bottom: 1px solid #E0D8C8">
+<a class="t-link sb-link" href="oceans-one.html"><span class="sb-label">PREVIOUS CARD · 03</span><span class="sb-name">← Ocean's One</span><span class="sb-short">← PREVIOUS</span></a>
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #6B5357">CARD 04 OF 04</div>
+<a class="t-link sb-link sb-next" href="asphalt-legends.html"><span class="sb-label">NEXT · SIDE QUEST</span><span class="sb-name">Asphalt Legends →</span><span class="sb-short">NEXT →</span></a>
+</div>
+
+<section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
+<div class="pc-wrap pc-float"><div class="pc-tilt"><div class="m-pcard dc k-ux" style="width: 300px; height: 430px; font-size: 12.500px; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.35)"><div class="dc-head"><span class="dc-title">SEAT &amp; CUPRA</span><span class="dc-gems"><i class="dc-gem g-ux"></i></span><span class="dc-num">04</span></div><div class="dc-art"><img src="img/cupra/cockpit.jpg" alt="CUPRA cockpit with the infotainment screen"></div><div class="dc-type">UX · LEADERSHIP</div><div class="dc-text">Almost seven years on the in-car HMI, from designer to UX lead.</div><div class="dc-foot"><span>2018 — 2024</span><span>RELEASED</span></div></div></div></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #7A5F33">2018 — 2024 · RELEASED</div>
+<h1 class="m-ph1" style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">SEAT &amp; CUPRA HMI</h1>
+<p class="m-plead" style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #5A3A40">Almost seven years designing the in-car infotainment for SEAT and CUPRA, first as UI/UX Designer and then leading the UX team. Interfaces for people who can only spare a glance.</p>
+<div class="m-facts" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">ROLE</div><div style="font-weight: 700; font-size: 16px">UI/UX → Lead UX Designer</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">PERIOD</div><div style="font-weight: 700; font-size: 16px">2018 — 2024</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">TYPE</div><div style="font-weight: 700; font-size: 16px">In-car infotainment</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">SETUP</div><div style="font-weight: 700; font-size: 16px">Altran, Arvato, Bertrandt</div></div>
+</div>
+</div>
+</section>
+
+<div class="m-note" style="flex-shrink: 0; margin: 88px 80px 0; padding: 16px 20px; border: 2px dashed #D3C9B6; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #5A3A40">
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8A7F72" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
+<span>Some details of this project are generalised for confidentiality. Product and car images are public press material, and the rest are from my own work. Happy to go deeper in an interview.</span>
+</div>
+
+<section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
+<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What I owned</h2>
+</div>
+
+<div class="m-owned-body" style="display: flex; gap: 40px; align-items: flex-start">
+
+<div class="m-tabs" style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{abilities}}" as="item" hint-placeholder-count="5">
+<button class="m-tab ab-btn" type="button" onClick="{{item.pick}}" style="--tone: {{item.tone}}; width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
+<span style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: {{item.catColor}}">{{item.cat}}</span>
+<span style="font-weight: 800; font-size: 17px; line-height: 1.15">{{item.title}}</span>
+</button>
+</sc-for>
+</div>
+
+<div class="m-panel ab-panel" style="flex-grow: 1; box-sizing: border-box; position: relative; padding: 48px; background: #EAE4D8; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
+<div class="ab-scroll">
+
+<sc-if value="{{isResearch}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">RESEARCH · BENCHMARK &amp; DRIVER INSIGHTS</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Learning from the market and from drivers</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">At the start of the project I benchmarked competitors&#x27; in-car systems, both from recordings and inside the cars themselves, and gathered insights on what drivers expected, where they struggled and how they really used the system. It set the opportunities the new concept had to answer.</p>
+</div>
+
+<button type="button" onClick="{{zoom_benchmark_drive}}" aria-label="Enlarge: Eduard driving a competitor car to benchmark its infotainment" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/benchmark-drive.jpg" alt="Eduard driving a competitor car to benchmark its infotainment" style="width: 100%; height: 340px; object-fit: cover; object-position: center 40%; border-radius: 18px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I RAN IT</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Drive the competition</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Rival systems tested in real vehicles, not just videos.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Capture &amp; compare</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Sessions recorded and analysed with ScreensStudio.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Listen to drivers</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Expectations, pain points and habits.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Map the trends</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Where in-car UX was heading next.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT IT PRODUCED</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><span style="display: flex; gap: 10px; align-items: center"><span style="width: 34px; height: 52px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="font-weight: 800; font-size: 13px">vs</span><span style="width: 34px; height: 52px; border-radius: 6px; background: #FFFFFF; border: 2px solid {{tone}}; box-sizing: border-box"></span></span></div>
+<div style="font-weight: 800; font-size: 21px">Strengths &amp; weaknesses</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">What other brands solved well, and the friction worth avoiding in our own system.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="120" height="56" viewBox="0 0 120 56" fill="none" stroke="#4B1D26" stroke-width="2" aria-hidden="true"><circle cx="30" cy="18" r="9" fill="#FFFFFF"></circle><path d="M14 50 Q30 30 46 50" fill="#FFFFFF"></path><rect x="60" y="6" width="54" height="26" rx="6" fill="#FFFFFF"></rect><path d="M68 32 L62 42 L76 32" fill="#FFFFFF"></path><path d="M68 15 H104 M68 23 H94" stroke="{{tone}}" stroke-width="3" stroke-linecap="round"></path></svg></div>
+<div style="font-weight: 800; font-size: 21px">Driver needs</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">A clear picture of what drivers expect while driving, and what gets in their way.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="130" height="60" viewBox="0 0 130 60" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 54 H124 M6 54 V6" stroke="#4B1D26" stroke-width="2"></path><path d="M14 46 L44 36 L70 40 L112 12" stroke="{{tone}}" stroke-width="3.5"></path><path d="M104 10 L112 12 L110 20" stroke="{{tone}}" stroke-width="3.5"></path></svg></div>
+<div style="font-weight: 800; font-size: 21px">Opportunities</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">The usability challenges and trends the new concept had to respond to.</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isConcept}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">UX · CONCEPT &amp; ARCHITECTURE</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">A structure built for driving</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I led the concept sessions that defined how the new infotainment would work: its core interaction models, its navigation structure and what deserves to be one tap away while driving. Personas and journeys kept every decision tied to real driving scenarios.</p>
+</div>
+
+<button type="button" onClick="{{zoom_whiteboard}}" aria-label="Enlarge: Whiteboard from a concept session" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/whiteboard.jpg" alt="Whiteboard from a concept session" style="width: 100%; height: 340px; object-fit: cover; object-position: center 30%; border-radius: 18px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I BUILT IT</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Lead the sessions</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Concept workshops to define the core interaction models.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Personas &amp; journeys</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Real drivers and driving scenarios as the starting point.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Structure the navigation</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Accessibility balanced with information density.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Low fidelity first</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Layouts explored in wireframes before any visuals.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">PRINCIPLES I DESIGNED BY</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="150" height="70" viewBox="0 0 150 70" fill="none" stroke="#4B1D26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="60" y="4" width="30" height="16" rx="3" fill="{{tone}}"></rect><path d="M75 20 V30 M25 30 H125 M25 30 V40 M75 30 V40 M125 30 V40"></path><rect x="10" y="40" width="30" height="14" rx="3" fill="#FFFFFF"></rect><rect x="60" y="40" width="30" height="14" rx="3" fill="#FFFFFF"></rect><rect x="110" y="40" width="30" height="14" rx="3" fill="#FFFFFF"></rect></svg></div>
+<div style="font-weight: 800; font-size: 21px">First level matters</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Deciding what lives one tap away while driving, and what can wait deeper in the system.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="70" height="50" viewBox="0 0 70 50" fill="none" stroke="#4B1D26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 25 Q35 -4 66 25 Q35 54 4 25 Z" fill="#FFFFFF"></path><circle cx="35" cy="25" r="9" fill="{{tone}}"></circle></svg></div>
+<div style="font-weight: 800; font-size: 21px">Read it at a glance</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Every screen understood in a second, so eyes go back to the road.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 5px; width: 90px"><span style="height: 8px; border-radius: 4px; background: #F5F0E8"></span><span style="height: 8px; width: 70%; border-radius: 4px; background: #F5F0E8"></span><span style="height: 8px; width: 40%; border-radius: 4px; background: {{tone}}"></span></span></div>
+<div style="font-weight: 800; font-size: 21px">Dense but calm</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Lots of information available, never all of it at once.</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isBrand}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">UX · BRAND-NATIVE FEATURES</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Making CUPRA feel like CUPRA</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">Most features were shared across the Volkswagen Group brands. On top of that common platform, I worked on the experiences that had to feel uniquely CUPRA: the Home screen, the App Grid and Navigation, across the brand&#x27;s range of models.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I APPROACHED THEM</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Start from the platform</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Shared Group features as the common base.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Find the brand moments</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Where CUPRA had to stand apart from its sister brands.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">One system, many cars</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">The same experience across models and screens.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT I DESIGNED</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><span style="width: 110px; height: 60px; border-radius: 8px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box; display: grid; grid-template-columns: 2fr 1fr; gap: 4px; padding: 5px"><span style="border-radius: 4px; background: {{tone}}"></span><span style="display: flex; flex-direction: column; gap: 4px"><span style="flex: 1; border-radius: 3px; background: #D8D3C4"></span><span style="flex: 1; border-radius: 3px; background: #D8D3C4"></span></span></span></div>
+<div style="font-weight: 800; font-size: 21px">Home screen</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">[Pending description of the decisions I made for the Home screen]</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><span style="display: grid; grid-template-columns: repeat(4, 16px); gap: 5px"><span style="width: 16px; height: 16px; border-radius: 4px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 16px; height: 16px; border-radius: 4px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 16px; height: 16px; border-radius: 4px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 16px; height: 16px; border-radius: 4px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 16px; height: 16px; border-radius: 4px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 16px; height: 16px; border-radius: 4px; background: {{tone}}; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 16px; height: 16px; border-radius: 4px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 16px; height: 16px; border-radius: 4px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span></span></div>
+<div style="font-weight: 800; font-size: 21px">App Grid</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">[Pending description of the decisions I made for the App Grid]</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="110" height="60" viewBox="0 0 110 60" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="106" height="56" rx="8" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect><path d="M14 46 Q40 46 46 30 T90 14" stroke="{{tone}}" stroke-width="3.5"></path><circle cx="14" cy="46" r="4" fill="#4B1D26"></circle><path d="M90 6 L96 16 H84 Z" fill="#4B1D26"></path></svg></div>
+<div style="font-weight: 800; font-size: 21px">Navigation</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">[Pending description of the decisions I made for Navigation]</div>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW THE INTERFACE EVOLVED</div>
+<div style="display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: center"><figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><button type="button" onClick="{{zoom_home_earlier}}" aria-label="Enlarge: Earlier version: Home" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/home-earlier.jpg" alt="Earlier version: Home" style="width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #6B5357">EARLIER · HOME</figcaption></figure><svg width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="{{tone}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10 H34"></path><path d="M27 3 L34 10 L27 17"></path></svg><figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><button type="button" onClick="{{zoom_home_updated}}" aria-label="Enlarge: Updated version: Home" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/home-updated.jpg" alt="Updated version: Home" style="width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 12px; font-weight: 700; letter-spacing: 1px; color: {{tone}}">UPDATED · HOME</figcaption></figure></div>
+<div style="display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: center"><figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><button type="button" onClick="{{zoom_nav_earlier}}" aria-label="Enlarge: Earlier version: Navigation" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/nav-earlier.jpg" alt="Earlier version: Navigation" style="width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #6B5357">EARLIER · NAVIGATION</figcaption></figure><svg width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="{{tone}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10 H34"></path><path d="M27 3 L34 10 L27 17"></path></svg><figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><button type="button" onClick="{{zoom_nav_updated}}" aria-label="Enlarge: Updated version: Navigation" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/nav-updated.jpg" alt="Updated version: Navigation" style="width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 12px; font-weight: 700; letter-spacing: 1px; color: {{tone}}">UPDATED · NAVIGATION</figcaption></figure></div>
+<div style="display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; align-items: center"><figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><button type="button" onClick="{{zoom_vehicle_earlier}}" aria-label="Enlarge: Earlier version: Vehicle &amp; assistants" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/vehicle-earlier.jpg" alt="Earlier version: Vehicle &amp; assistants" style="width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #6B5357">EARLIER · VEHICLE &amp; ASSISTANTS</figcaption></figure><svg width="40" height="20" viewBox="0 0 40 20" fill="none" stroke="{{tone}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10 H34"></path><path d="M27 3 L34 10 L27 17"></path></svg><figure style="margin: 0; display: flex; flex-direction: column; gap: 6px"><button type="button" onClick="{{zoom_vehicle_updated}}" aria-label="Enlarge: Updated version: Vehicle &amp; assistants" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/vehicle-updated.jpg" alt="Updated version: Vehicle &amp; assistants" style="width: 100%; height: 190px; object-fit: cover; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 12px; font-weight: 700; letter-spacing: 1px; color: {{tone}}">UPDATED · VEHICLE &amp; ASSISTANTS</figcaption></figure></div>
+</div>
+</sc-if>
+
+<sc-if value="{{isProto}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">UX · PROTOTYPING &amp; TESTING</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Prototype it, then test it in the car</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I turned concepts into detailed wireflows and interactive high-fidelity prototypes in Figma, combining touch, physical controls and voice. Together with the validation team, prototypes were tested in real vehicles and in remote sessions, and the findings fed straight into the next iteration.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_paper_wireframes}}" aria-label="Enlarge: Paper wireframes for call handling and the media landing" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/paper-wireframes.jpg" alt="Paper wireframes for call handling and the media landing" style="width: 100%; height: 280px; object-fit: cover; border-radius: 16px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; color: #6B5357">My paper wireframes: incoming and ongoing calls, and the media landing.</figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_home_touch}}" aria-label="Enlarge: Touch interaction on the infotainment screen while seated in the car" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/cupra/home-touch.jpg" alt="Touch interaction on the infotainment screen while seated in the car" style="width: 100%; height: 280px; object-fit: cover; border-radius: 16px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; color: #6B5357">Testing touch interaction in the car.</figcaption></figure>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I WORKED</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Wireflows</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Every transition mapped screen by screen.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Hi-fi prototypes</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Interactive, simulating <span style="white-space: nowrap">real in-car use.</span></div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Three inputs</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Touch, physical controls and voice working together.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Test in context</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">In the car and remotely with UserZoom.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Iterate</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Findings turned into the next version.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT TESTING TAUGHT ME</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="150" height="64" viewBox="0 0 150 64" fill="none" stroke="#4B1D26" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 46 L18 28 Q22 20 32 20 H102 Q112 20 120 28 L136 38 Q142 40 142 46 V50 H10 Z" fill="#FFFFFF"></path><circle cx="38" cy="50" r="8" fill="#E4E0D4"></circle><circle cx="112" cy="50" r="8" fill="#E4E0D4"></circle><rect x="58" y="26" width="30" height="14" rx="3" fill="{{tone}}"></rect></svg></div>
+<div style="font-weight: 800; font-size: 21px">Real conditions</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">A screen that works on a desk can fail at 100 km/h. Testing in the car showed the difference.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><span style="display: flex; gap: 8px"><span style="padding: 3px 9px; background: {{tone}}; border-radius: 999px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">TOUCH</span><span style="padding: 3px 9px; background: #FFFFFF; border: 2px solid #4B1D26; border-radius: 999px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">BUTTONS</span><span style="padding: 3px 9px; background: #FFFFFF; border: 2px solid #4B1D26; border-radius: 999px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">VOICE</span></span></div>
+<div style="font-weight: 800; font-size: 21px">More than one way in</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">When touch isn&#x27;t practical, physical controls and voice should get the job done.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="70" height="60" viewBox="0 0 28 28" fill="none" stroke="#4B1D26" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a10 10 0 0 1 17-7l3 3"></path><path d="M24 4v6h-6"></path><path d="M24 14a10 10 0 0 1-17 7l-3-3"></path><path d="M4 24v-6h6"></path></svg></div>
+<div style="font-weight: 800; font-size: 21px">Test early</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Small issues caught in the first rounds saved bigger problems later.</div>
+</div>
+</div>
+</div>
+
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #D3C9B6; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M18 18 L25 25"></path></svg>
+<div style="font-size: 17px; line-height: 1.5; color: #5A3A40"><strong style="color: #4B1D26">Example.</strong> In-car tests showed some touch targets were too small to hit while driving. We made them larger, added haptic confirmation and voice shortcuts for frequent actions, and validated the fix in a new round of tests.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isLead}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">LEADERSHIP · LEADING THE UX TEAM</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">From designer to UX lead</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">Shortly after joining Bertrandt in 2021, I went from UX Designer to leading the UX team. I organised the team, defined new ways of working and centralised how design work was managed, while keeping UI, development, validation, project managers and product owners aligned, travelling to meet stakeholders when needed.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT IT INVOLVED</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Organise the team</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Who does what, and how work flows.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">New processes</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Design work managed from one place.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Align departments</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">UI, development, validation, PMs and POs.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Document it</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Design specs shared in Jira and Confluence.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Meet stakeholders</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">On site when alignment needed it.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT LEADING TAUGHT ME</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><svg width="150" height="64" viewBox="0 0 150 64" fill="none" stroke="#4B1D26" stroke-width="2" aria-hidden="true"><circle cx="75" cy="18" r="11" fill="{{tone}}"></circle><circle cx="30" cy="44" r="9" fill="#FFFFFF"></circle><circle cx="60" cy="50" r="9" fill="#FFFFFF"></circle><circle cx="90" cy="50" r="9" fill="#FFFFFF"></circle><circle cx="120" cy="44" r="9" fill="#FFFFFF"></circle><path d="M68 27 L36 37 M72 29 L62 41 M78 29 L88 41 M82 27 L114 37"></path></svg></div>
+<div style="font-weight: 800; font-size: 21px">Clarity first</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Keeping everyone aligned and focused on the user mattered as much as the design itself.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><span style="display: flex; align-items: center; gap: 4px"><span style="padding: 3px 9px; background: #FFFFFF; border: 2px solid #4B1D26; border-radius: 999px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">UI</span><span style="width: 12px; height: 2px; background: #F5F0E8"></span><span style="padding: 3px 9px; background: {{tone}}; border-radius: 999px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">UX</span><span style="width: 12px; height: 2px; background: #F5F0E8"></span><span style="padding: 3px 9px; background: #FFFFFF; border: 2px solid #4B1D26; border-radius: 999px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">DEV</span><span style="width: 12px; height: 2px; background: #F5F0E8"></span><span style="padding: 3px 9px; background: #FFFFFF; border: 2px solid #4B1D26; border-radius: 999px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">QA</span></span></div>
+<div style="font-weight: 800; font-size: 21px">A bridge between teams</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">The best solutions came from bouncing ideas between design, development and real users.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 26px; height: 42px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="width: 12px; height: 2px; background: #F5F0E8"></span><span style="width: 26px; height: 42px; border-radius: 6px; background: #FFFFFF; border: 2px solid {{tone}}; box-sizing: border-box"></span><span style="width: 12px; height: 2px; background: #F5F0E8"></span><span style="width: 26px; height: 42px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span></span></div>
+<div style="font-weight: 800; font-size: 21px">Cool vs. clear</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">A premium, modern feel only works if nobody has to work to understand it.</div>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{zoomOn}}" hint-placeholder-val="{{false}}">
+<div class="m-zoom" onClick="{{closeZoom}}" role="dialog" aria-label="Enlarged image" style="position: {{zPos}}; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 72px 88px 40px; background: rgba(10, 12, 34, 0.95); border-radius: {{zRadius}}; display: flex; flex-direction: column; align-items: center; justify-content: {{zAlign}}; gap: 16px; cursor: zoom-out">
+<img src="img/cupra/benchmark-drive.jpg" alt="Eduard driving a competitor car to benchmark its infotainment" style="display: {{zd_benchmark_drive}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/whiteboard.jpg" alt="Whiteboard from a concept session" style="display: {{zd_whiteboard}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/home-earlier.jpg" alt="Earlier version: Home" style="display: {{zd_home_earlier}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/home-updated.jpg" alt="Updated version: Home" style="display: {{zd_home_updated}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/nav-earlier.jpg" alt="Earlier version: Navigation" style="display: {{zd_nav_earlier}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/nav-updated.jpg" alt="Updated version: Navigation" style="display: {{zd_nav_updated}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/vehicle-earlier.jpg" alt="Earlier version: Vehicle &amp; assistants" style="display: {{zd_vehicle_earlier}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/vehicle-updated.jpg" alt="Updated version: Vehicle &amp; assistants" style="display: {{zd_vehicle_updated}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/paper-wireframes.jpg" alt="My paper wireframes: incoming and ongoing calls, and the media landing." style="display: {{zd_paper_wireframes}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/cupra/home-touch.jpg" alt="Testing touch interaction in the car." style="display: {{zd_home_touch}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
+<div style="max-width: 900px; display: flex; gap: 18px; align-items: baseline; font-size: 15px; line-height: 1.5; color: #FFFFFF"><span style="font-weight: 800; color: #FFFFFF; flex-shrink: 0">{{zCount}}</span><span>{{zCap}}</span></div>
+<button class="h-btn h-round" type="button" onClick="{{closeZoom}}" aria-label="Close" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 999px; border: 2px solid #D3C9B6; background: #F5F0E8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg></button>
+<sc-if value="{{zMany}}" hint-placeholder-val="{{true}}">
+<button class="h-btn h-round" type="button" onClick="{{prevZoom}}" aria-label="Previous image" style="position: absolute; left: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #D3C9B6; background: #F5F0E8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#4B1D26" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3L5 9l6 6"></path></svg></button>
+<button class="h-btn h-round" type="button" onClick="{{nextZoom}}" aria-label="Next image" style="position: absolute; right: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #D3C9B6; background: #F5F0E8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#4B1D26" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l6 6-6 6"></path></svg></button>
+</sc-if>
+</div>
+</sc-if>
+
+
+
+</div>
+</div>
+</section>
+
+<section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
+<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What carries over to games</h2>
+<div style="font-size: 16px; color: #5A3A40">Driving and playing have more in common than it seems</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+<div style="padding: 24px; background: #EAE4D8; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #9ED8CC"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">Glanceable UI under pressure</div><div style="font-size: 15px; line-height: 1.5; color: #5A3A40">A driver and a player share the same problem: little attention to spare. Clear HUD-like information is the core of both.</div></div>
+<div style="padding: 24px; background: #EAE4D8; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #9ED8CC"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">Several inputs, one experience</div><div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Touch, buttons and voice in the car. Touch, controller and keyboard in games. Each input has to feel natural.</div></div>
+<div style="padding: 24px; background: #EAE4D8; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #9ED8CC"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">One system, many screens</div><div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Designing across models and screen sizes is the same discipline as designing across platforms.</div></div>
+<div style="padding: 24px; background: #EAE4D8; border-radius: 20px; display: flex; flex-direction: column; gap: 10px"><span style="width: 28px; height: 6px; border-radius: 3px; background: #9ED8CC"></span><div style="font-weight: 800; font-size: 20px; line-height: 1.15">Leading across disciplines</div><div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Aligning design, development and QA towards one goal is how games get made too.</div></div>
+</div>
+</section>
+
+<footer class="m-pfooter" style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #E0D8C8; display: flex; justify-content: space-between; align-items: flex-start">
+<a class="t-link" href="oceans-one.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">PREVIOUS CARD · 03</span><span style="font-weight: 800; font-size: 24px">← Ocean's One</span></a>
+<a class="t-link" href="asphalt-legends.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; align-items: flex-end"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">NEXT · SIDE QUEST</span><span style="font-weight: 800; font-size: 24px">Asphalt Legends →</span></a>
+</footer>
+
+</div>
+</template>
+<noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
+<script src="dc.js"></script>
+<script src="mobile.js"></script>
+<script>window.DC_PROPS = {};
+
+const ZOOM = [{"id": "benchmark_drive", "panel": "isResearch", "cap": "Eduard driving a competitor car to benchmark its infotainment"}, {"id": "whiteboard", "panel": "isConcept", "cap": "Whiteboard from a concept session"}, {"id": "home_earlier", "panel": "isBrand", "cap": "Earlier version: Home"}, {"id": "home_updated", "panel": "isBrand", "cap": "Updated version: Home"}, {"id": "nav_earlier", "panel": "isBrand", "cap": "Earlier version: Navigation"}, {"id": "nav_updated", "panel": "isBrand", "cap": "Updated version: Navigation"}, {"id": "vehicle_earlier", "panel": "isBrand", "cap": "Earlier version: Vehicle & assistants"}, {"id": "vehicle_updated", "panel": "isBrand", "cap": "Updated version: Vehicle & assistants"}, {"id": "paper_wireframes", "panel": "isProto", "cap": "My paper wireframes: incoming and ongoing calls, and the media landing."}, {"id": "home_touch", "panel": "isProto", "cap": "Testing touch interaction in the car."}];
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { picked: 'research', zoom: null };
+if (typeof window !== 'undefined') {
+window.addEventListener('keydown', (ev) => {
+if (this.state.zoom === null) return;
+if (ev.key === 'Escape') this.setState({ zoom: null });
+if (ev.key === 'ArrowRight') this.step(1);
+if (ev.key === 'ArrowLeft') this.step(-1);
+});
+}
+}
+step(d) {
+const g = this.group();
+if (!g.length) return;
+const i = g.indexOf(this.state.zoom);
+this.setState({ zoom: g[(i + d + g.length) % g.length] });
+}
+group() {
+const z = ZOOM.find((x) => x.id === this.state.zoom);
+return z ? ZOOM.filter((x) => x.panel === z.panel).map((x) => x.id) : [];
+}
+renderVals() {
+// Project pages: the hero card answers like the cards in the Home.
+// Mouse: see hover_tilt.js. Touch: it tilts under the finger and the foil follows.
+if (!this._pcTilt && typeof document !== 'undefined') {
+  this._pcTilt = true;
+    const wrap = (t) => t && t.closest ? t.closest('.pc-wrap') : null;
+  const tiltOf = (w) => w.querySelector('.pc-tilt');
+  const reset = (w) => { const t = tiltOf(w); w.classList.remove('playing'); if (t) t.style.transform = ''; };
+  let on = null;
+  const follow = (x, y) => {
+    const r = on.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (x - r.left) / r.width)), py = Math.min(1, Math.max(0, (y - r.top) / r.height));
+    tiltOf(on).style.transform = 'rotateX(' + ((0.5 - py) * 26).toFixed(1) + 'deg) rotateY(' + ((px - 0.5) * 30).toFixed(1) + 'deg) scale(1.04)';
+    on.style.setProperty('--fx', (px * 100).toFixed(1) + '%');
+    on.style.setProperty('--fy', (py * 100).toFixed(1) + '%');
+  };
+  document.addEventListener('touchstart', (e) => {
+    const w = wrap(e.target);
+    if (!w || e.touches.length > 1) return;
+    on = w; w.classList.add('playing');
+    follow(e.touches[0].clientX, e.touches[0].clientY);  // the card answers the finger straight away
+  }, { passive: true });
+  document.addEventListener('touchmove', (e) => {
+    if (!on) return;
+    e.preventDefault();
+    follow(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: false });
+  const end = () => { if (on) { reset(on); on = null; } };
+  document.addEventListener('touchend', end);
+  document.addEventListener('touchcancel', end);
+}
+
+// Desktop: the card under the cursor tilts toward it. The corner under the cursor rises, the centre keeps it flat.
+// The angles go to two variables on the page root; the CSS applies them only to the hovered card.
+if (!this._hvTilt && typeof document !== 'undefined') {
+  this._hvTilt = true;
+  const MAX = 12;
+  document.addEventListener('mousemove', (e) => {
+    const h = e.target.closest && e.target.closest('.pk .fl, .pc-wrap');
+    if (!h) return;
+    const r = h.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    const s = document.documentElement.style;
+    s.setProperty('--hrx', ((py - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+    s.setProperty('--hry', ((0.5 - px) * 2 * MAX).toFixed(2) + 'deg');
+    h.style.setProperty('--fx', (px * 100).toFixed(1) + '%');
+    h.style.setProperty('--fy', (py * 100).toFixed(1) + '%');
+  });
+}
+
+// desktop: picking another ability starts its content from the top
+if (!this._abScroll && typeof document !== 'undefined') {
+  this._abScroll = true;
+  document.addEventListener('click', (e) => {
+    if (!(e.target.closest && e.target.closest('.ab-btn'))) return;
+    setTimeout(() => { const s = document.querySelector('.ab-scroll'); if (s) s.scrollTop = 0; }, 0);
+  });
+}
+
+const UX = { tone: '#0F6E62', ink: '#9ED8CC', fill: '#0A4F46' };
+const PR = { tone: '#6B5357', ink: '#E6DCCB' };
+const list = [
+{ id: 'research', cat: 'RESEARCH', title: 'Benchmark & driver insights', ...UX },
+{ id: 'concept', cat: 'UX', title: 'Concept & architecture', ...UX },
+{ id: 'brand', cat: 'UX', title: 'Brand-native features', ...UX },
+{ id: 'proto', cat: 'UX', title: 'Prototyping & testing', ...UX },
+{ id: 'lead', cat: 'LEADERSHIP', title: 'Leading the UX team', ...PR }
+];
+const picked = this.state.picked;
+const stop = (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); };
+const zoomItem = ZOOM.find((x) => x.id === this.state.zoom) || null;
+const g = this.group();
+const fixed = typeof window !== 'undefined' && window.innerWidth <= 760;
+const zoomHandlers = {};
+ZOOM.forEach((x) => { zoomHandlers['zoom_' + x.id] = () => this.setState({ zoom: x.id }); zoomHandlers['zd_' + x.id] = (zoomItem && zoomItem.id === x.id) ? 'block' : 'none'; });
+const abilities = list.map((a) => {
+const on = a.id === picked;
+return {
+...a,
+bg: on ? (a.fill || '#4B1D26') : '#EAE4D8',
+fg: on ? '#F5F0E8' : '#4B1D26',
+border: on ? '4px solid ' + a.tone : '2px solid #D3C9B6',
+catColor: on ? a.ink : a.tone,
+shift: on ? 'translateX(8px)' : 'none', tone: a.tone || '#4B1D26',
+pick: () => this.setState({ picked: a.id, zoom: null })
+};
+});
+const selected = list.find((a) => a.id === picked) || list[0];
+return {
+...zoomHandlers,
+zoomOn: !!zoomItem,
+zCap: zoomItem ? zoomItem.cap : '',
+zCount: zoomItem ? (g.indexOf(zoomItem.id) + 1) + ' / ' + g.length : '',
+zMany: g.length > 1,
+zPos: fixed ? 'fixed' : 'absolute',
+zRadius: fixed ? '0' : '28px',
+zAlign: 'center',
+zArrowTop: '50%',
+zMaxH: fixed ? 'calc(100vh - 190px)' : 'calc(100% - 60px)',
+closeZoom: (ev) => { stop(ev); this.setState({ zoom: null }); },
+prevZoom: (ev) => { stop(ev); this.step(-1); },
+nextZoom: (ev) => { stop(ev); this.step(1); },
+tone: selected.tone,
+abilities,
+isResearch: picked === 'research',
+isConcept: picked === 'concept',
+isBrand: picked === 'brand',
+isProto: picked === 'proto',
+isLead: picked === 'lead'
+};
+}
+}
+
+</script>
+</body>
+</html>

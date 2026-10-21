@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asphalt Legends · Resource flow analysis · Eduard Arajol</title>
+<meta name="description" content="Side quest from the Game Design Bootcamp: how resources flow through Asphalt Legends, from the first actions to the game loop.">
+<link rel="canonical" href="https://eduarajol.github.io/asphalt-legends.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4">
+<link rel="icon" href="favicon-192.png?v=4" sizes="192x192" type="image/png">
+<link rel="icon" href="favicon-32.png?v=4" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=4" sizes="any">
+<link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+<meta name="theme-color" content="#F5F0E8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Asphalt Legends · Resource flow analysis · Eduard Arajol">
+<meta property="og:description" content="Side quest from the Game Design Bootcamp: how resources flow through Asphalt Legends, from the first actions to the game loop.">
+<meta property="og:url" content="https://eduarajol.github.io/asphalt-legends.html">
+<meta property="og:image" content="https://eduarajol.github.io/og.png?v=4">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin-ext.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style>
+body{margin:0;background:#F5F0E8;color:#4B1D26;font-family:'Bricolage Grotesque',system-ui,sans-serif}
+a{color:#4B1D26}a:hover{color:#7A5F33}
+/* interaction states */
+.h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+@media (hover: hover){.h-yellow:hover{background:#F3E3C6 !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,80,60,.28)}}
+@media (hover: hover){.h-outline-light:hover{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-dark:hover{background:#FFFFFF !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
+@media (hover: hover){.h-outline-dark:hover{background:#4B1D26 !important;color:#EBD3A8 !important;transform:translateY(-2px)}}
+.h-outline-light:active{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important}
+.h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
+@media (hover: hover){.h-round:hover{border-color:#C9A86E !important;background:#E0D8C8 !important}}
+@media (hover: hover){.h-round:hover svg{stroke:#C9A86E}}
+.h-round:active{background:#D3C9B6 !important}
+.h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #C9A86E;outline-offset:3px}
+.faq-q{transition:background-color .18s ease,color .18s ease}
+@media (hover: hover){.faq-q:hover{background:#E0D8C8 !important;color:#7A5F33 !important}}
+.faq-item{transition:border-color .18s ease,background-color .18s ease}
+.faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#D3C9B6 !important}
+.faq-item.is-open{cursor:pointer}
+@media (hover: hover){.faq-item.is-open:hover{background:#E0D8C8 !important}}
+@media (hover: hover){.faq-item.is-open:hover .faq-q{background:transparent !important;color:#7A5F33 !important}}
+.t-nav,.t-link{transition:color .18s ease,text-decoration-color .18s ease}
+.t-logo path{transition:fill .18s ease}
+@media (hover: hover){.t-nav:hover{color:#7A5F33 !important;text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:6px !important}}
+@media (hover: hover){.t-link:hover{color:#7A5F33 !important}}
+@media (hover: hover){.t-logo:hover path{fill:#C9A86E}}
+.t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #C9A86E;outline-offset:4px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item,.t-nav,.t-link,.t-logo path{transition:none}.h-btn:hover{transform:none}}
+/* fixed header */
+.site-header{position:sticky;top:0;z-index:40}
+/* the bar's background spans the whole window, even when the page column is narrower */
+.site-header::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;background:rgba(245,240,232,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
+.is-scrolled .site-header::before{box-shadow:0 1px 0 #E0D8C8,0 10px 24px rgba(0,0,0,.25)}
+/* yellow Home footer also runs edge to edge */
+.bleed-yellow{box-shadow:0 0 0 100vmax #EBD3A8;clip-path:inset(0 -100vmax)}
+[id]{scroll-margin-top:100px}
+/* no single word left alone on the last line */
+p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
+/* end interaction states */
+
+.f2p-glow{box-shadow:-9px -7px 28px -6px rgba(185,43,69,.55),9px 9px 28px -6px rgba(15,110,98,.55) !important}.f2p-glow{position:relative;isolation:isolate}.f2p-glow>*{position:relative;z-index:2}.f2p-glow::before,.f2p-glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;transition:opacity .6s ease,filter .6s ease}.f2p-glow::before{background:repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%);background-size:220% 220%;mix-blend-mode:multiply;opacity:.13;animation:foilDrift 9s ease-in-out infinite alternate}.f2p-glow::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 .6px,transparent 1.2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,rgba(120,90,160,.35) 0 .5px,transparent 1.1px) 0 0/11px 11px,linear-gradient(125deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%) 0 0/250% 250%;opacity:.45;animation:foilGlare 7s ease-in-out infinite alternate}.f2p-glow:hover::before,.fl:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.f2p-glow:hover::after,.fl:hover .f2p-glow::after{opacity:1}@keyframes foilDrift{0%{background-position:0% 50%}100%{background-position:100% 50%}}@keyframes foilGlare{0%{background-position:0 0,0 0,0% 0%}100%{background-position:0 0,0 0,100% 100%}}@media (prefers-reduced-motion:reduce){.f2p-glow::before,.f2p-glow::after{animation:none}}.dc{position:relative;box-sizing:border-box;flex-shrink:0;border-radius:1.7em;padding:.9em;background:var(--fr);display:flex;flex-direction:column;gap:.6em;color:var(--ink);text-decoration:none;overflow:hidden;font-weight:400;line-height:normal;text-align:left;box-shadow:0 1.4em 2.8em rgba(75,29,38,.22)}.dc.k-gd{--fr:linear-gradient(160deg,#C8394F,#8E1F33);--ink:#7A1F33}.dc.k-ux{--fr:linear-gradient(160deg,#17846F,#0A4F46);--ink:#0A4F46}.dc.k-top{--fr:linear-gradient(135deg,#C8394F 0%,#E8C27A 30%,#5FC7A8 60%,#0F6E62 100%);--ink:#4B1D26}.dc.k-sq{--fr:#FFFFFF;--ink:#7A1F33;padding:.6em;box-shadow:0 1.4em 2.8em rgba(75,29,38,.18)}.dc.k-sq .dc-head,.dc.k-sq .dc-type,.dc.k-sq .dc-text{background:#F5F0E8}.dc.k-sq .dc-head{box-shadow:none}.dc.k-sq .dc-art{border-color:#F5F0E8}.dc.k-sq .dc-foot{color:#7A1F33;text-shadow:none}.dc-head{display:flex;align-items:center;gap:.6em;font-weight:800;background:#FFFBF4;border-radius:.8em;padding:.7em .9em;box-shadow:inset 0 -.2em 0 rgba(0,0,0,.08)}.dc-title{flex:1;min-width:0;font-size:1.7em;letter-spacing:-.02em;line-height:1.1}.dc-gems{display:inline-flex;gap:.3em}.dc-num{font-size:1.5em}.dc-gem{display:inline-block;width:1.1em;height:1.1em;flex-shrink:0;box-sizing:border-box}.g-gd{background:#B92B45;transform:rotate(45deg) scale(.85);border-radius:.2em}.g-ux{background:#0F6E62;border-radius:50%}.g-sq{border:.2em solid #B92B45;transform:rotate(45deg) scale(.8);border-radius:.2em}.dc-art{position:relative;height:12.8em;flex-shrink:0;border-radius:.6em;border:.3em solid #FFFBF4;box-shadow:0 .2em .6em rgba(0,0,0,.25);overflow:hidden}.dc-art img,.dc-art svg{display:block;width:100%;height:100%;object-fit:cover}.dc-type{background:#FFFBF4;border-radius:.6em;padding:.4em .9em;font-size:.95em;font-weight:800;letter-spacing:.1em}.dc-text{flex:1;min-height:0;background:rgba(255,251,244,.94);border-radius:.6em;padding:.7em .9em;font-size:1.15em;line-height:1.42}.dc-foot{display:flex;justify-content:space-between;gap:.8em;font-size:.95em;font-weight:800;letter-spacing:.1em;color:#FFFBF4;padding:.2em .4em 0;text-shadow:0 1px 1px rgba(0,0,0,.3)}.dc-foot span{white-space:nowrap}.dc.k-top .dc-foot{text-shadow:0 1px 3px rgba(0,0,0,.6)}a.dc.k-gd:hover,a.dc.k-sq:hover{color:#B92B45}a.dc.k-ux:hover{color:#0F6E62}a.dc.k-top:hover{color:#4B1D26}.dc.f2p-glow::before{mix-blend-mode:overlay;opacity:.35;background-size:240% 240%}.dc.f2p-glow::after{background-image:radial-gradient(circle at var(--fx,50%) var(--fy,50%),rgba(255,255,255,.75),transparent 45%) !important;background-size:100% 100% !important;mix-blend-mode:soft-light;opacity:0;animation:none !important}.fl:hover .dc.f2p-glow::before,.pc-wrap:hover .dc.f2p-glow::before,.slot.on .dc.f2p-glow::before,.fl.playing .dc.f2p-glow::before,.pc-wrap.playing .dc.f2p-glow::before{opacity:.7 !important;animation:none !important;background-position:var(--fx,50%) var(--fy,50%) !important}.fl:hover .dc.f2p-glow::after,.pc-wrap:hover .dc.f2p-glow::after,.slot.on .dc.f2p-glow::after,.fl.playing .dc.f2p-glow::after,.pc-wrap.playing .dc.f2p-glow::after{opacity:1 !important}
+
+/* desktop: the panel is as tall as the abilities column, its content scrolls inside, and an enlarged image fills the panel */.ab-scroll{display:contents}@media (min-width:761px){.ab-panel{align-self:stretch;min-height:660px;padding:0 !important;position:relative !important;overflow:hidden}.ab-scroll{display:flex;flex-direction:column;gap:44px;position:absolute;inset:0;overflow-y:auto;padding:48px;box-sizing:border-box;overscroll-behavior:contain;}.ab-scroll::-webkit-scrollbar{width:10px}.ab-scroll::-webkit-scrollbar-track{background:rgba(75,29,38,.07);border-radius:99px;margin:28px 0}.ab-scroll::-webkit-scrollbar-thumb{background:#B9A68A;border-radius:99px;border:2px solid #EAE4D8}.ab-scroll::-webkit-scrollbar-thumb:hover{background:#9C8669}@supports not selector(::-webkit-scrollbar){.ab-scroll{scrollbar-width:thin;scrollbar-color:#B9A68A rgba(75,29,38,.07)}}}
+
+.ab-btn{transition:transform .2s cubic-bezier(.2,.8,.2,1),background .2s ease,border-color .2s ease,box-shadow .2s ease}@media (hover:hover){.ab-btn:not([style*="4px solid"]):hover{border-color:var(--tone) !important;background:color-mix(in srgb,var(--tone) 9%,#EAE4D8) !important;transform:translateX(4px) !important;box-shadow:0 6px 14px rgba(75,29,38,.12)}.ab-btn[style*="4px solid"]:hover{box-shadow:0 8px 18px rgba(75,29,38,.22)}}
+
+.pc-wrap{display:flex;justify-content:center;flex-shrink:0;perspective:900px;touch-action:pan-y}.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}.pc-wrap:hover,.pc-wrap.playing{animation-play-state:paused}.pc-tilt{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.pc-wrap.playing .pc-tilt{transition:transform .08s linear}@media (hover:hover){.pc-wrap:hover:not(.playing) .pc-tilt{transform:translateY(-12px) rotateX(var(--hrx,0deg)) rotateY(var(--hry,0deg)) scale(1.04);transition:transform .14s ease-out}}.pc-wrap:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.pc-wrap:hover .f2p-glow::after{opacity:1}.pc-wrap.playing .f2p-glow::before{opacity:.4;filter:saturate(1.15) brightness(1.03);animation:none;background-position:var(--fx) var(--fy)}.pc-wrap.playing .f2p-glow::after{opacity:1;animation:none;background-position:0 0,0 0,var(--fx) var(--fy)}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}section:has(.pc-wrap) div:has(+ h1){min-height:24px;line-height:24px}@media (min-width:761px){section:has(> .pc-wrap){align-items:flex-start !important}section:has(> .pc-wrap)>div:last-child{margin-top:16px}}
+
+.sb-link{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.sb-next{align-items:flex-end;justify-self:end}div:has(> .sb-link){display:grid !important;grid-template-columns:1fr auto 1fr !important}div:has(> .sb-link)>:not(.sb-link){justify-self:center;text-align:center}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:20px}.sb-short{display:none;font-weight:800;font-size:15px}@media (min-width:761px){div:has(> .sb-link){height:auto !important;padding-top:16px !important;padding-bottom:16px !important}}
+
+@media (max-width:760px){.aq-cs{margin:72px 20px 0 !important}.aq-cs h2{font-size:34px !important;letter-spacing:-1px !important}.aq-cg{grid-template-columns:1fr !important}.aq-cg>div{padding:22px 20px !important}.m-ph1{font-size:46px !important}}
+
+.aq-hs{position:absolute;z-index:2;cursor:pointer}.aq-hv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:14px;opacity:0;transition:opacity .2s ease;pointer-events:none}.aq-hs1:hover~.aq-hv1{opacity:1}.aq-hs2:hover~.aq-hv2{opacity:1}.aq-hs3:hover~.aq-hv3{opacity:1}.aq-lens{position:fixed;z-index:200;width:240px;height:240px;border-radius:50%;border:3px solid #FFFFFF;box-shadow:0 14px 34px rgba(0,0,0,.55);pointer-events:none;display:none;background-repeat:no-repeat;background-color:#1A1530}[role="dialog"] img[src$="s06.jpg"]{cursor:crosshair}
+.hb-root{position:relative;isolation:isolate;background:transparent !important}.hb-root::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;pointer-events:none;background:radial-gradient(900px 620px at 72% 6%,rgba(235,211,168,.85),transparent 70%),radial-gradient(800px 600px at 18% 46%,rgba(235,211,168,.6),transparent 70%),linear-gradient(180deg,#F5F0E8 0%,#F0E3CE 16%,#F5F0E8 38%,#F1E6D4 62%,#F5F0E8 82%,#EFE1CA 100%)}.hb-root .site-header::before{background:rgba(245,240,232,.45) !important;-webkit-backdrop-filter:blur(18px) saturate(160%) !important;backdrop-filter:blur(18px) saturate(160%) !important;box-shadow:inset 0 -1px 0 rgba(255,255,255,.55),0 1px 0 rgba(75,29,38,.06) !important}.ally-sec div[style*="overflow: hidden"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 76px,#000 calc(100% - 96px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 76px,#000 calc(100% - 96px),transparent 100%)}@media (max-width:760px){.ally-sec div[style*="overflow: hidden"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%)}}.is-scrolled .hb-root .site-header::before{background:rgba(245,240,232,.6) !important;box-shadow:inset 0 -1px 0 rgba(255,255,255,.55),0 1px 0 rgba(75,29,38,.08),0 10px 24px rgba(75,29,38,.12) !important}</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}#faq,#profile{scroll-margin-top:150px}@media (max-width:760px){[id]{scroll-margin-top:72px}#faq,#profile{scroll-margin-top:100px}}</style>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body id="top">
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="m-root hb-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #F5F0E8; color: #4B1D26; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+
+<header class="m-header site-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<a class="t-logo" href="index.html" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#4B1D26" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
+<nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
+<a class="t-nav" href="index.html#deck" style="text-decoration: none">Work</a>
+<a class="t-nav" href="index.html#profile" style="text-decoration: none">About</a>
+<a class="t-nav" href="index.html#faq" style="text-decoration: none">FAQ</a>
+<a class="t-nav" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV <svg width="11" height="11" viewBox="0 0 10 10" aria-hidden="true" style="display: inline-block; vertical-align: 0px"><path d="M2.6 7.4L7 3M3.4 3H7v3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.2 0.2)"></path></svg></a>
+<a class="h-btn h-yellow" href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #EBD3A8; color: #4B1D26; border-radius: 10px; font-weight: 700">Contact</a>
+</nav>
+</header>
+<div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #E0D8C8; border-bottom: 1px solid #E0D8C8">
+<a class="t-link sb-link" href="seat-cupra-hmi.html"><span class="sb-label">PREVIOUS CARD · 04</span><span class="sb-name">← SEAT &amp; CUPRA HMI</span><span class="sb-short">← PREVIOUS</span></a>
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #6B5357">SIDE QUEST</div>
+<a class="t-link sb-link sb-next" href="racing-project.html"><span class="sb-label">NEXT CARD · 01</span><span class="sb-name">F2P racing game →</span><span class="sb-short">NEXT →</span></a>
+</div>
+
+<section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
+<div class="pc-wrap pc-float"><div class="pc-tilt"><div class="m-pcard dc k-sq" style="width: 300px; height: 430px; font-size: 12.500px; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.35)"><div class="dc-head"><span class="dc-title">Asphalt Legends</span><span class="dc-gems"><i class="dc-gem g-gd"></i></span><span class="dc-num">SQ</span></div><div class="dc-art"><img src="img/asphalt/s01.jpg" alt="Cover of my resource flow analysis"></div><div class="dc-type">GAME DESIGN · ECONOMY</div><div class="dc-text">Resources, inputs and outputs, and the loop.</div><div class="dc-foot"><span>2026</span><span>SIDE QUEST</span></div></div></div></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #7A5F33">2026 · SIDE QUEST · BOOTCAMP EXERCISE</div>
+<h1 class="m-ph1" style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">Asphalt Legends</h1>
+<p class="m-plead" style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #5A3A40">A resource flow analysis of Asphalt Legends, made during the Game Design Bootcamp. I listed the basic actions and resources of the first sessions, mapped what each action spends and earns, and turned it into the core loop and a wider loop with more gameplay.</p>
+<div class="m-facts" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">ROLE</div><div style="font-weight: 700; font-size: 16px">Game Designer</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">PERIOD</div><div style="font-weight: 700; font-size: 16px">2026 · Bootcamp</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">TYPE</div><div style="font-weight: 700; font-size: 16px">Resource flow · mobile racing</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">SETUP</div><div style="font-weight: 700; font-size: 16px">Solo</div></div>
+</div>
+</div>
+</section>
+
+<div class="m-note" style="flex-shrink: 0; margin: 88px 80px 0; padding: 16px 20px; border: 2px dashed #D3C9B6; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #5A3A40">
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8A7F72" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
+<span>Analysis of an existing game, Asphalt Legends by Gameloft. The slides, the diagrams and the analysis are mine, with a UI inspired by the game’s official website. Key art, logo and screenshots belong to Gameloft. The slides are in Spanish. <a class="t-link" href="https://www.figma.com/proto/A4y40PRMMIc2lROxdNqrri/BOOTCAMP?node-id=238-1179&amp;viewport=-440%2C348%2C0.26&amp;t=IlerWp08xB70Fw7i-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;page-id=238%3A1161" target="_blank" rel="noopener" style="font-weight: 700; color: #4B1D26">See the interactive presentation in Figma ↗</a></span>
+</div>
+
+<section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
+<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What I did</h2>
+</div>
+
+<div class="m-owned-body" style="display: flex; gap: 40px; align-items: flex-start">
+
+<div class="m-tabs" style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{abilities}}" as="item" hint-placeholder-count="7">
+<button class="m-tab ab-btn" type="button" onClick="{{item.pick}}" style="--tone: {{item.tone}}; width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
+<span style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: {{item.catColor}}">{{item.cat}}</span>
+<span style="font-weight: 800; font-size: 17px; line-height: 1.15">{{item.title}}</span>
+</button>
+</sc-for>
+</div>
+
+<div class="m-panel ab-panel" style="flex-grow: 1; box-sizing: border-box; position: relative; padding: 48px; background: #EAE4D8; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
+<div class="ab-scroll">
+
+<sc-if value="{{isActions}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">RESEARCH · INITIAL ACTIONS</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Three actions to start</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">After a first play session, I identified the basic actions a player takes from the very beginning.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE SLIDE</div>
+<div style="display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_s02}}" aria-label="Enlarge: Basic initial actions" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/s02.jpg" alt="Basic initial actions" style="width: 100%; aspect-ratio: 1920 / 1080; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span class="aq-hs aq-hs1" style="left: 20.7%; top: 33%; width: 17.6%; height: 40.2%"></span><span class="aq-hs aq-hs2" style="left: 40.8%; top: 33%; width: 17.6%; height: 40.2%"></span><span class="aq-hs aq-hs3" style="left: 60.9%; top: 33%; width: 17.6%; height: 40.2%"></span><img class="aq-hv aq-hv1" src="img/asphalt/s02-h1.jpg" alt="" aria-hidden="true"><img class="aq-hv aq-hv2" src="img/asphalt/s02-h2.jpg" alt="" aria-hidden="true"><img class="aq-hv aq-hv3" src="img/asphalt/s02-h3.jpg" alt="" aria-hidden="true"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">The three basic actions. Point at each card to see its note, as in the original presentation.</figcaption></figure>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE ACTIONS</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Race</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Pick a race and drive it.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Upgrade vehicle</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Improve the car.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Get rewards</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Collect what the race pays.</div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isResources}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">ECONOMY · BASIC RESOURCES</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Twelve resources in three groups</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I listed the basic resources of the game and split them into currency, vehicle and racing items.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE SLIDES</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_s03}}" aria-label="Enlarge: Basic resources" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/s03.jpg" alt="Basic resources" style="width: 100%; aspect-ratio: 1920 / 1080; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">The resources in three groups. The shop button opens a popup.</figcaption></figure>
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_s08}}" aria-label="Enlarge: The shop popup" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/s08.jpg" alt="The shop popup" style="width: 100%; aspect-ratio: 1920 / 990; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">The shop popup: real money buys tokens, and tokens buy credits. Prices as the game showed them in 2026, so they may have changed since.</figcaption></figure>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE GROUPS</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Currency</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Credits (soft currency), tokens (hard currency), real money, ads and time.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Vehicle</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Card packs, part cards, vehicle cards and vehicles.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Racing items</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Season flags, reputation points and fuel.</div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isIo}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">ECONOMY · INPUTS &amp; OUTPUTS</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">What each action spends and earns</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">For each basic action, I marked the resources the player spends in red and the ones they receive in green.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE SLIDE</div>
+<div style="display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_s04}}" aria-label="Enlarge: Resource inputs and outputs" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/s04.jpg" alt="Resource inputs and outputs" style="width: 100%; aspect-ratio: 1920 / 1080; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">Each basic action, with what it earns above (green) and what it spends below (red).</figcaption></figure>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">BY ACTION</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Race</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Spends fuel.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Upgrade vehicle</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Spends credits, tokens, real money, ads, part cards and vehicle cards. Improves rank and stats.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Get rewards</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Earns credits, reputation points, season flags, card packs, part cards and vehicle cards.</div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isCore}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">ECONOMY · CORE GAME LOOP</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">The first steps, as a loop</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I turned the basic actions into the initial core loop, with the inputs and outputs of every step.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE SLIDE</div>
+<div style="display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_s05}}" aria-label="Enlarge: Initial core game loop" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/s05.jpg" alt="Initial core game loop" style="width: 100%; aspect-ratio: 1920 / 1080; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">The initial core loop, with each step’s inputs and outputs.</figcaption></figure>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE LOOP</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Select race</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Where the loop starts.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Race</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Spends fuel.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Get rewards</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Earns the resources of the race.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Upgrade vehicle</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Spends them, and the loop starts again.</div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isLoop}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">ECONOMY · MORE GAMEPLAY</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">The loop, with more gameplay</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I developed the core loop into a bigger one, with the conditions that gate it and the secondary actions around them.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE SLIDE</div>
+<div style="display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_s06}}" aria-label="Enlarge: Game loop with resource inputs and outputs" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/s06.jpg" alt="Game loop with resource inputs and outputs" style="width: 100%; aspect-ratio: 1920 / 1080; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">The wider loop with its legend: start, main and secondary actions, conditions, consequences, inputs and outputs. In full screen, move the cursor over the loop to magnify it.</figcaption></figure>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT IT ADDS</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Rank check</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Without enough rank, the player has to upgrade the vehicle.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Fuel check</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Without fuel, the player refills it or waits.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Vehicle level</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Without enough stars, the player needs blueprints: buying them, earning them, opening packs or other options.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Stats</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Top speed, acceleration, handling and nitro spend credits and part cards, and raise the vehicle’s rank.</div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isGame}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">RESEARCH · IN THE GAME</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Where each resource lives</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I captured the screens where the player meets these resources, with my notes on them.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE CAPTURES</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_g1}}" aria-label="Enlarge: Garage screen" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/f-garage.jpg" alt="Garage screen" style="width: 100%; aspect-ratio: 1600 / 737; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">The garage: the car’s stats, its rank, the recommended rank and the fuel left.</figcaption></figure>
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_g2}}" aria-label="Enlarge: Season map" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/f-season-map.jpg" alt="Season map" style="width: 100%; aspect-ratio: 1600 / 737; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">The season map: flags unlock new races, and each race shows its reward.</figcaption></figure>
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_g3}}" aria-label="Enlarge: Race results" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/f-race-results.jpg" alt="Race results" style="width: 100%; aspect-ratio: 1600 / 737; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">Race results: credits, reputation points and blueprint cards.</figcaption></figure>
+<figure style="margin: 0; grid-column: span 1; display: flex; flex-direction: column; gap: 8px"><button type="button" onClick="{{zoom_g4}}" aria-label="Enlarge: Vehicle upgrades" style="position: relative; padding: 0; border: 0; background: none; cursor: zoom-in; display: block; width: 100%"><img src="img/asphalt/f-upgrades.jpg" alt="Vehicle upgrades" style="width: 100%; aspect-ratio: 1600 / 737; height: auto; object-fit: cover; background: #F5F0E8; border-radius: 14px; display: block"><span style="position: absolute; top: 10px; right: 10px; width: 34px; height: 34px; border-radius: 999px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2.5H13.5V6.5 M13.5 2.5L9 7 M6.5 13.5H2.5V9.5 M2.5 13.5L7 9"></path></svg></span></button><figcaption style="font-size: 13px; line-height: 1.4; color: #6B5357">Upgrades: each one raises the car’s rank.</figcaption></figure>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">THE SCREENS</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Garage</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Stats, rank and fuel.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Season map</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Flags and race rewards.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Race results</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">What a race pays.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Upgrades</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Where resources are spent.</div></div>
+</div>
+</div>
+</sc-if>
+
+
+<sc-if value="{{zoomOn}}" hint-placeholder-val="{{false}}">
+<div class="m-zoom" onClick="{{closeZoom}}" role="dialog" aria-label="Enlarged image" style="position: {{zPos}}; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; box-sizing: border-box; padding: 72px 88px 40px; background: rgba(10, 12, 34, 0.95); border-radius: {{zRadius}}; display: flex; flex-direction: column; align-items: center; justify-content: {{zAlign}}; gap: 16px; cursor: zoom-out">
+<div class="aq-zw" style="display: {{zd_s02}}; position: relative; max-width: 100%; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/s02.jpg" alt="The three basic actions. Point at each card to see its note, as in the original presentation." style="display: block; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px"><span class="aq-hs aq-hs1" style="left: 20.7%; top: 33%; width: 17.6%; height: 40.2%"></span><span class="aq-hs aq-hs2" style="left: 40.8%; top: 33%; width: 17.6%; height: 40.2%"></span><span class="aq-hs aq-hs3" style="left: 60.9%; top: 33%; width: 17.6%; height: 40.2%"></span><img class="aq-hv aq-hv1" src="img/asphalt/s02-h1.jpg" alt="" aria-hidden="true"><img class="aq-hv aq-hv2" src="img/asphalt/s02-h2.jpg" alt="" aria-hidden="true"><img class="aq-hv aq-hv3" src="img/asphalt/s02-h3.jpg" alt="" aria-hidden="true"></div><img src="img/asphalt/s03.jpg" alt="The resources in three groups. The shop button opens a popup." style="display: {{zd_s03}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/s08.jpg" alt="The shop popup: real money buys tokens, and tokens buy credits. Prices as the game showed them in 2026, so they may have changed since." style="display: {{zd_s08}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/s04.jpg" alt="Each basic action, with what it earns above (green) and what it spends below (red)." style="display: {{zd_s04}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/s05.jpg" alt="The initial core loop, with each step’s inputs and outputs." style="display: {{zd_s05}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/s06.jpg" alt="The wider loop with its legend: start, main and secondary actions, conditions, consequences, inputs and outputs. In full screen, move the cursor over the loop to magnify it." style="display: {{zd_s06}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/f-garage.jpg" alt="The garage: the car’s stats, its rank, the recommended rank and the fuel left." style="display: {{zd_g1}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/f-season-map.jpg" alt="The season map: flags unlock new races, and each race shows its reward." style="display: {{zd_g2}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/f-race-results.jpg" alt="Race results: credits, reputation points and blueprint cards." style="display: {{zd_g3}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)"><img src="img/asphalt/f-upgrades.jpg" alt="Upgrades: each one raises the car’s rank." style="display: {{zd_g4}}; max-width: 100%; max-height: {{zMaxH}}; object-fit: contain; border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
+<div style="max-width: 900px; display: flex; gap: 18px; align-items: baseline; font-size: 15px; line-height: 1.5; color: #FFFFFF"><span style="font-weight: 800; color: #FFFFFF; flex-shrink: 0">{{zCount}}</span><span>{{zCap}}</span></div>
+<button class="h-btn h-round" type="button" onClick="{{closeZoom}}" aria-label="Close" style="position: absolute; top: 20px; right: 20px; width: 48px; height: 48px; border-radius: 999px; border: 2px solid #D3C9B6; background: #F5F0E8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#4B1D26" stroke-width="2" stroke-linecap="round"><path d="M2 2l12 12M14 2L2 14"></path></svg></button>
+<sc-if value="{{zMany}}" hint-placeholder-val="{{true}}">
+<button class="h-btn h-round" type="button" onClick="{{prevZoom}}" aria-label="Previous image" style="position: absolute; left: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #D3C9B6; background: #F5F0E8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#4B1D26" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3L5 9l6 6"></path></svg></button>
+<button class="h-btn h-round" type="button" onClick="{{nextZoom}}" aria-label="Next image" style="position: absolute; right: 20px; top: {{zArrowTop}}; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 999px; border: 2px solid #D3C9B6; background: #F5F0E8; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#4B1D26" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3l6 6-6 6"></path></svg></button>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+</div>
+</section>
+
+<section class="aq-cs" style="flex-shrink: 0; margin: 104px 80px 0; display: flex; flex-direction: column; gap: 24px">
+<h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What I took from it</h2>
+<p style="margin: 0; font-size: 13px; font-weight: 800; letter-spacing: 2px; color: #B92B45">CONCLUSION · WHAT THE ANALYSIS SHOWED</p>
+<div class="aq-cg" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px"><div style="background: #EAE4D8; border-radius: 18px; padding: 28px 30px"><div style="display: flex; align-items: baseline; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #6B5357">01</span><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.3px; color: #4B1D26">The early game is generous.</h3></div><p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; color: #5A3A40">In my first sessions every race paid enough to keep upgrading. There was always a next step, and I felt well rewarded for playing.</p></div><div style="background: #EAE4D8; border-radius: 18px; padding: 28px 30px"><div style="display: flex; align-items: baseline; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #6B5357">02</span><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.3px; color: #4B1D26">Every gate has more than one way through.</h3></div><p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; color: #5A3A40">When a car ran out of fuel, I switched to another one. When a car's rank was too low for a race, I raced with a car that had enough, or upgraded the one I had. I never hit a wall where paying was the only way forward.</p></div><div style="background: #EAE4D8; border-radius: 18px; padding: 28px 30px"><div style="display: flex; align-items: baseline; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #6B5357">03</span><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.3px; color: #4B1D26">The garage stretches the session.</h3></div><p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; color: #5A3A40">Each car spends its own fuel, so every new car means more racing before I have to stop. The garage is part of the economy, not just a collection.</p></div><div style="background: #EAE4D8; border-radius: 18px; padding: 28px 30px"><div style="display: flex; align-items: baseline; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: #6B5357">04</span><h3 style="margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.3px; color: #4B1D26">The loop feeds itself.</h3></div><p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; color: #5A3A40">Races pay credits and part cards, upgrades spend them and raise the rank, and a higher rank opens new races. Tokens sit above it all and can shortcut any gate, but early on the game never pushes them.</p></div></div>
+<div class="aq-cg" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 8px"><div style="border: 2px solid #E0D6C4; border-radius: 18px; padding: 28px 30px"><p style="margin: 0; font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #0F6E62">NEXT STEP</p><p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; color: #5A3A40">If I kept going, I would put numbers on the flow: what each race pays, what each upgrade costs and how many sessions it takes to reach the next rank. That would show when the early generosity slows down and the gates start to bite.</p></div><div style="background: #4B1D26; border: 2px solid #4B1D26; border-radius: 18px; padding: 28px 30px"><p style="margin: 0; font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #E8C27A">WHAT I LEARNED</p><p style="margin: 12px 0 0; font-size: 17px; line-height: 1.6; color: #F5F0E8">Splitting a game into actions and resources, and what each one spends and earns, makes its economy readable. I only understood why the game felt so fair once I had mapped it.</p></div></div>
+</section>
+<footer class="m-pfooter" style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #E0D8C8; display: flex; justify-content: space-between; align-items: flex-start">
+<a class="t-link" href="seat-cupra-hmi.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">PREVIOUS CARD · 04</span><span style="font-weight: 800; font-size: 24px">← SEAT &amp; CUPRA HMI</span></a>
+<a class="t-link" href="racing-project.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; align-items: flex-end"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">NEXT CARD · 01</span><span style="font-weight: 800; font-size: 24px">F2P racing game →</span></a>
+</footer>
+
+</div>
+</template>
+<noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
+<script src="dc.js"></script>
+<script src="mobile.js"></script>
+<script>window.DC_PROPS = {};
+
+const ZOOM = [{"id": "s02", "panel": "isActions", "cap": "The three basic actions. Point at each card to see its note, as in the original presentation."}, {"id": "s03", "panel": "isResources", "cap": "The resources in three groups. The shop button opens a popup."}, {"id": "s08", "panel": "isResources", "cap": "The shop popup: real money buys tokens, and tokens buy credits. Prices as the game showed them in 2026, so they may have changed since."}, {"id": "s04", "panel": "isIo", "cap": "Each basic action, with what it earns above (green) and what it spends below (red)."}, {"id": "s05", "panel": "isCore", "cap": "The initial core loop, with each step\u2019s inputs and outputs."}, {"id": "s06", "panel": "isLoop", "cap": "The wider loop with its legend: start, main and secondary actions, conditions, consequences, inputs and outputs. In full screen, move the cursor over the loop to magnify it."}, {"id": "g1", "panel": "isGame", "cap": "The garage: the car\u2019s stats, its rank, the recommended rank and the fuel left."}, {"id": "g2", "panel": "isGame", "cap": "The season map: flags unlock new races, and each race shows its reward."}, {"id": "g3", "panel": "isGame", "cap": "Race results: credits, reputation points and blueprint cards."}, {"id": "g4", "panel": "isGame", "cap": "Upgrades: each one raises the car\u2019s rank."}];
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { picked: 'actions', zoom: null };
+if (typeof window !== 'undefined') {
+window.addEventListener('keydown', (ev) => {
+if (this.state.zoom === null) return;
+if (ev.key === 'Escape') this.setState({ zoom: null });
+if (ev.key === 'ArrowRight') this.step(1);
+if (ev.key === 'ArrowLeft') this.step(-1);
+});
+}
+}
+step(d) {
+const g = this.group();
+if (!g.length) return;
+const i = g.indexOf(this.state.zoom);
+this.setState({ zoom: g[(i + d + g.length) % g.length] });
+}
+group() {
+const z = ZOOM.find((x) => x.id === this.state.zoom);
+return z ? ZOOM.filter((x) => x.panel === z.panel).map((x) => x.id) : [];
+}
+renderVals() {
+// Full-screen view of the wider loop: a lens magnifies whatever is under the cursor.
+if (!this._aqLens && typeof document !== 'undefined') {
+  this._aqLens = true;
+  const lens = document.createElement('div'); lens.className = 'aq-lens'; document.body.appendChild(lens);
+  const Z = 2.0, S = 240, HD = 'img/asphalt/s06-hd.jpg';
+  const hide = () => { lens.style.display = 'none'; };
+  document.addEventListener('mousemove', (e) => {
+    const t = e.target;
+    const im = t && t.tagName === 'IMG' && t.closest && t.closest('[role="dialog"]') && /s06\.jpg$/.test(t.getAttribute('src') || '') ? t : null;
+    if (!im) { hide(); return; }
+    const r = im.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    lens.style.display = 'block';
+    lens.style.left = (e.clientX - S / 2) + 'px'; lens.style.top = (e.clientY - S / 2) + 'px';
+    lens.style.backgroundImage = 'url(' + HD + ')';
+    lens.style.backgroundSize = (r.width * Z) + 'px ' + (r.height * Z) + 'px';
+    lens.style.backgroundPosition = (S / 2 - x * Z) + 'px ' + (S / 2 - y * Z) + 'px';
+  });
+  document.addEventListener('mouseout', (e) => { if (!e.relatedTarget) hide(); });
+  document.addEventListener('click', hide);
+}
+
+// Project pages: the hero card answers like the cards in the Home.
+// Mouse: see hover_tilt.js. Touch: it tilts under the finger and the foil follows.
+if (!this._pcTilt && typeof document !== 'undefined') {
+  this._pcTilt = true;
+    const wrap = (t) => t && t.closest ? t.closest('.pc-wrap') : null;
+  const tiltOf = (w) => w.querySelector('.pc-tilt');
+  const reset = (w) => { const t = tiltOf(w); w.classList.remove('playing'); if (t) t.style.transform = ''; };
+  let on = null;
+  const follow = (x, y) => {
+    const r = on.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (x - r.left) / r.width)), py = Math.min(1, Math.max(0, (y - r.top) / r.height));
+    tiltOf(on).style.transform = 'rotateX(' + ((0.5 - py) * 26).toFixed(1) + 'deg) rotateY(' + ((px - 0.5) * 30).toFixed(1) + 'deg) scale(1.04)';
+    on.style.setProperty('--fx', (px * 100).toFixed(1) + '%');
+    on.style.setProperty('--fy', (py * 100).toFixed(1) + '%');
+  };
+  document.addEventListener('touchstart', (e) => {
+    const w = wrap(e.target);
+    if (!w || e.touches.length > 1) return;
+    on = w; w.classList.add('playing');
+    follow(e.touches[0].clientX, e.touches[0].clientY);  // the card answers the finger straight away
+  }, { passive: true });
+  document.addEventListener('touchmove', (e) => {
+    if (!on) return;
+    e.preventDefault();
+    follow(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: false });
+  const end = () => { if (on) { reset(on); on = null; } };
+  document.addEventListener('touchend', end);
+  document.addEventListener('touchcancel', end);
+}
+
+// Desktop: the card under the cursor tilts toward it. The corner under the cursor rises, the centre keeps it flat.
+// The angles go to two variables on the page root; the CSS applies them only to the hovered card.
+if (!this._hvTilt && typeof document !== 'undefined') {
+  this._hvTilt = true;
+  const MAX = 12;
+  document.addEventListener('mousemove', (e) => {
+    const h = e.target.closest && e.target.closest('.pk .fl, .pc-wrap');
+    if (!h) return;
+    const r = h.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    const s = document.documentElement.style;
+    s.setProperty('--hrx', ((py - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+    s.setProperty('--hry', ((0.5 - px) * 2 * MAX).toFixed(2) + 'deg');
+    h.style.setProperty('--fx', (px * 100).toFixed(1) + '%');
+    h.style.setProperty('--fy', (py * 100).toFixed(1) + '%');
+  });
+}
+
+// desktop: picking another ability starts its content from the top
+if (!this._abScroll && typeof document !== 'undefined') {
+  this._abScroll = true;
+  document.addEventListener('click', (e) => {
+    if (!(e.target.closest && e.target.closest('.ab-btn'))) return;
+    setTimeout(() => { const s = document.querySelector('.ab-scroll'); if (s) s.scrollTop = 0; }, 0);
+  });
+}
+
+const GD = { tone: '#B92B45', ink: '#F4A6B4', fill: '#4B1D26' };
+const UX = { tone: '#0F6E62', ink: '#9ED8CC', fill: '#0A4F46' };
+const list = [
+{ id: 'actions', cat: 'RESEARCH', title: 'Initial actions', ...UX },
+{ id: 'resources', cat: 'ECONOMY', title: 'Basic resources', ...GD },
+{ id: 'io', cat: 'ECONOMY', title: 'Inputs & outputs', ...GD },
+{ id: 'core', cat: 'ECONOMY', title: 'Core game loop', ...GD },
+{ id: 'loop', cat: 'ECONOMY', title: 'More gameplay', ...GD },
+{ id: 'game', cat: 'RESEARCH', title: 'In the game', ...UX }
+];
+const picked = this.state.picked;
+const stop = (ev) => { if (ev && ev.stopPropagation) ev.stopPropagation(); };
+const zoomItem = ZOOM.find((x) => x.id === this.state.zoom) || null;
+const g = this.group();
+const fixed = typeof window !== 'undefined' && window.innerWidth <= 760;
+const zoomHandlers = {};
+ZOOM.forEach((x) => { zoomHandlers['zoom_' + x.id] = () => this.setState({ zoom: x.id }); zoomHandlers['zd_' + x.id] = (zoomItem && zoomItem.id === x.id) ? 'block' : 'none'; });
+const abilities = list.map((a) => {
+const on = a.id === picked;
+return {
+...a,
+bg: on ? (a.fill || '#4B1D26') : '#EAE4D8',
+fg: on ? '#F5F0E8' : '#4B1D26',
+border: on ? '4px solid ' + a.tone : '2px solid #D3C9B6',
+catColor: on ? a.ink : a.tone,
+shift: on ? 'translateX(8px)' : 'none', tone: a.tone || '#4B1D26',
+pick: () => this.setState({ picked: a.id, zoom: null })
+};
+});
+const selected = list.find((a) => a.id === picked) || list[0];
+return {
+...zoomHandlers,
+zoomOn: !!zoomItem,
+zImg: zoomItem ? zoomItem.id : '',
+zCap: zoomItem ? zoomItem.cap : '',
+zCount: zoomItem ? (g.indexOf(zoomItem.id) + 1) + ' / ' + g.length : '',
+zMany: g.length > 1,
+zPos: fixed ? 'fixed' : 'absolute',
+zRadius: fixed ? '0' : '28px',
+zAlign: 'center',
+zArrowTop: '50%',
+zMaxH: fixed ? 'calc(100vh - 190px)' : 'calc(100% - 60px)',
+closeZoom: (ev) => { stop(ev); this.setState({ zoom: null }); },
+prevZoom: (ev) => { stop(ev); this.step(-1); },
+nextZoom: (ev) => { stop(ev); this.step(1); },
+tone: selected.tone,
+abilities,
+isActions: picked === 'actions',
+isResources: picked === 'resources',
+isIo: picked === 'io',
+isCore: picked === 'core',
+isLoop: picked === 'loop',
+isGame: picked === 'game'
+};
+}
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>F2P casual game · Eduard Arajol</title>
+<meta name="description" content="F2P casual mobile game under NDA: features, FTUE, flows, reworks and the GDD.">
+<link rel="canonical" href="https://eduarajol.github.io/client-project.html">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4">
+<link rel="icon" href="favicon-192.png?v=4" sizes="192x192" type="image/png">
+<link rel="icon" href="favicon-32.png?v=4" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon.ico?v=4" sizes="any">
+<link rel="icon" href="favicon.svg?v=4" type="image/svg+xml">
+<meta name="theme-color" content="#F5F0E8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="F2P casual game · Eduard Arajol">
+<meta property="og:description" content="F2P casual mobile game under NDA: features, FTUE, flows, reworks and the GDD.">
+<meta property="og:url" content="https://eduarajol.github.io/client-project.html">
+<meta property="og:image" content="https://eduarajol.github.io/og.png?v=4">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin-ext.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-display:swap;font-weight:200 800;font-stretch:75% 100%;src:url(fonts/bricolage-latin.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<style>
+body{margin:0;background:#F5F0E8;color:#4B1D26;font-family:'Bricolage Grotesque',system-ui,sans-serif}
+a{color:#4B1D26}a:hover{color:#7A5F33}
+/* interaction states */
+.h-btn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+@media (hover: hover){.h-yellow:hover{background:#F3E3C6 !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(120,80,60,.28)}}
+@media (hover: hover){.h-outline-light:hover{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important;transform:translateY(-2px)}}
+@media (hover: hover){.h-dark:hover{background:#FFFFFF !important;color:#4B1D26 !important;transform:translateY(-2px);box-shadow:0 8px 18px rgba(18,22,58,.25)}}
+@media (hover: hover){.h-outline-dark:hover{background:#4B1D26 !important;color:#EBD3A8 !important;transform:translateY(-2px)}}
+.h-outline-light:active{background:#4B1D26 !important;color:#F5F0E8 !important;border-color:#4B1D26 !important}
+.h-yellow:active,.h-outline-light:active,.h-dark:active,.h-outline-dark:active{transform:translateY(0);box-shadow:none}
+@media (hover: hover){.h-round:hover{border-color:#C9A86E !important;background:#E0D8C8 !important}}
+@media (hover: hover){.h-round:hover svg{stroke:#C9A86E}}
+.h-round:active{background:#D3C9B6 !important}
+.h-btn:focus-visible,.faq-q:focus-visible{outline:3px solid #C9A86E;outline-offset:3px}
+.faq-q{transition:background-color .18s ease,color .18s ease}
+@media (hover: hover){.faq-q:hover{background:#E0D8C8 !important;color:#7A5F33 !important}}
+.faq-item{transition:border-color .18s ease,background-color .18s ease}
+.faq-item:has(.faq-q[aria-expanded="false"]:hover){border-color:#D3C9B6 !important}
+.faq-item.is-open{cursor:pointer}
+@media (hover: hover){.faq-item.is-open:hover{background:#E0D8C8 !important}}
+@media (hover: hover){.faq-item.is-open:hover .faq-q{background:transparent !important;color:#7A5F33 !important}}
+.t-nav,.t-link{transition:color .18s ease,text-decoration-color .18s ease}
+.t-logo path{transition:fill .18s ease}
+@media (hover: hover){.t-nav:hover{color:#7A5F33 !important;text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:6px !important}}
+@media (hover: hover){.t-link:hover{color:#7A5F33 !important}}
+@media (hover: hover){.t-logo:hover path{fill:#C9A86E}}
+.t-nav:focus-visible,.t-link:focus-visible,.t-logo:focus-visible{outline:3px solid #C9A86E;outline-offset:4px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){.h-btn,.faq-q,.faq-item,.t-nav,.t-link,.t-logo path{transition:none}.h-btn:hover{transform:none}}
+/* fixed header */
+.site-header{position:sticky;top:0;z-index:40}
+/* the bar's background spans the whole window, even when the page column is narrower */
+.site-header::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;background:rgba(245,240,232,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:box-shadow .2s ease}
+.is-scrolled .site-header::before{box-shadow:0 1px 0 #E0D8C8,0 10px 24px rgba(0,0,0,.25)}
+/* yellow Home footer also runs edge to edge */
+.bleed-yellow{box-shadow:0 0 0 100vmax #EBD3A8;clip-path:inset(0 -100vmax)}
+[id]{scroll-margin-top:100px}
+/* no single word left alone on the last line */
+p,li,h1,h2,h3,figcaption,div,span,a,button{text-wrap:pretty}
+/* end interaction states */
+
+.f2p-glow{box-shadow:-9px -7px 28px -6px rgba(185,43,69,.55),9px 9px 28px -6px rgba(15,110,98,.55) !important}.f2p-glow{position:relative;isolation:isolate}.f2p-glow>*{position:relative;z-index:2}.f2p-glow::before,.f2p-glow::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:1;transition:opacity .6s ease,filter .6s ease}.f2p-glow::before{background:repeating-linear-gradient(115deg,#ff8a9a 0%,#ffd88a 8%,#b6f5a0 16%,#8fe8ff 24%,#a9a8ff 32%,#f3a8ff 40%,#ff8a9a 48%);background-size:220% 220%;mix-blend-mode:multiply;opacity:.13;animation:foilDrift 9s ease-in-out infinite alternate}.f2p-glow::after{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9) 0 .6px,transparent 1.2px) 0 0/7px 7px,radial-gradient(circle at 70% 60%,rgba(120,90,160,.35) 0 .5px,transparent 1.1px) 0 0/11px 11px,linear-gradient(125deg,transparent 30%,rgba(255,255,255,.55) 45%,transparent 60%) 0 0/250% 250%;opacity:.45;animation:foilGlare 7s ease-in-out infinite alternate}.f2p-glow:hover::before,.fl:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.f2p-glow:hover::after,.fl:hover .f2p-glow::after{opacity:1}@keyframes foilDrift{0%{background-position:0% 50%}100%{background-position:100% 50%}}@keyframes foilGlare{0%{background-position:0 0,0 0,0% 0%}100%{background-position:0 0,0 0,100% 100%}}@media (prefers-reduced-motion:reduce){.f2p-glow::before,.f2p-glow::after{animation:none}}.dc{position:relative;box-sizing:border-box;flex-shrink:0;border-radius:1.7em;padding:.9em;background:var(--fr);display:flex;flex-direction:column;gap:.6em;color:var(--ink);text-decoration:none;overflow:hidden;font-weight:400;line-height:normal;text-align:left;box-shadow:0 1.4em 2.8em rgba(75,29,38,.22)}.dc.k-gd{--fr:linear-gradient(160deg,#C8394F,#8E1F33);--ink:#7A1F33}.dc.k-ux{--fr:linear-gradient(160deg,#17846F,#0A4F46);--ink:#0A4F46}.dc.k-top{--fr:linear-gradient(135deg,#C8394F 0%,#E8C27A 30%,#5FC7A8 60%,#0F6E62 100%);--ink:#4B1D26}.dc.k-sq{--fr:#FFFFFF;--ink:#7A1F33;padding:.6em;box-shadow:0 1.4em 2.8em rgba(75,29,38,.18)}.dc.k-sq .dc-head,.dc.k-sq .dc-type,.dc.k-sq .dc-text{background:#F5F0E8}.dc.k-sq .dc-head{box-shadow:none}.dc.k-sq .dc-art{border-color:#F5F0E8}.dc.k-sq .dc-foot{color:#7A1F33;text-shadow:none}.dc-head{display:flex;align-items:center;gap:.6em;font-weight:800;background:#FFFBF4;border-radius:.8em;padding:.7em .9em;box-shadow:inset 0 -.2em 0 rgba(0,0,0,.08)}.dc-title{flex:1;min-width:0;font-size:1.7em;letter-spacing:-.02em;line-height:1.1}.dc-gems{display:inline-flex;gap:.3em}.dc-num{font-size:1.5em}.dc-gem{display:inline-block;width:1.1em;height:1.1em;flex-shrink:0;box-sizing:border-box}.g-gd{background:#B92B45;transform:rotate(45deg) scale(.85);border-radius:.2em}.g-ux{background:#0F6E62;border-radius:50%}.g-sq{border:.2em solid #B92B45;transform:rotate(45deg) scale(.8);border-radius:.2em}.dc-art{position:relative;height:12.8em;flex-shrink:0;border-radius:.6em;border:.3em solid #FFFBF4;box-shadow:0 .2em .6em rgba(0,0,0,.25);overflow:hidden}.dc-art img,.dc-art svg{display:block;width:100%;height:100%;object-fit:cover}.dc-type{background:#FFFBF4;border-radius:.6em;padding:.4em .9em;font-size:.95em;font-weight:800;letter-spacing:.1em}.dc-text{flex:1;min-height:0;background:rgba(255,251,244,.94);border-radius:.6em;padding:.7em .9em;font-size:1.15em;line-height:1.42}.dc-foot{display:flex;justify-content:space-between;gap:.8em;font-size:.95em;font-weight:800;letter-spacing:.1em;color:#FFFBF4;padding:.2em .4em 0;text-shadow:0 1px 1px rgba(0,0,0,.3)}.dc-foot span{white-space:nowrap}.dc.k-top .dc-foot{text-shadow:0 1px 3px rgba(0,0,0,.6)}a.dc.k-gd:hover,a.dc.k-sq:hover{color:#B92B45}a.dc.k-ux:hover{color:#0F6E62}a.dc.k-top:hover{color:#4B1D26}.dc.f2p-glow::before{mix-blend-mode:overlay;opacity:.35;background-size:240% 240%}.dc.f2p-glow::after{background-image:radial-gradient(circle at var(--fx,50%) var(--fy,50%),rgba(255,255,255,.75),transparent 45%) !important;background-size:100% 100% !important;mix-blend-mode:soft-light;opacity:0;animation:none !important}.fl:hover .dc.f2p-glow::before,.pc-wrap:hover .dc.f2p-glow::before,.slot.on .dc.f2p-glow::before,.fl.playing .dc.f2p-glow::before,.pc-wrap.playing .dc.f2p-glow::before{opacity:.7 !important;animation:none !important;background-position:var(--fx,50%) var(--fy,50%) !important}.fl:hover .dc.f2p-glow::after,.pc-wrap:hover .dc.f2p-glow::after,.slot.on .dc.f2p-glow::after,.fl.playing .dc.f2p-glow::after,.pc-wrap.playing .dc.f2p-glow::after{opacity:1 !important}
+
+/* desktop: the panel is as tall as the abilities column, its content scrolls inside, and an enlarged image fills the panel */.ab-scroll{display:contents}@media (min-width:761px){.ab-panel{align-self:stretch;min-height:660px;padding:0 !important;position:relative !important;overflow:hidden}.ab-scroll{display:flex;flex-direction:column;gap:44px;position:absolute;inset:0;overflow-y:auto;padding:48px;box-sizing:border-box;overscroll-behavior:contain;}.ab-scroll::-webkit-scrollbar{width:10px}.ab-scroll::-webkit-scrollbar-track{background:rgba(75,29,38,.07);border-radius:99px;margin:28px 0}.ab-scroll::-webkit-scrollbar-thumb{background:#B9A68A;border-radius:99px;border:2px solid #EAE4D8}.ab-scroll::-webkit-scrollbar-thumb:hover{background:#9C8669}@supports not selector(::-webkit-scrollbar){.ab-scroll{scrollbar-width:thin;scrollbar-color:#B9A68A rgba(75,29,38,.07)}}}
+
+.ab-btn{transition:transform .2s cubic-bezier(.2,.8,.2,1),background .2s ease,border-color .2s ease,box-shadow .2s ease}@media (hover:hover){.ab-btn:not([style*="4px solid"]):hover{border-color:var(--tone) !important;background:color-mix(in srgb,var(--tone) 9%,#EAE4D8) !important;transform:translateX(4px) !important;box-shadow:0 6px 14px rgba(75,29,38,.12)}.ab-btn[style*="4px solid"]:hover{box-shadow:0 8px 18px rgba(75,29,38,.22)}}
+
+.pc-wrap{display:flex;justify-content:center;flex-shrink:0;perspective:900px;touch-action:pan-y}.pc-float{animation:pcFloat 4.5s ease-in-out infinite}@keyframes pcFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}.pc-wrap:hover,.pc-wrap.playing{animation-play-state:paused}.pc-tilt{transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.pc-wrap.playing .pc-tilt{transition:transform .08s linear}@media (hover:hover){.pc-wrap:hover:not(.playing) .pc-tilt{transform:translateY(-12px) rotateX(var(--hrx,0deg)) rotateY(var(--hry,0deg)) scale(1.04);transition:transform .14s ease-out}}.pc-wrap:hover .f2p-glow::before{opacity:.36;filter:saturate(1.15) brightness(1.03)}.pc-wrap:hover .f2p-glow::after{opacity:1}.pc-wrap.playing .f2p-glow::before{opacity:.4;filter:saturate(1.15) brightness(1.03);animation:none;background-position:var(--fx) var(--fy)}.pc-wrap.playing .f2p-glow::after{opacity:1;animation:none;background-position:0 0,0 0,var(--fx) var(--fy)}@media (prefers-reduced-motion:reduce){.pc-float{animation:none}}section:has(.pc-wrap) div:has(+ h1){min-height:24px;line-height:24px}@media (min-width:761px){section:has(> .pc-wrap){align-items:flex-start !important}section:has(> .pc-wrap)>div:last-child{margin-top:16px}}
+
+.sb-link{text-decoration:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px}.sb-next{align-items:flex-end;justify-self:end}div:has(> .sb-link){display:grid !important;grid-template-columns:1fr auto 1fr !important}div:has(> .sb-link)>:not(.sb-link){justify-self:center;text-align:center}.sb-label{font-size:13px;font-weight:700;letter-spacing:2px;color:#6B5357}.sb-name{font-weight:800;font-size:20px}.sb-short{display:none;font-weight:800;font-size:15px}@media (min-width:761px){div:has(> .sb-link){height:auto !important;padding-top:16px !important;padding-bottom:16px !important}}
+.hb-root{position:relative;isolation:isolate;background:transparent !important}.hb-root::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:max(100%,100vw);transform:translateX(-50%);z-index:-1;pointer-events:none;background:radial-gradient(900px 620px at 72% 6%,rgba(235,211,168,.85),transparent 70%),radial-gradient(800px 600px at 18% 46%,rgba(235,211,168,.6),transparent 70%),linear-gradient(180deg,#F5F0E8 0%,#F0E3CE 16%,#F5F0E8 38%,#F1E6D4 62%,#F5F0E8 82%,#EFE1CA 100%)}.hb-root .site-header::before{background:rgba(245,240,232,.45) !important;-webkit-backdrop-filter:blur(18px) saturate(160%) !important;backdrop-filter:blur(18px) saturate(160%) !important;box-shadow:inset 0 -1px 0 rgba(255,255,255,.55),0 1px 0 rgba(75,29,38,.06) !important}.ally-sec div[style*="overflow: hidden"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 76px,#000 calc(100% - 96px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 76px,#000 calc(100% - 96px),transparent 100%)}@media (max-width:760px){.ally-sec div[style*="overflow: hidden"]{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%)}}.is-scrolled .hb-root .site-header::before{background:rgba(245,240,232,.6) !important;box-shadow:inset 0 -1px 0 rgba(255,255,255,.55),0 1px 0 rgba(75,29,38,.08),0 10px 24px rgba(75,29,38,.12) !important}</style>
+<style>html{scroll-behavior:smooth}html,body{overflow-x:clip}[id]{scroll-margin-top:100px}#faq,#profile{scroll-margin-top:150px}@media (max-width:760px){[id]{scroll-margin-top:72px}#faq,#profile{scroll-margin-top:100px}}</style>
+<link rel="stylesheet" href="mobile.css">
+</head>
+<body id="top">
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="m-root hb-root" style="width: 1440px; margin: 0 auto; box-sizing: border-box; background: #F5F0E8; color: #4B1D26; font-family: 'Bricolage Grotesque', system-ui, sans-serif; display: flex; flex-direction: column">
+
+<header class="m-header site-header" style="height: 84px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between">
+<a class="t-logo" href="index.html" aria-label="Eduard Arajol · home" style="display: block; width: 40px; height: 40px; text-decoration: none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="#4B1D26" fill-rule="evenodd" d="M1 0H19A1 1 0 0 1 20 1V19A1 1 0 0 1 19 20H1A1 1 0 0 1 0 19V1A1 1 0 0 1 1 0Z M2.5 2A0.5 0.5 0 0 0 2 2.5V17.5A0.5 0.5 0 0 0 2.5 18H17.5A0.5 0.5 0 0 0 18 17.5V2.5A0.5 0.5 0 0 0 17.5 2Z M5 4H15A1 1 0 0 1 16 5V16H5A1 1 0 0 1 4 15V5A1 1 0 0 1 5 4Z M6.5 6H14V9H11V11H14V16H10V14H6.5A0.5 0.5 0 0 1 6 13.5V11.5A0.5 0.5 0 0 1 6.5 11H9V9H6.5A0.5 0.5 0 0 1 6 8.5V6.5A0.5 0.5 0 0 1 6.5 6Z"/></svg></a>
+<nav class="m-nav" style="display: flex; gap: 32px; align-items: center; font-weight: 500; font-size: 16px">
+<a class="t-nav" href="index.html#deck" style="text-decoration: none">Work</a>
+<a class="t-nav" href="index.html#profile" style="text-decoration: none">About</a>
+<a class="t-nav" href="index.html#faq" style="text-decoration: none">FAQ</a>
+<a class="t-nav" href="Eduard_Arajol_CV.pdf" target="_blank" rel="noopener" style="text-decoration: none">CV <svg width="11" height="11" viewBox="0 0 10 10" aria-hidden="true" style="display: inline-block; vertical-align: 0px"><path d="M2.6 7.4L7 3M3.4 3H7v3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(-0.2 0.2)"></path></svg></a>
+<a class="h-btn h-yellow" href="index.html#contact" style="text-decoration: none; padding: 12px 20px; background: #EBD3A8; color: #4B1D26; border-radius: 10px; font-weight: 700">Contact</a>
+</nav>
+</header>
+<div class="m-subbar" style="height: 60px; flex-shrink: 0; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #E0D8C8; border-bottom: 1px solid #E0D8C8">
+<a class="t-link sb-link" href="racing-project.html"><span class="sb-label">PREVIOUS CARD · 01</span><span class="sb-name">← F2P racing game</span><span class="sb-short">← PREVIOUS</span></a>
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #6B5357">CARD 02 OF 04</div>
+<a class="t-link sb-link sb-next" href="oceans-one.html"><span class="sb-label">NEXT CARD · 03</span><span class="sb-name">Ocean's One →</span><span class="sb-short">NEXT →</span></a>
+</div>
+
+<section class="m-phero" style="flex-shrink: 0; padding: 72px 80px 0; display: flex; gap: 72px; align-items: center">
+<div class="pc-wrap pc-float"><div class="pc-tilt"><div class="m-pcard dc k-top f2p-glow" style="width: 300px; height: 430px; font-size: 12.500px; transform: rotate(-4deg); box-shadow: 0 24px 40px rgba(0,0,0,0.35)"><div class="dc-head"><span class="dc-title">F2P casual game</span><span class="dc-gems"><i class="dc-gem g-gd"></i><i class="dc-gem g-ux"></i></span><span class="dc-num">02</span></div><div class="dc-art"><svg viewBox="0 0 120 80" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display: block"><rect width="120" height="80" fill="#4B1D26"/><g transform="rotate(-10 45 42)"><rect x="28" y="16" width="34" height="48" rx="5" fill="#ECECEF" stroke="#fff" stroke-width="2.5"/></g><g transform="rotate(8 75 40)"><rect x="58" y="14" width="34" height="48" rx="5" fill="#E5506A" stroke="#fff" stroke-width="2.5"/></g><rect x="49" y="40" width="22" height="17" rx="3" fill="#C9A86E"/><path d="M53 40v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#C9A86E" stroke-width="3"/><circle cx="60" cy="48" r="2.2" fill="#4B1D26"/></svg></div><div class="dc-type">GAME DESIGN · UX</div><div class="dc-text">Features, FTUE, flows, reworks and the GDD.</div><div class="dc-foot"><span>2026 — NOW</span><span>IN DEV</span></div></div></div></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-weight: 700; font-size: 14px; letter-spacing: 2px; color: #7A5F33"><span>2026 — NOW · IN DEVELOPMENT</span><span style="display: inline-flex; align-items: center; gap: 5px; padding: 6.5px 10px 6.5px 9px; background: #EBD3A8; border-radius: 6px; font-size: 12px; font-weight: 800; letter-spacing: 1.4px; line-height: 1; color: #4B1D26; white-space: nowrap"><svg width="10" height="11" viewBox="0 0 8 9" aria-hidden="true"><rect x="0.8" y="3.8" width="6.4" height="4.6" rx="1" fill="#4B1D26"></rect><path d="M2.2 3.8V2.6a1.8 1.8 0 0 1 3.6 0v1.2" fill="none" stroke="#4B1D26" stroke-width="1.1"></path></svg>UNDER NDA</span></div>
+<h1 class="m-ph1" style="margin: 0; font-weight: 800; font-size: 88px; line-height: 0.95; letter-spacing: -2.5px">F2P casual game</h1>
+<p class="m-plead" style="margin: 0; max-width: 720px; font-size: 21px; line-height: 1.5; color: #5A3A40">Game and UX design for a game studio client: from designing new features from scratch to rethinking existing ones, and documenting it all so the team could build it.</p>
+<div class="m-facts" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 8px">
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">ROLE</div><div style="font-weight: 700; font-size: 16px">Game &amp; UX Designer</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">PERIOD</div><div style="font-weight: 700; font-size: 16px">2026 — now</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">TYPE</div><div style="font-weight: 700; font-size: 16px">Free-to-play casual mobile</div></div>
+<div style="padding: 16px 18px; background: #EAE4D8; border-radius: 14px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; color: #6B5357">SETUP</div><div style="font-weight: 700; font-size: 16px">Freelance</div></div>
+</div>
+</div>
+</section>
+
+<div class="m-note" style="flex-shrink: 0; margin: 88px 80px 0; padding: 16px 20px; border: 2px dashed #D3C9B6; border-radius: 14px; display: flex; gap: 14px; align-items: center; font-size: 15px; line-height: 1.5; color: #5A3A40">
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8A7F72" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2"></rect><path d="M7 9V6a3 3 0 0 1 6 0v3"></path></svg>
+<span>This project is under NDA. No client name, project material or specific mechanics are shown. Below is what I owned and how I worked.</span>
+</div>
+
+<section class="m-owned" style="flex-shrink: 0; padding: 104px 80px 0; display: flex; flex-direction: column; gap: 32px">
+<div class="m-sechead" style="display: flex; justify-content: space-between; align-items: baseline">
+<h2 style="margin: 0; font-weight: 800; font-size: 52px; letter-spacing: -1.5px">What I owned</h2>
+</div>
+
+<div class="m-owned-body" style="display: flex; gap: 40px; align-items: flex-start">
+
+<div class="m-tabs" style="width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{abilities}}" as="item" hint-placeholder-count="8">
+<button class="m-tab ab-btn" type="button" onClick="{{item.pick}}" style="--tone: {{item.tone}}; width: 100%; box-sizing: border-box; padding: 14px 16px; background: {{item.bg}}; color: {{item.fg}}; border: {{item.border}}; border-radius: 14px; font-family: inherit; text-align: left; display: flex; flex-direction: column; gap: 5px; cursor: pointer; transform: {{item.shift}}">
+<span style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: {{item.catColor}}">{{item.cat}}</span>
+<span style="font-weight: 800; font-size: 17px; line-height: 1.15">{{item.title}}</span>
+</button>
+</sc-for>
+</div>
+
+<div class="m-panel ab-panel" style="flex-grow: 1; box-sizing: border-box; padding: 48px; background: #EAE4D8; border-radius: 28px; display: flex; flex-direction: column; gap: 44px">
+<div class="ab-scroll">
+
+<sc-if value="{{isFeature}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">GAME DESIGN · FEATURE DESIGN &amp; ONE-PAGERS</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Features built on the pillars</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I designed new features from scratch, each documented in its own one-pager: the player experience, design goals, mechanics and the dynamics they create. I scored every proposal against the game's pillars and flagged its risks, so the team could decide with the full picture. Before proposing anything, I reviewed the game economy documentation (currencies, prices and rewards) so each feature fit the existing balance.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I APPROACH A FEATURE</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Start from the pillars</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">What must this feature reinforce?</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Write the player moment</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">A short first-person story of how it feels.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Set design goals</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Testable: you can say if you met them.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Mechanics → dynamics</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">The rules, and the behaviour they create.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Score against pillars</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Strengths and risks, side by side.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Flag what to prototype</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">So the team tests the riskiest part first.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">PRINCIPLES I APPLIED ACROSS EVERY FEATURE</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 14px"><span style="padding: 7px 11px; background: #FFFFFF; border-radius: 8px">input</span>→<span style="padding: 7px 11px; background: #FFFFFF; border-radius: 8px">result</span></div>
+<div style="font-weight: 800; font-size: 21px">Reads instantly</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Each core interaction is understood at first sight, with no tutorial and a direct cause and effect.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: flex-end; gap: 8px; padding: 14px; box-sizing: border-box">
+<div style="flex-grow: 1; height: 18%; background: #D3C9B6; border-radius: 4px"></div>
+<div style="flex-grow: 1; height: 34%; background: #D3C9B6; border-radius: 4px"></div>
+<div style="flex-grow: 1; height: 55%; background: #D3C9B6; border-radius: 4px"></div>
+<div style="flex-grow: 1; height: 76%; background: #D3C9B6; border-radius: 4px"></div>
+<div style="flex-grow: 1; height: 100%; background: {{tone}}; border-radius: 4px"></div>
+</div>
+<div style="font-weight: 800; font-size: 21px">Tension builds to one moment</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Every feature escalates and concentrates its tension in a single decisive peak.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 10px">
+<span style="width: 30px; height: 30px; border-radius: 999px; background: #9ED8CC"></span>
+<span style="width: 30px; height: 30px; border-radius: 999px; background: #9ED8CC"></span>
+<span style="width: 30px; height: 30px; border-radius: 999px; background: #9ED8CC"></span>
+<span style="width: 30px; height: 30px; border-radius: 999px; border: 3px dashed #D3C9B6; box-sizing: border-box"></span>
+</div>
+<div style="font-weight: 800; font-size: 21px">Progress is always visible</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Players can see where they stand and how close they are, at a glance.</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isBenchmark}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">RESEARCH · BENCHMARK</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">References, not guesses</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">Early in the project, I played games of the same genre and target audience on device, recorded my sessions and redrew their flows in Figma. The findings, shared as a presentation, shaped the FTUE I designed and became the references section of every feature one-pager.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I RAN IT</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Play on device</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">As a real first-time player, from install onwards.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Record &amp; capture</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Every session recorded, key moments captured.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Redraw the flows</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Screen by screen in Figma, explaining each step.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Tag do &amp; don't</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">What fits the game, and what doesn't.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Feed the design</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Into the FTUE and each feature's references.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT IT PRODUCED</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 8px">
+<span style="width: 34px; height: 52px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span>
+<svg width="30" height="64" viewBox="0 0 30 64" fill="none" stroke="#4B1D26" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 28 L25 12"></path><path d="M17 11 L25 12 L23 20"></path><path d="M3 36 L25 52"></path><path d="M23 44 L25 52 L17 53"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 6px">
+<span style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 36px; border-radius: 5px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="padding: 2px 8px; background: #9ED8CC; border-radius: 999px; font-weight: 800; font-size: 11px">DO</span></span>
+<span style="display: flex; align-items: center; gap: 8px"><span style="width: 24px; height: 36px; border-radius: 5px; border: 2px dashed #4B1D26; box-sizing: border-box"></span><span style="padding: 2px 8px; background: #F4A6B4; border-radius: 999px; font-weight: 800; font-size: 11px">DON'T</span></span>
+</span>
+</div>
+<div style="font-weight: 800; font-size: 21px">Do &amp; don't</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Proven patterns worth adapting to the game's pillars, and friction to avoid, spotted by playing as a newcomer.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 14px">
+<span style="padding: 7px 11px; background: #FFFFFF; border-radius: 8px">A</span>
+<span>vs</span>
+<span style="padding: 7px 11px; background: #FFFFFF; border-radius: 8px">B</span>
+</div>
+<div style="font-weight: 800; font-size: 21px">Same goal, other answer</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Features I was designing too, solved differently elsewhere. Useful to compare options.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 6px">
+<span style="width: 32px; height: 52px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span>
+<span style="width: 14px; height: 2px; background: #F5F0E8"></span>
+<span style="width: 32px; height: 52px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span>
+<span style="width: 14px; height: 2px; background: #F5F0E8"></span>
+<span style="width: 32px; height: 52px; border-radius: 6px; background: #FFFFFF; border: 2px solid {{tone}}; box-sizing: border-box"></span>
+<span style="width: 14px; height: 2px; background: #F5F0E8"></span>
+<span style="width: 32px; height: 52px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span>
+</div>
+<div style="font-weight: 800; font-size: 21px">Screenshots → screen flows</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">I rebuilt each game's flows in Figma from my captures, annotating step by step how they solved each moment.</div>
+</div>
+</div>
+</div>
+
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #D3C9B6; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a10 10 0 0 1 17-7l3 3"></path><path d="M24 4v6h-6"></path><path d="M24 14a10 10 0 0 1-17 7l-3-3"></path><path d="M4 24v-6h6"></path></svg>
+<div style="font-size: 17px; line-height: 1.5; color: #5A3A40"><strong style="color: #4B1D26">Not a one-off.</strong> As the project grew, I went back to the market whenever I designed a new feature or rethought an existing one, to see how others solved it before deciding.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isFtue}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">UX · FTUE DEFINITION</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Learning by playing</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I designed the onboarding as scripted tutorials and wrote every step: what triggers it, what the player sees, what's highlighted and how long it takes. The goal: teach the game without the player feeling taught.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">DECISIONS I MADE</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Core first</div><div style="font-size: 14px; line-height: 1.5; color: #5A3A40">The main mechanic comes first because everything else builds on it. Then the rest follows, in the order players naturally meet it.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Guaranteed first moments</div><div style="font-size: 14px; line-height: 1.5; color: #5A3A40">I scripted the key moments so every player sees each mechanic once, in the right order.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Measurable by design</div><div style="font-weight: 400; font-size: 14px; line-height: 1.5; color: #5A3A40">Every step is written so it can be tracked as a funnel.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">A time budget</div><div style="font-size: 14px; line-height: 1.5; color: #5A3A40">I timed every step and balanced its difficulty and pacing. The first version ran long, so I cut what wasn't essential and simplified the rest to fit.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Point, don't explain</div><div style="font-size: 14px; line-height: 1.5; color: #5A3A40">Tooltips, highlights and VFX show the next action right where it happens.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Words that belong to the game</div><div style="font-size: 14px; line-height: 1.5; color: #5A3A40">Tutorial texts written to feel part of the game, not a manual.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW NEW FEATURES ARRIVE</div>
+<div style="padding: 20px; background: #FFFFFF; color: #4B1D26; border-radius: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 5px"><span style="width: 22px; height: 8px; border-radius: 4px; background: {{tone}}; opacity: 1"></span><span style="width: 22px; height: 8px; border-radius: 4px; background: {{tone}}; opacity: .6"></span><span style="width: 22px; height: 8px; border-radius: 4px; background: {{tone}}; opacity: .3"></span></div>
+<div style="font-weight: 800; font-size: 20px">One new thing at a time</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Features unlock as the player advances, each one introduced on its own, never all at once.</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">ANATOMY OF A SCRIPTED STEP</div>
+<div style="border: 2px solid #D3C9B6; border-radius: 16px; overflow: hidden">
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); background: #FFFFFF; color: #4B1D26; font-weight: 800; font-size: 12px; letter-spacing: 0.5px">
+<div style="padding: 12px 10px">Trigger</div><div style="padding: 12px 10px">Screen</div><div style="padding: 12px 10px">Player sees</div><div style="padding: 12px 10px">Highlight</div><div style="padding: 12px 10px">To dismiss</div><div style="padding: 12px 10px">Technique</div><div style="padding: 12px 10px">Time · Line</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; border-top: 1px solid #D3C9B6">
+<div style="padding: 14px 10px"><div style="height: 8px; width: 80%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 60%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 90%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 55%; background: {{tone}}; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 70%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 65%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 40%; background: #D3C9B6; border-radius: 4px"></div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0; border-top: 1px solid #D3C9B6">
+<div style="padding: 14px 10px"><div style="height: 8px; width: 70%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 75%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 85%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 50%; background: {{tone}}; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 60%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 45%; background: #D3C9B6; border-radius: 4px"></div></div>
+<div style="padding: 14px 10px"><div style="height: 8px; width: 55%; background: #D3C9B6; border-radius: 4px"></div></div>
+</div>
+</div>
+<div style="font-size: 14px; color: #6B5357">Every step of every tutorial was written in this format, paired with a storyboard of the matching screens.</div>
+</div>
+
+<div class="m-callout" style="padding: 20px 24px; border: 2px dashed #D3C9B6; border-radius: 16px; font-size: 16px; line-height: 1.5; color: #5A3A40">Every step is written to be measured as a funnel, so the script can be refined with real player data.</div>
+</sc-if>
+
+<sc-if value="{{isFlows}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">UX · SCREEN FLOWS</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Show it before it's built</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">Screen flows were my main way to explain design: proposing new systems, walking through each tutorial and documenting how other games solved the same problems. Drawn in Figma and Miro, they let others understand my proposals even when I wasn't there to explain them.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I BUILD A FLOW</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Start from the goal</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">What the player wants to do, and where they come from.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Happy path first</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">The ideal route, screen by screen.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Then what goes wrong</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Worst and corner cases, each with its own screen.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Annotate it</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Notes on the logic beside every screen.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Offer options</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Alternatives to choose from, not a single answer.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT MY FLOWS ALWAYS COVER</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="10" y="4" width="22" height="30" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<path d="M32 19 H60" stroke="#4B1D26" stroke-width="2"></path>
+<rect x="60" y="4" width="22" height="30" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<path d="M82 19 H110" stroke="#4B1D26" stroke-width="2"></path>
+<rect x="110" y="4" width="22" height="30" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<path d="M132 19 H160" stroke="#4B1D26" stroke-width="2"></path>
+<rect x="160" y="4" width="22" height="30" rx="4" fill="#FFFFFF" stroke="{{tone}}" stroke-width="3"></rect>
+<path d="M71 34 V61 H110" stroke="#E5506A" stroke-width="2" stroke-dasharray="4 4"></path>
+<rect x="110" y="46" width="22" height="30" rx="4" fill="#FFFFFF" stroke="#E5506A" stroke-width="2" stroke-dasharray="4 3"></rect>
+<path d="M132 61 H160" stroke="#E5506A" stroke-width="2" stroke-dasharray="4 4"></path>
+<rect x="160" y="46" width="22" height="30" rx="4" fill="#FFFFFF" stroke="#E5506A" stroke-width="2" stroke-dasharray="4 3"></rect>
+<path d="M121 55 V63 M121 68 V68.5" stroke="#E5506A" stroke-width="2.6"></path>
+<path d="M171 55 V63 M171 68 V68.5" stroke="#E5506A" stroke-width="2.6"></path>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">Beyond the happy path</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Players won't always take the ideal route, so I designed the worst and corner cases too, each with its own screen and its own way out.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="22" y="8" width="34" height="64" rx="6" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="64" y="14" width="46" height="34" rx="4" fill="#1FA38F"></rect>
+<path d="M71 24 H102 M71 31 H98 M71 38 H90" stroke="#4B1D26" stroke-width="2"></path>
+<path d="M126 20 H170" stroke="{{tone}}" stroke-width="3"></path><path d="M163 14 L170 20 L163 26" stroke="{{tone}}" stroke-width="3"></path>
+<path d="M126 40 H170" stroke="#1FA38F" stroke-width="3"></path><path d="M163 34 L170 40 L163 46" stroke="#1FA38F" stroke-width="3"></path>
+<path d="M126 60 H170" stroke="#E5506A" stroke-width="3"></path><path d="M163 54 L170 60 L163 66" stroke="#E5506A" stroke-width="3"></path>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">Annotated, colour-coded</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">My own convention: notes beside every screen, and arrows coded by intent (navigate, confirm, destructive). Readable without me in the room.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 14px">
+<span style="display: flex; flex-direction: column; align-items: center; gap: 5px"><span style="width: 26px; height: 40px; border-radius: 5px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="font-weight: 800; font-size: 12px">A</span><span style="display: flex; gap: 2px"><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #C9C3B2"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #C9C3B2"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #C9C3B2"></span></span></span>
+<span style="display: flex; flex-direction: column; align-items: center; gap: 5px"><span style="width: 26px; height: 40px; border-radius: 5px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="font-weight: 800; font-size: 12px">B</span><span style="display: flex; gap: 2px"><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #C9C3B2"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #C9C3B2"></span></span></span>
+<span style="display: flex; flex-direction: column; align-items: center; gap: 5px"><span style="width: 26px; height: 40px; border-radius: 5px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="font-weight: 800; font-size: 12px">C</span><span style="display: flex; gap: 2px"><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #C9C3B2"></span></span></span>
+<span style="display: flex; flex-direction: column; align-items: center; gap: 5px"><span style="width: 26px; height: 40px; border-radius: 5px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box"></span><span style="font-weight: 800; font-size: 12px">D</span><span style="display: flex; gap: 2px"><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span><span style="width: 5px; height: 5px; border-radius: 3px; background: #F5F0E8"></span></span></span>
+</div>
+<div style="font-weight: 800; font-size: 21px">Options, not one answer</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Several alternatives per problem, from simpler to richer to build, each covering different scenarios. Better than two options nobody is convinced by.</div>
+</div>
+</div>
+</div>
+
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #D3C9B6; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="7" height="10" rx="2"></rect><rect x="19" y="3" width="7" height="10" rx="2"></rect><rect x="19" y="17" width="7" height="8" rx="2"></rect><path d="M9 14 H14 V8 H19 M14 14 V21 H19"></path></svg>
+<div style="font-size: 17px; line-height: 1.5; color: #5A3A40"><strong style="color: #4B1D26">One language for all my work.</strong> I used the same flow format to propose systems, storyboard tutorials and document benchmarks.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isRework}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">UX · REWORK OF EXISTING FEATURES</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">Making existing features clearer</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">Some features already existed as a concept, but not how they should behave. I reworked them into clearer, more intuitive versions for players: mapping the open questions, designing every situation in screen flows and proposing options with their trade-offs.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I APPROACHED EACH REWORK</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Audit what exists</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">What was already decided, and what was still open.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">List every scenario</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Every situation a player can reach, not just the ideal one.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Design for the extremes</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">The smallest and the largest case the game allows.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Explore options</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Several answers to the same problem, as flows.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Compare &amp; recommend</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Pros and cons for each, and a final proposal.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT I AIMED FOR IN EVERY REWORK</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 12px">
+<span style="width: 34px; height: 54px; border-radius: 6px; border: 2px dashed #4B1D26; box-sizing: border-box"></span>
+<span style="width: 34px; height: 54px; border-radius: 6px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; padding: 5px; gap: 3px"><span style="height: 5px; border-radius: 2px; background: #F5F0E8"></span><span style="height: 5px; border-radius: 2px; background: #F5F0E8"></span></span>
+<span style="width: 34px; height: 54px; border-radius: 6px; background: #FFFFFF; border: 2px solid {{tone}}; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; padding: 5px; gap: 3px"><span style="height: 5px; border-radius: 2px; background: #F5F0E8"></span><span style="height: 5px; border-radius: 2px; background: #F5F0E8"></span><span style="height: 5px; border-radius: 2px; background: #F5F0E8"></span><span style="height: 5px; border-radius: 2px; background: #F5F0E8"></span><span style="height: 5px; border-radius: 2px; background: #F5F0E8"></span></span>
+</div>
+<div style="font-weight: 800; font-size: 21px">States, not just screens</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Each feature defined for every situation a player can reach, so nothing is left to improvise during development.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="150" height="70" viewBox="0 0 150 70" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<circle cx="22" cy="35" r="12" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></circle>
+<path d="M34 35 H60 M60 35 L84 15 M60 35 L84 55" stroke="#4B1D26" stroke-width="2"></path>
+<rect x="88" y="4" width="44" height="22" rx="11" fill="#1FA38F"></rect>
+<rect x="88" y="44" width="44" height="22" rx="11" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<path d="M103 15 L108 20 L118 10" stroke="#4B1D26" stroke-width="2.4"></path>
+<path d="M103 55 L108 60 L118 50" stroke="#4B1D26" stroke-width="2.4"></path>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">No dead ends</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">When a rule gets in the player's way, they get a clear choice and clear feedback on what happened, never a wall.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="170" height="60" viewBox="0 0 170 60" fill="none" stroke-linecap="round" aria-hidden="true">
+<path d="M8 40 H162" stroke="#4B1D26" stroke-width="2"></path>
+<circle cx="30" cy="40" r="4" fill="#C9C3B2"></circle>
+<circle cx="60" cy="40" r="4" fill="#C9C3B2"></circle>
+<circle cx="110" cy="40" r="4" fill="#C9C3B2"></circle>
+<circle cx="140" cy="40" r="4" fill="#C9C3B2"></circle>
+<circle cx="85" cy="40" r="8" fill="{{tone}}" stroke="#4B1D26" stroke-width="2"></circle>
+<path d="M85 26 V12" stroke="#4B1D26" stroke-width="2" stroke-dasharray="3 3"></path>
+<rect x="68" y="2" width="34" height="12" rx="6" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">Help that arrives on time</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Guidance only when it's relevant to what the player is doing, and never more insistent than the moment needs.</div>
+</div>
+</div>
+</div>
+
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #D3C9B6; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 V25"></path><path d="M8 25 H20"></path><path d="M4 8 H24"></path><path d="M4 8 L1 16 H7 Z"></path><path d="M24 8 L21 16 H27 Z"></path></svg>
+<div style="font-size: 17px; line-height: 1.5; color: #5A3A40"><strong style="color: #4B1D26">Options, then a recommendation.</strong> Every rework ended with the alternatives compared side by side, pros and cons, and a final proposal, often combining the strongest ideas instead of picking just one.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isGdd}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">DOCUMENTATION · GDD</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">From approved work to the GDD</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">As my work got approved, I added it to the GDD: new feature specs, UX reworks, the FTUE and the benchmark, rewritten as a clear reference for everyone building the game.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I DOCUMENTED</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Approved first</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Only what was agreed made it into the document.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Restructure, don't paste</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">From presentation format to reference format.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Link the detail</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Essentials in the doc, full tables in linked sheets.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Fill the gaps</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Specify features that existed but weren't written down.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Flag what's unclear</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Spot confusing sections and propose fixes.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT I KEPT IN MIND</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="170" height="76" viewBox="0 0 170 76" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="8" y="4" width="30" height="20" rx="3" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="8" y="28" width="30" height="20" rx="3" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="8" y="52" width="30" height="20" rx="3" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<path d="M14 11 H32 M14 17 H26 M14 35 H32 M14 41 H26 M14 59 H32 M14 65 H26" stroke="#8A7F72" stroke-width="2"></path>
+<path d="M40 14 Q80 14 104 34 M40 38 H104 M40 62 Q80 62 104 42" stroke="#4B1D26" stroke-width="2"></path>
+<path d="M98 30 L104 34 L98 38" stroke="#4B1D26" stroke-width="2"></path>
+<rect x="108" y="6" width="50" height="64" rx="5" fill="#FFFFFF" stroke="{{tone}}" stroke-width="3"></rect>
+<path d="M116 18 H150 M116 26 H144 M116 34 H150 M116 42 H138 M116 50 H150 M116 58 H142" stroke="#4B1D26" stroke-width="2"></path>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">One source of truth</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">One-pagers, flows and scripts were working documents. The GDD held the agreed version, rewritten to be read as a reference.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="170" height="76" viewBox="0 0 170 76" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<rect x="14" y="6" width="50" height="64" rx="5" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<path d="M22 18 H56 M22 26 H48 M22 34 H56" stroke="#4B1D26" stroke-width="2"></path>
+<rect x="22" y="44" width="26" height="10" rx="5" fill="{{tone}}"></rect>
+<path d="M50 49 H70" stroke="#4B1D26" stroke-width="2" stroke-dasharray="3 4"></path>
+<path d="M74 44 a6 6 0 0 1 0 10 h-4 M84 44 a6 6 0 0 0 0 10 h4" stroke="#4B1D26" stroke-width="2"></path>
+<path d="M92 49 H104" stroke="#4B1D26" stroke-width="2" stroke-dasharray="3 4"></path>
+<rect x="106" y="14" width="54" height="48" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<path d="M106 26 H160 M106 38 H160 M106 50 H160 M124 14 V62 M142 14 V62" stroke="#4B1D26" stroke-width="1.5"></path>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">Lean doc, deep links</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">The GDD keeps the essentials and links to detailed tables, so it stays readable.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 14px">
+<span style="width: 40px; height: 54px; border-radius: 5px; background: #FFFFFF; border: 2px solid #4B1D26; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; padding: 8px 6px"><span style="height: 3px; background: #F5F0E8; border-radius: 2px"></span><span style="height: 3px; width: 70%; background: #F5F0E8; border-radius: 2px"></span><span style="height: 3px; background: #F5F0E8; border-radius: 2px"></span><span style="height: 3px; width: 60%; background: #F5F0E8; border-radius: 2px"></span></span>
+<span style="display: flex; flex-direction: column; gap: 5px; font-weight: 800; font-size: 10px; letter-spacing: 0.5px">
+<span style="padding: 3px 9px; background: {{tone}}; border-radius: 999px">DESIGN</span>
+<span style="padding: 3px 9px; background: #9ED8CC; border-radius: 999px">DEVELOPMENT</span>
+<span style="padding: 3px 9px; background: #F4A6B4; border-radius: 999px">ART</span>
+</span>
+</div>
+<div style="font-weight: 800; font-size: 21px">Written for every reader</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Design, development and art read the same document looking for different things. Each needs to find their part fast.</div>
+</div>
+</div>
+</div>
+
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #D3C9B6; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 23 L7 17 L19 5 L23 9 L11 21 Z"></path><path d="M16 8 L20 12"></path><path d="M5 23 L11 21"></path></svg>
+<div style="font-size: 17px; line-height: 1.5; color: #5A3A40"><strong style="color: #4B1D26">Better, not just bigger.</strong> Beyond adding my own work, I flagged unclear sections and suggested structural changes, so the whole document became easier to use.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isModes}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">GAME DESIGN · NEW GAME MODES</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">New ways to play</h3>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #5A3A40">I analysed a reference game and used it to propose new modes, defining how players get in, what each mode consists of and which alternatives were worth considering. I also turned a concept from the lead designer into a buildable spec.</p>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">HOW I SHAPED EACH MODE</div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Study a reference</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">How a proven structure works, and why.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Define the entry</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">How players get in, and what it costs them.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Define the mode</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Its structure, its goals and what players win.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Offer alternatives</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Co-op, competitive or lighter variants, with trade-offs.</div></div>
+<div style="padding: 18px; background: #F5F0E8; border-radius: 14px; display: flex; flex-direction: column; gap: 8px"><div style="font-weight: 700; font-size: 16px">Sketch it</div><div style="font-size: 14px; line-height: 1.45; color: #5A3A40">Wireframes when words weren't enough.</div></div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="font-weight: 700; font-size: 13px; letter-spacing: 2px; color: #6B5357">WHAT EVERY PROPOSAL HAD TO DO</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="180" height="64" viewBox="0 0 180 64" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path d="M10 48 H170" stroke="#4B1D26" stroke-width="2" stroke-dasharray="2 6"></path>
+<circle cx="14" cy="48" r="6" fill="#4B1D26"></circle>
+<path d="M64 48 V18" stroke="#4B1D26" stroke-width="2"></path><path d="M64 18 H84 L78 25 L84 32 H64" fill="#1FA38F" stroke="#4B1D26" stroke-width="2"></path>
+<path d="M156 48 V8" stroke="#4B1D26" stroke-width="2"></path><path d="M156 8 H176 L170 16 L176 24 H156" fill="{{tone}}" stroke="#4B1D26" stroke-width="2"></path>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">Goals at two distances</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">An immediate goal to chase now and a long-term one to work towards, so players always know what's next.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center; gap: 12px">
+<svg width="56" height="60" viewBox="0 0 56 60" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<path d="M2 30 H16" stroke="#4B1D26" stroke-width="2"></path><path d="M11 25 L16 30 L11 35" stroke="#4B1D26" stroke-width="2"></path>
+<path d="M22 56 V14 A14 14 0 0 1 50 14 V56 Z" fill="#4B1D26"></path>
+<circle cx="43" cy="36" r="2.5" fill="{{tone}}"></circle>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">A clear way in</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">Each mode is earned by playing the main game, one more reason to keep playing.</div>
+</div>
+<div style="padding: 22px; background: #FFFFFF; color: #4B1D26; border-radius: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 96px; border-radius: 12px; background: #E4E0D4; display: flex; align-items: center; justify-content: center">
+<svg width="180" height="66" viewBox="0 0 180 66" fill="none" aria-hidden="true">
+<circle cx="14" cy="18" r="9" fill="{{tone}}" stroke="#4B1D26" stroke-width="2"></circle>
+<circle cx="14" cy="48" r="9" fill="#1FA38F" stroke="#4B1D26" stroke-width="2"></circle>
+<rect x="32" y="8" width="32" height="20" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="68" y="8" width="32" height="20" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="104" y="8" width="32" height="20" rx="4" fill="#E5506A" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="140" y="8" width="32" height="20" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="32" y="38" width="32" height="20" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="68" y="38" width="32" height="20" rx="4" fill="#E5506A" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="104" y="38" width="32" height="20" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+<rect x="140" y="38" width="32" height="20" rx="4" fill="#FFFFFF" stroke="#4B1D26" stroke-width="2"></rect>
+</svg>
+</div>
+<div style="font-weight: 800; font-size: 21px">Different players, same mode</div>
+<div style="font-size: 15px; line-height: 1.5; color: #5A3A40">I mapped the journey of two player personas stage by stage, from touchpoints and actions to pain points and the opportunities each one opened.</div>
+</div>
+</div>
+</div>
+
+<div class="m-callout" style="padding: 24px 28px; border: 2px solid #D3C9B6; border-radius: 18px; display: flex; gap: 18px; align-items: center">
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{tone}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3 L16.8 10.2 L24.5 10.6 L18.5 15.4 L20.5 22.9 L14 18.7 L7.5 22.9 L9.5 15.4 L3.5 10.6 L11.2 10.2 Z"></path></svg>
+<div style="font-size: 17px; line-height: 1.5; color: #5A3A40"><strong style="color: #4B1D26">From concept to buildable.</strong> I turned a concept into a logic flow, player journeys and visual references for the art team, including alternative ways to present it.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isPending}}" hint-placeholder-val="{{false}}">
+<div style="min-height: 560px; display: flex; flex-direction: column; gap: 18px">
+<div style="font-weight: 700; font-size: 14px; letter-spacing: 2px; color: {{tone}}">{{selected.cat}}</div>
+<h3 style="margin: 0; font-weight: 800; font-size: 44px; line-height: 1.03; letter-spacing: -1.2px">{{selected.title}}</h3>
+<div style="margin-top: 12px; flex-grow: 1; border: 2px dashed #D3C9B6; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 17px; color: #6B5357; text-align: center; padding: 40px">[Content pending — intro, how I did it, and the principles behind it]</div>
+</div>
+</sc-if>
+
+</div>
+</div>
+</div>
+</section>
+
+<footer class="m-pfooter" style="margin-top: 104px; box-sizing: border-box; padding: 56px 80px 72px; border-top: 1px solid #E0D8C8; display: flex; justify-content: space-between; align-items: flex-start">
+<a class="t-link" href="racing-project.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">PREVIOUS CARD · 01</span><span style="font-weight: 800; font-size: 24px">← F2P racing game</span></a>
+<a class="t-link" href="oceans-one.html" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; align-items: flex-end"><span style="font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #6B5357">NEXT CARD · 03</span><span style="font-weight: 800; font-size: 24px">Ocean's One →</span></a>
+</footer>
+
+</div>
+</template>
+<noscript><p style="padding:40px">This portfolio needs JavaScript enabled.</p></noscript>
+<script src="dc.js"></script>
+<script src="mobile.js"></script>
+<script>window.DC_PROPS = {"accent": "#EBD3A8"};
+
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { picked: 'feature' };
+}
+renderVals() {
+// Project pages: the hero card answers like the cards in the Home.
+// Mouse: see hover_tilt.js. Touch: it tilts under the finger and the foil follows.
+if (!this._pcTilt && typeof document !== 'undefined') {
+  this._pcTilt = true;
+    const wrap = (t) => t && t.closest ? t.closest('.pc-wrap') : null;
+  const tiltOf = (w) => w.querySelector('.pc-tilt');
+  const reset = (w) => { const t = tiltOf(w); w.classList.remove('playing'); if (t) t.style.transform = ''; };
+  let on = null;
+  const follow = (x, y) => {
+    const r = on.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (x - r.left) / r.width)), py = Math.min(1, Math.max(0, (y - r.top) / r.height));
+    tiltOf(on).style.transform = 'rotateX(' + ((0.5 - py) * 26).toFixed(1) + 'deg) rotateY(' + ((px - 0.5) * 30).toFixed(1) + 'deg) scale(1.04)';
+    on.style.setProperty('--fx', (px * 100).toFixed(1) + '%');
+    on.style.setProperty('--fy', (py * 100).toFixed(1) + '%');
+  };
+  document.addEventListener('touchstart', (e) => {
+    const w = wrap(e.target);
+    if (!w || e.touches.length > 1) return;
+    on = w; w.classList.add('playing');
+    follow(e.touches[0].clientX, e.touches[0].clientY);  // the card answers the finger straight away
+  }, { passive: true });
+  document.addEventListener('touchmove', (e) => {
+    if (!on) return;
+    e.preventDefault();
+    follow(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: false });
+  const end = () => { if (on) { reset(on); on = null; } };
+  document.addEventListener('touchend', end);
+  document.addEventListener('touchcancel', end);
+}
+
+// Desktop: the card under the cursor tilts toward it. The corner under the cursor rises, the centre keeps it flat.
+// The angles go to two variables on the page root; the CSS applies them only to the hovered card.
+if (!this._hvTilt && typeof document !== 'undefined') {
+  this._hvTilt = true;
+  const MAX = 12;
+  document.addEventListener('mousemove', (e) => {
+    const h = e.target.closest && e.target.closest('.pk .fl, .pc-wrap');
+    if (!h) return;
+    const r = h.getBoundingClientRect();
+    const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+    const s = document.documentElement.style;
+    s.setProperty('--hrx', ((py - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+    s.setProperty('--hry', ((0.5 - px) * 2 * MAX).toFixed(2) + 'deg');
+    h.style.setProperty('--fx', (px * 100).toFixed(1) + '%');
+    h.style.setProperty('--fy', (py * 100).toFixed(1) + '%');
+  });
+}
+
+// desktop: picking another ability starts its content from the top
+if (!this._abScroll && typeof document !== 'undefined') {
+  this._abScroll = true;
+  document.addEventListener('click', (e) => {
+    if (!(e.target.closest && e.target.closest('.ab-btn'))) return;
+    setTimeout(() => { const s = document.querySelector('.ab-scroll'); if (s) s.scrollTop = 0; }, 0);
+  });
+}
+
+const accent = this.props.accent ?? '#7A5F33';
+const GD = { tone: '#B92B45', ink: '#F4A6B4', fill: '#4B1D26' };
+const UX = { tone: '#0F6E62', ink: '#9ED8CC', fill: '#0A4F46' };
+const PR = { tone: '#6B5357', ink: '#E6DCCB' };
+const list = [
+{ id: 'feature', num: '01', cat: 'GAME DESIGN', title: 'Feature design & one-pagers', ...GD },
+{ id: 'benchmark', num: '02', cat: 'RESEARCH', title: 'Benchmark', ...UX },
+{ id: 'ftue', num: '03', cat: 'UX', title: 'FTUE definition', ...UX },
+{ id: 'flows', num: '04', cat: 'UX', title: 'Screen flows', ...UX },
+{ id: 'rework', num: '05', cat: 'UX', title: 'UX rework of existing features', ...UX },
+{ id: 'gdd', num: '06', cat: 'DOCUMENTATION', title: 'GDD', ...GD },
+{ id: 'modes', num: '07', cat: 'GAME DESIGN', title: 'New game modes', ...GD }
+];
+const picked = this.state.picked;
+const abilities = list.map((a) => {
+const on = a.id === picked;
+return {
+...a,
+bg: on ? (a.fill || '#4B1D26') : '#EAE4D8',
+fg: on ? '#F5F0E8' : '#4B1D26',
+border: on ? '4px solid ' + a.tone : '2px solid #D3C9B6',
+catColor: on ? a.ink : a.tone,
+shift: on ? 'translateX(8px)' : 'none', tone: a.tone || '#4B1D26',
+pick: () => this.setState({ picked: a.id })
+};
+});
+const selected = list.find((a) => a.id === picked) || list[0];
+const tone = selected.tone;
+return {
+accent,
+tone,
+abilities,
+selected,
+isFeature: picked === 'feature',
+isBenchmark: picked === 'benchmark',
+isFtue: picked === 'ftue',
+isFlows: picked === 'flows',
+isRework: picked === 'rework',
+isGdd: picked === 'gdd',
+isModes: picked === 'modes',
+isPending: !['feature', 'benchmark', 'ftue', 'flows', 'rework', 'gdd', 'modes'].includes(picked)
+};
+}
+}
+
+</script>
+</body>
+</html>

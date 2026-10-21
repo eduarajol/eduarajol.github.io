@@ -1,0 +1,222 @@
+/* Phone layout. The desktop pages are built at 1440px with inline styles; below 760px these rules
+   re-lay every block for a narrow screen. Gutter: 20px. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+@media (max-width: 760px) {
+  .m-root { width: 100% !important; }
+
+  /* ---------- Header (sticky) and project sub-bar ---------- */
+  .m-header { position: sticky !important; top: 0 !important; z-index: 40 !important; height: 60px !important; padding: 0 20px !important;
+    background: rgba(234, 228, 216, 0.96) !important; -webkit-backdrop-filter: blur(10px) !important; backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid #DDD3C1 !important; }
+  .m-header > a:first-child { width: 30px !important; height: 30px !important; }
+  .m-nav { gap: 15px !important; font-size: 14px !important; }
+  .m-nav > a:last-child { padding: 8px 12px !important; border-radius: 8px !important; }
+
+  .m-subbar { height: 52px !important; padding: 0 20px !important; }
+  .m-subbar > a:first-child { font-size: 14px !important; gap: 6px !important; }
+  .m-subbar > div { font-size: 11px !important; letter-spacing: 1.5px !important; }
+  .m-subbar .sb-name, .m-subbar .sb-label { display: none !important; }
+  .m-subbar .sb-short { display: inline !important; }
+
+  /* ---------- Home · hero ---------- */
+  .m-hero { height: auto !important; flex-direction: column !important; padding: 32px 20px 0 !important; gap: 4px !important; }
+  .m-hero-text { width: auto !important; padding-top: 0 !important; gap: 18px !important; }
+  .m-hero-text > div:first-child { font-size: 12px !important; letter-spacing: 1.5px !important; }
+  .m-hero-text > div:nth-child(2) { gap: 14px !important; }
+  .m-h1 { font-size: 60px !important; letter-spacing: -2px !important; }
+  .m-role { font-size: 19px !important; padding: 5px 12px !important; border-radius: 8px !important; }
+  .m-hero-text > p { font-size: 17px !important; }
+  .m-hero-btns { margin-top: 2px !important; gap: 10px !important; }
+  .m-hero-btns > a { flex: 1 1 0 !important; text-align: center !important; padding: 14px 10px !important; font-size: 16px !important; }
+
+  /* The card fan, redrawn for a narrow stage: same cards and proportions, scaled */
+  .m-fan { flex-grow: 0 !important; height: 340px !important; margin-top: 12px !important; }
+  .m-fan-card { transform-origin: center center !important; }
+  /* visual centres, in px from the middle: client −102 · featured −30 · ocean's +76 · cupra +124 */
+  .m-fan-c2 { left: calc(50% - 115px - 102px) !important; top: -4px !important; transform: rotate(-13deg) scale(0.48) !important; }
+  .m-fan-c3 { left: calc(50% - 115px + 76px) !important; top: -26px !important; transform: rotate(7deg) scale(0.5) !important; }
+  .m-fan-c4 { left: calc(50% - 115px + 124px) !important; top: 28px !important; transform: rotate(17deg) scale(0.48) !important; }
+  .m-fan-c1 { left: calc(50% - 145px - 30px) !important; top: -50px !important; transform: rotate(-4deg) scale(0.56) !important; }
+  .m-fan-cap { left: 0 !important; right: 0 !important; top: auto !important; bottom: 14px !important; text-align: center !important; font-size: 13px !important; }
+
+  /* The pack (card layout 9) on a phone: same stage, scaled to the screen */
+  .pk-fan { flex-grow: 0 !important; height: 568px !important; margin-top: 20px !important; }
+  .pk-scale { top: 0 !important; transform: scale(0.66) !important; }
+  /* once open, the cards stay the size of the pack, in one stack: swipe the front card to send it to the back */
+  .pk-fan .pko { left: 140px !important; top: 194px !important; --dx: 0px !important; --dy: 0px !important; --r: 0deg !important; z-index: var(--z) !important; }
+  .pk-fan .pko .fl { animation: none !important; transform: var(--stack); transition: transform .4s cubic-bezier(.2,.8,.2,1); touch-action: none; }
+  .pk-fan .pko .fl.dragging { transition: none !important; }
+  .pk-fan .pko .tilt { transform: none !important; box-shadow: 0 14px 30px rgba(75,29,38,.22) !important; }
+  .pk-fan .pk.open .pk-swipe { display: flex !important; }
+  .pk-fan .pk.open .pk-hold { display: block !important; }
+  .pk-fan .pkbtn { top: 812px !important; }
+  /* press and hold: the card tilts under the finger and the foil follows it */
+  .pk-fan .pko { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .pk-fan .pko .fl.playing .tilt { box-shadow: 0 26px 50px rgba(75,29,38,.3) !important; }
+  .pk-fan .pko .fl.playing .f2p-glow::before { opacity: .4 !important; filter: saturate(1.15) brightness(1.03) !important; animation: none !important; background-position: var(--fx) var(--fy) !important; }
+  .pk-fan .pko .fl.playing .f2p-glow::after { opacity: 1 !important; animation: none !important; background-position: 0 0, 0 0, var(--fx) var(--fy) !important; }
+
+  /* ---------- Section headings (Home and project pages) ---------- */
+  .m-sechead { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
+  .m-sechead h2 { font-size: 38px !important; letter-spacing: -1px !important; }
+  .m-sechead > div { font-size: 14px !important; }
+
+  /* ---------- Home · the deck ---------- */
+  .m-deck { padding: 56px 20px 0 !important; gap: 24px !important; }
+  .m-deck-grid { grid-template-columns: minmax(0, 1fr) !important; gap: 14px !important; }
+  .m-deck-item { display: grid !important; grid-template-columns: 112px minmax(0, 1fr) !important; column-gap: 16px !important; row-gap: 6px !important; grid-template-rows: auto auto 1fr !important;
+    padding: 16px !important; border-radius: 20px !important; align-items: start !important; }
+  .m-deck-item > :last-child { display: contents !important; }
+  .m-deck-card { grid-row: 1 / span 3 !important; zoom: 0.5334 !important; }
+  .m-deck-item > :last-child > div:nth-child(1) { font-size: 11px !important; letter-spacing: 1.5px !important; line-height: 1.4 !important; }
+  .m-deck-item > :last-child > div:nth-child(2) { font-size: 22px !important; line-height: 1.1 !important; }
+  .m-deck-item > :last-child > div:nth-child(3) { font-size: 14px !important; line-height: 1.4 !important; }
+  .m-deck-item > :last-child > ul { grid-column: 1 / -1 !important; margin: 8px 0 0 !important; padding-left: 18px !important; font-size: 15px !important; line-height: 1.5 !important; }
+  .m-deck-item .deck-cta { grid-column: 1 / -1 !important; margin-top: 6px !important; font-size: 15px !important; }
+  .m-quests { flex-wrap: wrap !important; gap: 10px !important; font-size: 14px !important; }
+  .m-quests > :first-child { flex-basis: 100% !important; }
+
+  /* ---------- Home · My deck as a quick-read index ---------- */
+  #deck { scroll-margin-top: 40px !important; }
+  #profile, #faq { scroll-margin-top: 96px !important; }
+  .ix-row { scroll-margin-top: 76px !important; grid-template-columns: 52px minmax(0, 1fr) !important; gap: 10px 14px !important; padding: 22px 4px !important; }
+  .ix-head { flex-direction: column !important; align-items: flex-start !important; gap: 6px !important; }
+  .ix-head h2 { font-size: 38px !important; letter-spacing: -1px !important; }
+  .ix-head > div { font-size: 14px !important; }
+  .ix-num { font-size: 26px !important; gap: 6px !important; }
+  .ix-rar { font-size: 9px !important; letter-spacing: 1px !important; }
+  .ix-title { font-size: 22px !important; gap: 8px !important; }
+  .ix-role { font-size: 14px !important; }
+  .ix-list, .ix-when, .ix-cta { grid-column: 2 !important; }
+  .ix-list { font-size: 14px !important; }
+  .ix-when { flex-direction: row !important; gap: 10px !important; font-size: 11px !important; }
+  .ix-cta { justify-self: start !important; font-size: 14px !important; padding: 9px 12px !important; margin-top: 4px; }
+
+  /* ---------- Home · player profile ---------- */
+  .m-profile { display: flex !important; flex-direction: column !important; margin: 64px 20px 0 !important; gap: 20px !important; }
+  .m-profile > div { gap: 12px !important; margin-top: 0 !important; }
+  .m-profile h2 { font-size: 38px !important; letter-spacing: -1px !important; }
+  .m-ph { aspect-ratio: 16 / 8 !important; font-size: 12px !important; }
+  .m-tl { padding: 16px 18px !important; gap: 12px !important; border-radius: 16px !important; }
+  .m-tl > div:first-child > div:first-child { font-size: 16px !important; }
+  .m-tl > div:first-child > div:last-child { font-size: 13px !important; }
+  .m-tl > div:last-child { font-size: 11px !important; padding: 5px 9px !important; white-space: nowrap !important; }
+  .m-training { font-size: 14px !important; margin-top: 6px !important; }
+
+  /* ---------- Home · abilities ---------- */
+  .m-abil { margin: 64px 20px 0 !important; gap: 24px !important; }
+  .m-abil > h2 { font-size: 38px !important; letter-spacing: -1px !important; }
+  .m-abil > div { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
+  .m-abil > div > div > div:last-child { gap: 8px !important; font-size: 14px !important; }
+
+  /* ---------- Home · ally cards ---------- */
+  .m-ally { margin: 64px 0 0 !important; gap: 20px !important; }
+  .m-ally-head { padding: 0 20px !important; gap: 16px !important; flex-direction: column !important; align-items: stretch !important; }
+  .m-ally-head h2 { font-size: 38px !important; letter-spacing: -1px !important; line-height: 1.05 !important; }
+  .m-ally-head > div:last-child { gap: 8px !important; font-size: 13px !important; justify-content: flex-end !important; }
+  .m-ally-head button { width: 40px !important; height: 40px !important; }
+  .m-ally-view { width: 100% !important; touch-action: pan-y !important; }
+  .m-ally-track { gap: 12px !important; }
+  .m-ally-card { width: calc(100vw - 56px) !important; padding: 24px 20px !important; gap: 16px !important;
+    border-width: 4px !important; border-radius: 20px !important; }
+  .m-ally-card > div:first-child { flex-wrap: wrap !important; gap: 4px 12px !important; font-size: 11px !important; }
+  .m-ally-card > p { font-size: 16px !important; line-height: 1.55 !important; }
+  .m-ally-card > div:last-child { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+  .m-ally-foot { padding: 0 20px !important; }
+  .m-ally-foot > a { font-size: 14px !important; }
+
+  /* ---------- Home · FAQ ---------- */
+  .m-faq { display: flex !important; flex-direction: column !important; margin: 64px 20px 0 !important; gap: 20px !important; }
+  .m-faq > div:first-child { gap: 10px !important; }
+  .m-faq > div:first-child h2 { font-size: 38px !important; letter-spacing: -1px !important; }
+  .m-faq > div:first-child > div { margin-top: 8px !important; }
+  .m-faq-q { padding: 16px !important; font-size: 16px !important; text-align: left !important; }
+  .m-faq-a { padding: 0 16px 18px !important; font-size: 15px !important; }
+
+  /* ---------- Home · footer ---------- */
+  .m-footer-home { margin-top: 72px !important; padding: 48px 20px 56px !important; flex-direction: column !important;
+    align-items: stretch !important; gap: 28px !important; }
+  .m-bigmove { font-size: 68px !important; letter-spacing: -2px !important; }
+  .m-footer-home > div:last-child { flex-wrap: wrap !important; gap: 10px !important; }
+  .m-footer-home > div:last-child > a { flex: 1 1 0 !important; text-align: center !important; padding: 15px 12px !important; font-size: 16px !important; }
+  .m-footer-home > div:last-child > a:first-child { flex-basis: 100% !important; }
+
+  /* ---------- Project · hero ---------- */
+  .m-phero { flex-direction: column !important; align-items: stretch !important; padding: 28px 20px 0 !important; gap: 28px !important; }
+  .m-pcard { transform: scale(0.75) rotate(-4deg) !important; align-self: center !important; margin: -40px -38px -50px !important; }
+  .m-phero > div:last-child { gap: 16px !important; }
+  .m-phero > div:last-child > div:first-child { font-size: 12px !important; letter-spacing: 1.5px !important; line-height: 1.4 !important; }
+  .m-ph1 { font-size: 50px !important; letter-spacing: -1.5px !important; line-height: 1 !important; }
+  .m-plead { font-size: 17px !important; }
+  .m-facts { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; margin-top: 4px !important; }
+  .m-facts > div { padding: 14px !important; border-radius: 14px !important; }
+  .m-facts > div > div:last-child { font-size: 15px !important; }
+  .m-note { margin: 44px 20px 0 !important; padding: 14px 16px !important; font-size: 14px !important; align-items: flex-start !important; }
+
+  /* ---------- Project · "What I owned": tabs become a sticky swipeable row ---------- */
+  .m-owned { padding: 56px 20px 0 !important; gap: 18px !important; }
+  .m-owned-body { flex-direction: column !important; align-items: stretch !important; gap: 14px !important; }
+  .m-tabs { width: auto !important; flex-direction: row !important; gap: 8px !important; overflow-x: auto !important; overscroll-behavior-x: contain !important;
+    margin: 0 -20px !important; padding: 10px 20px !important; position: sticky !important; top: 60px !important; z-index: 30 !important; background: #F5F0E8 !important;
+    scroll-snap-type: x proximity !important; scrollbar-width: none !important; }
+  .m-tabs::-webkit-scrollbar { display: none !important; }
+  .m-tab { width: auto !important; flex: 0 0 auto !important; transform: none !important; scroll-snap-align: start !important; scroll-margin-left: 20px !important;
+    padding: 9px 13px !important; border-radius: 12px !important; text-align: left !important; }
+  .m-tab > :last-child { white-space: nowrap !important; font-size: 14px !important; }
+  .m-tab > :first-child { font-size: 10px !important; }
+
+  .m-panel { padding: 24px 18px !important; gap: 34px !important; border-radius: 20px !important; }
+  .m-panel h3 { font-size: 29px !important; letter-spacing: -0.5px !important; line-height: 1.08 !important; }
+  .m-panel p { font-size: 16px !important; }
+  .m-panel [style*="grid-template-columns: repeat("]:not([style*="repeat(4, 16px)"]):not([style*="repeat(7,"]),
+  .m-psec [style*="grid-template-columns: repeat("],
+  .m-panel [style*="grid-template-columns: 2fr 1fr"] { grid-template-columns: minmax(0, 1fr) !important; gap: 10px !important; }
+  .m-panel [style*="grid-column: span"] { grid-column: auto !important; }
+  /* numbered steps: number on the left, title and text on the right */
+  .m-panel [style*="grid-template-columns: repeat("] > [style*="padding: 18px"]:has(> :nth-child(3)) { display: grid !important; grid-template-columns: 28px minmax(0, 1fr) !important;
+    column-gap: 10px !important; row-gap: 3px !important; padding: 14px 16px !important; align-items: baseline !important; }
+  .m-panel [style*="grid-template-columns: repeat("] > [style*="padding: 18px"]:has(> :nth-child(3)) > :first-child { grid-row: 1 / span 2 !important; font-size: 22px !important; }
+  .m-panel [style*="padding: 22px"], .m-panel [style*="padding: 20px"] { padding: 16px !important; }
+  /* cards without a number: title over text */
+  .m-panel [style*="grid-template-columns: repeat("] > [style*="padding: 18px"]:not(:has(> :nth-child(3))) { padding: 14px 16px !important; gap: 4px !important; }
+  /* the navigation images stack */
+  .m-panel .nav-row { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+  .m-panel img[style*="object-fit: contain"] { height: auto !important; }
+  .m-panel img[style*="height: 340px"] { height: 230px !important; }
+  .m-panel img[style*="height: 280px"] { height: 210px !important; }
+  /* before → after pairs stack vertically */
+  .m-panel [style*="grid-template-columns: 1fr 40px 1fr"] { grid-template-columns: minmax(0, 1fr) !important; }
+  .m-panel [style*="grid-template-columns: 1fr 40px 1fr"] > :nth-child(2) { transform: rotate(90deg) !important; justify-self: center !important; }
+  /* the parameter table keeps its columns and scrolls sideways inside its own box */
+  .m-panel div:has(> [style*="1.1fr) minmax(0, 0.8fr"]) { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+  .m-panel [style*="1.1fr) minmax(0, 0.8fr"] { min-width: 760px !important; }
+  .m-panel div:has(> [style*="repeat(7,"]) { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; }
+  .m-panel [style*="repeat(7,"] { min-width: 620px !important; }
+  /* tell the reader the table scrolls */
+  .m-panel div:has(> div > [style*="1.1fr) minmax(0, 0.8fr"]) > div:first-child::after,
+  .m-panel div:has(> div > [style*="repeat(7,"]) > div:first-child::after { content: "  ·  swipe →" !important; color: #7A5F33 !important; }
+  .m-callout { padding: 16px !important; gap: 12px !important; align-items: flex-start !important; border-radius: 16px !important; }
+  .m-callout > div { font-size: 15px !important; }
+  .m-callout > svg { flex-shrink: 0 !important; margin-top: 2px !important; }
+
+  .m-psec { padding: 56px 20px 0 !important; gap: 18px !important; }
+  .m-banner { margin: 48px 20px 0 !important; }
+  .m-banner img { height: 150px !important; border-radius: 18px !important; }
+  .m-psec > div:last-child > div { padding: 18px !important; }
+
+  .m-pfooter { margin-top: 64px !important; padding: 28px 20px 40px !important; gap: 16px !important; }
+  .m-pfooter > a { flex: 1 1 0 !important; min-width: 0 !important; }
+  .m-pfooter > a:last-child { text-align: right !important; }
+  .m-pfooter span:last-child { font-size: 16px !important; line-height: 1.25 !important; text-wrap: balance !important; }
+  .m-pfooter span:first-child { font-size: 11px !important; }
+
+  /* ---------- Image viewer ---------- */
+  .m-zoom { padding: 64px 12px 24px !important; }
+  .m-zoom > div { font-size: 14px !important; gap: 12px !important; }
+  .m-zoom > button { width: 42px !important; height: 42px !important; }
+  .m-zoom > button:first-of-type { top: 12px !important; right: 12px !important; }
+}
+
+/* small phones: shrink the whole card fan so its outer cards stay on screen */
+@media (max-width: 380px) { .m-fan, .pk-fan { zoom: 0.9 !important; } }
